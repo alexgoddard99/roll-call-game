@@ -1,0 +1,359 @@
+/* ============ Roll Call — Congressional-ledger aesthetic ============ */
+
+:root {
+  --paper: #f1e7d4;
+  --paper-deep: #e7dabf;
+  --ink: #211d16;
+  --ink-soft: #4c443a;
+  --ink-faint: #857a68;
+  --rule: #9c8f77;
+  --stamp-red: #a92c25;
+  --stamp-green: #2f6b46;
+  --dem: #24537d;
+  --gop: #983128;
+  --ind: #5d6b33;
+  --gold: #8d6b2d;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --display: "Fraunces", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  background-image:
+    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(255,252,240,.9), transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 115%, rgba(140,110,60,.16), transparent 55%);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+.paper-grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 40;
+  opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.40 0 0 0 0 0.32 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; }
+
+/* ---------------- Masthead ---------------- */
+
+.masthead {
+  max-width: 980px; margin: 0 auto; padding: 26px 20px 0;
+  text-align: center;
+}
+
+.dateline {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 5px 2px;
+}
+.dateline-center { letter-spacing: .3em; }
+
+.masthead-title {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(58px, 11vw, 108px);
+  letter-spacing: .01em;
+  line-height: 1.02;
+  margin: 10px 0 2px;
+  font-variation-settings: "opsz" 144;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+.masthead-title::after {
+  content: ""; display: block; width: 100%; height: 7px; margin-top: 12px;
+  border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+}
+
+.masthead-sub {
+  font-family: var(--serif); font-style: italic; font-size: 17px;
+  color: var(--ink-soft); padding: 8px 0 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------------- Layout ---------------- */
+
+main { max-width: 980px; margin: 0 auto; padding: 26px 20px 60px; }
+
+.screen { animation: rise .5s cubic-bezier(.2,.7,.3,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; } }
+
+/* ---------------- Cover screen ---------------- */
+
+.era-banner {
+  text-align: center; font-family: var(--mono); font-size: 12px;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.puzzle-title {
+  text-align: center; font-family: var(--display); font-weight: 800;
+  font-size: clamp(34px, 6vw, 54px); font-style: italic; line-height: 1.1;
+}
+
+.puzzle-intro {
+  max-width: 620px; margin: 14px auto 8px; text-align: center;
+  font-size: 18.5px; color: var(--ink-soft);
+}
+
+.section-rule {
+  display: flex; align-items: center; gap: 14px; margin: 30px 0 22px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .25em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.section-rule::before, .section-rule::after {
+  content: ""; flex: 1; border-top: 1px solid var(--rule);
+}
+
+.senator-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 16px;
+}
+
+.senator-card {
+  background: rgba(255,252,242,.55);
+  border: 1px solid var(--rule);
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 2px 8px rgba(60,45,20,.08);
+  padding: 10px 10px 14px;
+  text-align: center;
+  animation: rise .5s cubic-bezier(.2,.7,.3,1) both;
+}
+.senator-grid .senator-card:nth-child(2) { animation-delay: .07s; }
+.senator-grid .senator-card:nth-child(3) { animation-delay: .14s; }
+.senator-grid .senator-card:nth-child(4) { animation-delay: .21s; }
+.senator-grid .senator-card:nth-child(5) { animation-delay: .28s; }
+
+.portrait-frame {
+  position: relative; margin: 2px auto 10px; width: 118px;
+  border: 1px solid var(--rule); padding: 5px; background: #fffdf6;
+  box-shadow: 0 2px 6px rgba(60,45,20,.18);
+}
+.portrait-frame img {
+  display: block; width: 100%; aspect-ratio: 225/275; object-fit: cover;
+  filter: sepia(.28) contrast(1.04) saturate(.9);
+}
+.party-seal {
+  position: absolute; top: -9px; right: -9px;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 600; color: #fffdf4;
+  border: 2px solid #fffdf4; box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.party-D { background: var(--dem); } .party-R { background: var(--gop); } .party-I { background: var(--ind); }
+
+.senator-name { font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1.15; }
+.senator-meta {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 3px 0 8px;
+}
+.senator-blurb { font-size: 13.8px; line-height: 1.45; color: var(--ink-soft); text-align: left; }
+
+/* ---------------- Buttons ---------------- */
+
+.action-row { text-align: center; margin-top: 30px; }
+
+.btn-primary {
+  font-family: var(--mono); font-size: 14px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--paper); background: var(--ink);
+  border: none; padding: 15px 34px; cursor: pointer;
+  box-shadow: 3px 3px 0 var(--gold);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .2s;
+}
+.btn-primary:hover:not(:disabled) { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--gold); }
+.btn-primary:active:not(:disabled) { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--gold); }
+.btn-primary:disabled { opacity: .35; cursor: not-allowed; }
+
+.btn-ghost {
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em;
+  text-transform: uppercase; background: none; color: var(--ink-soft);
+  border: 1px solid var(--rule); padding: 11px 22px; cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ---------------- Bill screen ---------------- */
+
+.bill-progress {
+  display: flex; justify-content: center; gap: 10px; margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--ink-faint); align-items: center;
+}
+.pip { width: 9px; height: 9px; border: 1px solid var(--ink-soft); border-radius: 50%; }
+.pip.done { background: var(--ink); }
+.pip.now { background: var(--stamp-red); border-color: var(--stamp-red); }
+
+.docket {
+  border: 2px solid var(--ink);
+  background: rgba(255,252,242,.6);
+  box-shadow: 0 3px 14px rgba(60,45,20,.12);
+  padding: 26px 30px 24px;
+  position: relative;
+}
+.docket::before {
+  content: ""; position: absolute; inset: 4px;
+  border: 1px solid var(--rule); pointer-events: none;
+}
+
+.docket-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--stamp-red); margin-bottom: 8px;
+}
+.docket-title {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(26px, 4.4vw, 40px); line-height: 1.08; margin-bottom: 4px;
+}
+.docket-date {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px;
+}
+.docket-desc { font-size: 17.5px; color: var(--ink-soft); max-width: 700px; }
+
+.whip-note {
+  text-align: center; font-style: italic; color: var(--ink-faint);
+  font-size: 15px; margin: 22px 0 10px;
+}
+
+/* ---- ballot rows ---- */
+
+.ballot { margin-top: 8px; }
+
+.ballot-row {
+  display: grid; grid-template-columns: 64px 1fr auto;
+  gap: 14px; align-items: center;
+  padding: 13px 6px;
+  border-bottom: 1px dotted var(--rule);
+}
+.ballot-row:first-child { border-top: 1px dotted var(--rule); }
+
+.ballot-portrait {
+  width: 64px; height: 72px; object-fit: cover; object-position: top;
+  border: 1px solid var(--rule); background: #fffdf6; padding: 2px;
+  filter: sepia(.28) contrast(1.04) saturate(.9);
+}
+
+.ballot-id .senator-name { font-size: 18px; }
+.ballot-blurb { font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; max-width: 520px; }
+
+.stamp-pair { display: flex; gap: 10px; align-items: center; }
+
+.stamp {
+  font-family: var(--mono); font-weight: 600; font-size: 15px;
+  letter-spacing: .14em; padding: 10px 16px;
+  border: 2.5px solid var(--ink-faint); color: var(--ink-faint);
+  background: transparent; cursor: pointer; border-radius: 3px;
+  transition: color .12s, border-color .12s, transform .12s;
+  position: relative;
+}
+.stamp:hover { color: var(--ink); border-color: var(--ink); }
+
+.stamp.stamped-yea {
+  color: var(--stamp-green); border-color: var(--stamp-green);
+  transform: rotate(-5deg) scale(1.04);
+  box-shadow: 0 0 0 1px rgba(47,107,70,.25) inset;
+  animation: slam .18s cubic-bezier(.3,1.6,.5,1) both;
+}
+.stamp.stamped-nay {
+  color: var(--stamp-red); border-color: var(--stamp-red);
+  transform: rotate(4deg) scale(1.04);
+  box-shadow: 0 0 0 1px rgba(169,44,37,.25) inset;
+  animation: slam .18s cubic-bezier(.3,1.6,.5,1) both;
+}
+@keyframes slam {
+  from { transform: scale(1.7) rotate(-9deg); opacity: .2; }
+}
+.stamp.faded { opacity: .3; }
+
+/* ---- reveal ---- */
+
+.verdict {
+  display: inline-grid; place-items: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  font-size: 15px; font-weight: 700; color: #fffdf4;
+  animation: slam .25s cubic-bezier(.3,1.6,.5,1) both;
+}
+.verdict.hit { background: var(--stamp-green); }
+.verdict.miss { background: var(--stamp-red); }
+
+.actual-stamp {
+  font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: .12em;
+  padding: 7px 12px; border-radius: 3px; border: 2px solid;
+  animation: slam .25s cubic-bezier(.3,1.6,.5,1) both;
+}
+.actual-stamp.yea { color: var(--stamp-green); border-color: var(--stamp-green); transform: rotate(-4deg); }
+.actual-stamp.nay { color: var(--stamp-red); border-color: var(--stamp-red); transform: rotate(3deg); }
+
+.vote-note {
+  grid-column: 1 / -1; font-size: 13.5px; font-style: italic;
+  color: var(--ink-soft); background: rgba(141,107,45,.08);
+  border-left: 3px solid var(--gold); padding: 8px 12px; margin-top: 6px;
+}
+
+.tally-banner {
+  margin-top: 20px; padding: 14px 18px; text-align: center;
+  border: 1px solid var(--rule); background: rgba(255,252,242,.7);
+  font-family: var(--mono); font-size: 13px; letter-spacing: .1em;
+  animation: rise .4s .15s both;
+}
+.tally-banner strong { font-size: 15px; letter-spacing: .16em; }
+.tally-round-score { color: var(--gold); font-weight: 600; margin-top: 4px; display: block; }
+
+/* ---------------- Summary ---------------- */
+
+.summary-score {
+  text-align: center; margin: 8px 0 4px;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(64px, 13vw, 120px); line-height: 1;
+}
+.summary-score .of { font-size: .38em; color: var(--ink-faint); font-weight: 600; }
+
+.summary-rank {
+  text-align: center; font-family: var(--display); font-style: italic;
+  font-weight: 700; font-size: clamp(22px, 4vw, 32px); color: var(--stamp-red);
+  margin-bottom: 6px;
+}
+.summary-rank-note { text-align: center; color: var(--ink-soft); font-style: italic; margin-bottom: 26px; }
+
+.result-table {
+  border-collapse: collapse; margin: 0 auto; font-family: var(--mono);
+  font-size: 12px;
+}
+.result-table th, .result-table td {
+  border: 1px solid var(--rule); padding: 7px 9px; text-align: center;
+}
+.result-table th {
+  font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+  font-size: 10px; color: var(--ink-soft); background: rgba(156,143,119,.12);
+}
+.result-table td.hit { color: var(--stamp-green); font-weight: 700; }
+.result-table td.miss { color: var(--stamp-red); font-weight: 700; }
+.result-table td.bill-name { text-align: left; font-family: var(--serif); font-size: 13.5px; font-style: italic; }
+
+.share-row { display: flex; gap: 12px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+.share-feedback { text-align: center; font-family: var(--mono); font-size: 12px; color: var(--stamp-green); margin-top: 10px; min-height: 18px; letter-spacing: .1em; }
+
+/* ---------------- Colophon ---------------- */
+
+.colophon {
+  max-width: 980px; margin: 0 auto; padding: 18px 20px 42px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px; color: var(--ink-faint); text-align: center;
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 720px) {
+  .docket { padding: 20px 16px; }
+  .ballot-row { grid-template-columns: 48px 1fr; }
+  .ballot-portrait { width: 48px; height: 56px; align-self: start; }
+  .stamp-pair { grid-column: 1 / -1; justify-content: flex-end; }
+  .senator-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}

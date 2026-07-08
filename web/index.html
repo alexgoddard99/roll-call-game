@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roll Call — The Daily Congressional Vote Game</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="paper-grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="dateline">
+    <span id="dateline-left">…</span>
+    <span class="dateline-center">DAILY EDITION</span>
+    <span id="dateline-right">…</span>
+  </div>
+  <h1 class="masthead-title">Roll&nbsp;Call</h1>
+  <p class="masthead-sub">Five senators. Real bills. How did they vote?</p>
+</header>
+
+<main id="app" aria-live="polite"></main>
+
+<footer class="colophon">
+  <p>Every answer is a real recorded vote, sourced from the official roll-call
+  records of the <a href="https://www.senate.gov/legislative/votes_new.htm">United States Senate</a>.
+  Portraits: Biographical Directory of the U.S. Congress.</p>
+</footer>
+
+<script src="puzzles.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

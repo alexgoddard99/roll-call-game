@@ -1,0 +1,614 @@
+{
+ "gameName": "Roll Call",
+ "epoch": "2026-07-08",
+ "puzzles": [
+  {
+   "id": "obama-wave",
+   "title": "The Obama Wave",
+   "era": "111th Congress \u00b7 2009\u20132010",
+   "intro": "Barack Obama arrives with a filibuster-proof majority, a financial crisis on every desk, and an agenda the size of the New Deal. Every big vote comes down to a handful of independent minds.",
+   "senators": [
+    {
+     "key": "collins",
+     "name": "Susan Collins",
+     "party": "R",
+     "state": "ME",
+     "blurb": "A Maine moderate and one of the last New England Republicans. She prides herself on bipartisan deal-making \u2014 she helped write down the 2009 stimulus \u2014 but guards her independence on social issues.",
+     "photo": "photos/C001035.jpg"
+    },
+    {
+     "key": "bnelson",
+     "name": "Ben Nelson",
+     "party": "D",
+     "state": "NE",
+     "blurb": "Perhaps the most conservative Democrat in the chamber, from deep-red Nebraska. He haggles for home-state concessions and agonizes publicly before every big vote.",
+     "photo": "photos/N000180.jpg"
+    },
+    {
+     "key": "sanders",
+     "name": "Bernie Sanders",
+     "party": "I",
+     "state": "VT",
+     "blurb": "The Senate's democratic socialist, caucusing with Democrats under his own flag. He wants Medicare-for-all and blames Wall Street for most of America's ills \u2014 the question is whether half-measures earn his vote.",
+     "photo": "photos/S000033.jpg"
+    },
+    {
+     "key": "mccain",
+     "name": "John McCain",
+     "party": "R",
+     "state": "AZ",
+     "blurb": "Fresh off losing the presidency to Obama, the old maverick has turned partisan brawler, opposing most of the new administration's agenda while keeping his hawkish, reform-minded reputation.",
+     "photo": "photos/M000303.jpg"
+    },
+    {
+     "key": "feingold",
+     "name": "Russ Feingold",
+     "party": "D",
+     "state": "WI",
+     "blurb": "A civil-libertarian progressive from Wisconsin who treats principle as non-negotiable. He'll vote against his own party when a bill doesn't go far enough, and he's famous for casting lonely no votes.",
+     "photo": "photos/F000061.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The Affordable Care Act",
+     "desc": "December 24, 2009, 7 a.m. \u2014 the Senate's first Christmas Eve vote in 114 years. Obama's health-care overhaul: an individual mandate to buy insurance, subsidized exchanges, a Medicaid expansion, and a ban on denying coverage for pre-existing conditions. After a year of town-hall fury, Democrats need all 60 caucus votes to break the filibuster.",
+     "date": "December 24, 2009",
+     "question": "On Passage of the Bill H.R. 3590",
+     "result": "Bill Passed",
+     "yeas": 60,
+     "nays": 39,
+     "votes": {
+      "collins": "nay",
+      "bnelson": "yea",
+      "sanders": "yea",
+      "mccain": "nay",
+      "feingold": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Dodd-Frank Wall Street Reform",
+     "desc": "July 2010. The answer to the financial crisis: a new consumer-protection bureau, derivatives regulation, and authority to wind down 'too big to fail' banks. Wall Street hates it \u2014 and some progressives say it's still far too soft on the megabanks.",
+     "date": "July 15, 2010",
+     "question": "On the Conference Report H.R. 4173",
+     "result": "Conference Report Agreed to",
+     "yeas": 60,
+     "nays": 39,
+     "votes": {
+      "collins": "yea",
+      "bnelson": "yea",
+      "sanders": "yea",
+      "mccain": "nay",
+      "feingold": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Repeal of Don't Ask, Don't Tell",
+     "desc": "December 2010, the lame-duck session. A standalone bill to end the 17-year ban on gay and lesbian troops serving openly, after a Pentagon study found repeal would not harm military readiness.",
+     "date": "December 18, 2010",
+     "question": "On the Motion (Motion to Concur in the House Amendment to the Senate Amendment to H.R. 2965)",
+     "result": "Motion Agreed to",
+     "yeas": 65,
+     "nays": 31,
+     "votes": {
+      "collins": "yea",
+      "bnelson": "yea",
+      "sanders": "yea",
+      "mccain": "nay",
+      "feingold": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "after-september",
+   "title": "After September 11",
+   "era": "107th Congress \u00b7 2001\u20132002",
+   "intro": "Anthrax in the mailroom, troops mobilizing, flags on every lapel. A Senate under pressure to move fast \u2014 on surveillance, on schools, and finally on war.",
+   "senators": [
+    {
+     "key": "feingold",
+     "name": "Russ Feingold",
+     "party": "D",
+     "state": "WI",
+     "blurb": "Wisconsin's civil-libertarian conscience \u2014 deeply skeptical of government surveillance and of blank-check war powers, even when the whole country is demanding action.",
+     "photo": "photos/F000061.jpg"
+    },
+    {
+     "key": "clinton",
+     "name": "Hillary Clinton",
+     "party": "D",
+     "state": "NY",
+     "blurb": "The former First Lady, ten months into her Senate career, representing the state that was attacked. She is building a hawkish, centrist national-security profile \u2014 with an eye, everyone assumes, on bigger things.",
+     "photo": "photos/C001041.jpg"
+    },
+    {
+     "key": "chafee",
+     "name": "Lincoln Chafee",
+     "party": "R",
+     "state": "RI",
+     "blurb": "The Senate's most liberal Republican, an heir to Yankee moderation. He regularly opposes his own party on taxes, the environment, and the use of force.",
+     "photo": "photos/C001040.jpg"
+    },
+    {
+     "key": "byrd",
+     "name": "Robert Byrd",
+     "party": "D",
+     "state": "WV",
+     "blurb": "The Senate's octogenarian institutionalist, a copy of the Constitution in his breast pocket. He defends Congress's war powers against any president, of either party.",
+     "photo": "photos/B001210.jpg"
+    },
+    {
+     "key": "kennedy",
+     "name": "Ted Kennedy",
+     "party": "D",
+     "state": "MA",
+     "blurb": "The liberal lion. A master legislator happy to partner with George W. Bush on domestic causes he cares about \u2014 education above all \u2014 while fighting him on nearly everything else.",
+     "photo": "photos/K000105.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The USA PATRIOT Act",
+     "desc": "October 25, 2001 \u2014 six weeks after the attacks. Sweeping new surveillance powers: roving wiretaps, expanded FISA authority, 'sneak and peek' searches, and government access to business records. It is moving so fast that most senators admit they haven't read it.",
+     "date": "October 25, 2001",
+     "question": "On Passage of the Bill H.R. 3162",
+     "result": "Bill Passed",
+     "yeas": 98,
+     "nays": 1,
+     "votes": {
+      "feingold": "nay",
+      "clinton": "yea",
+      "chafee": "yea",
+      "byrd": "yea",
+      "kennedy": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "No Child Left Behind",
+     "desc": "December 2001. Bush's signature education law: annual testing, public school report cards, and consequences for failing schools \u2014 negotiated hand-in-hand with leading Democrats and paired with a big increase in federal education spending.",
+     "date": "December 18, 2001",
+     "question": "On the Conference Report H.R. 1",
+     "result": "Conference Report Agreed to",
+     "yeas": 87,
+     "nays": 10,
+     "votes": {
+      "feingold": "nay",
+      "clinton": "yea",
+      "chafee": "yea",
+      "byrd": "yea",
+      "kennedy": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Authorization for War in Iraq",
+     "desc": "October 11, 2002, three weeks before the midterms. The resolution authorizes the President to use the Armed Forces against Saddam Hussein's Iraq at a time of his choosing. Intelligence about weapons of mass destruction is everywhere. So are doubts.",
+     "date": "October 11, 2002",
+     "question": "On the Joint Resolution H.J.Res. 114",
+     "result": "Joint Resolution Passed",
+     "yeas": 77,
+     "nays": 23,
+     "votes": {
+      "feingold": "nay",
+      "clinton": "yea",
+      "chafee": "nay",
+      "byrd": "nay",
+      "kennedy": "nay"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "class-of-2008",
+   "title": "The Class of 2008",
+   "era": "110th Congress \u00b7 2007\u20132008",
+   "intro": "Five senators \u2014 four of whom want the same promotion. Watch how a presidential campaign, and then a financial collapse, shapes a voting record.",
+   "senators": [
+    {
+     "key": "obama",
+     "name": "Barack Obama",
+     "party": "D",
+     "state": "IL",
+     "blurb": "The freshman phenomenon, running on his early opposition to the Iraq war. Cautious and consensus-minded on most everything else \u2014 he can't afford a vote that reads as radical.",
+     "photo": "photos/O000167.jpg"
+    },
+    {
+     "key": "clinton",
+     "name": "Hillary Clinton",
+     "party": "D",
+     "state": "NY",
+     "blurb": "The frontrunner, defending the hawkish national-security record she built after 9/11 while a primary electorate pulls her left.",
+     "photo": "photos/C001041.jpg"
+    },
+    {
+     "key": "mccain",
+     "name": "John McCain",
+     "party": "R",
+     "state": "AZ",
+     "blurb": "The Republican nominee-in-waiting: a national-security hawk and deficit scold with a history of party apostasy he's currently trying to live down.",
+     "photo": "photos/M000303.jpg"
+    },
+    {
+     "key": "biden",
+     "name": "Joe Biden",
+     "party": "D",
+     "state": "DE",
+     "blurb": "Chairman of Foreign Relations, blue-collar Democrat from Delaware, long-shot candidate running on judgment and experience.",
+     "photo": "photos/B000444.jpg"
+    },
+    {
+     "key": "sanders",
+     "name": "Bernie Sanders",
+     "party": "I",
+     "state": "VT",
+     "blurb": "The freshman socialist, not running for anything \u2014 yet. Economics first, and no patience for rescuing the people he blames for the mess.",
+     "photo": "photos/S000033.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "Minimum Wage Increase",
+     "desc": "February 2007. The new Democratic majority's first order of business: raising the federal minimum wage from $5.15 to $7.25 over two years, sweetened with small-business tax breaks to bring Republicans along.",
+     "date": "February 1, 2007",
+     "question": "On Passage of the Bill H.R. 2",
+     "result": "Bill Passed",
+     "yeas": 94,
+     "nays": 3,
+     "votes": {
+      "obama": "yea",
+      "clinton": "yea",
+      "mccain": "yea",
+      "biden": "yea",
+      "sanders": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Iraq War Funding \u2014 No Timeline",
+     "desc": "May 24, 2007. Bush has just vetoed a war-funding bill because it included a withdrawal timeline. This is the replacement: $95 billion for the troops with the timeline stripped out. Anti-war groups call voting yes a capitulation; opponents of the bill are accused of defunding troops in the field.",
+     "date": "May 24, 2007",
+     "question": "On the Motion (Motion to Concur in House Amdt. to Senate Amdt to H.R.2206)",
+     "result": "Motion Agreed to",
+     "yeas": 80,
+     "nays": 14,
+     "votes": {
+      "obama": "nay",
+      "clinton": "nay",
+      "mccain": "yea",
+      "biden": "yea",
+      "sanders": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The $700B Bank Bailout (TARP)",
+     "desc": "October 1, 2008. Lehman is dead, credit is frozen, and the Treasury Secretary wants $700 billion to rescue the banking system. Both presidential nominees fly back to Washington for the vote. Main Street is furious.",
+     "date": "October 1, 2008",
+     "question": "On Passage of the Bill H.R. 1424",
+     "result": "Bill Passed",
+     "yeas": 74,
+     "nays": 25,
+     "votes": {
+      "obama": "yea",
+      "clinton": "yea",
+      "mccain": "yea",
+      "biden": "yea",
+      "sanders": "nay"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "guns-and-borders",
+   "title": "Guns & Borders",
+   "era": "113th Congress \u00b7 2013",
+   "intro": "After Sandy Hook, and after an election Republicans lost badly with Hispanic voters, the Senate attempts guns and immigration in one year \u2014 then shuts the government down arguing about health care.",
+   "senators": [
+    {
+     "key": "manchin",
+     "name": "Joe Manchin",
+     "party": "D",
+     "state": "WV",
+     "blurb": "A gun-owning, coal-country Democrat from a state Obama just lost by 27 points. He holds an NRA 'A' rating and protects his centrist brand fiercely \u2014 but Sandy Hook shook him.",
+     "photo": "photos/M001183.jpg"
+    },
+    {
+     "key": "toomey",
+     "name": "Pat Toomey",
+     "party": "R",
+     "state": "PA",
+     "blurb": "A former Club for Growth president \u2014 about as fiscally conservative as they come \u2014 now representing purple Pennsylvania, which expects the occasional pragmatic turn.",
+     "photo": "photos/T000461.jpg"
+    },
+    {
+     "key": "cruz",
+     "name": "Ted Cruz",
+     "party": "R",
+     "state": "TX",
+     "blurb": "Three months into his first term and already the Senate's chief insurgent. He came to Washington to fight the establishments of both parties, not to make deals.",
+     "photo": "photos/C001098.jpg"
+    },
+    {
+     "key": "warren",
+     "name": "Elizabeth Warren",
+     "party": "D",
+     "state": "MA",
+     "blurb": "The consumer-protection professor turned senator \u2014 the new standard-bearer of the party's progressive wing.",
+     "photo": "photos/W000817.jpg"
+    },
+    {
+     "key": "kirk",
+     "name": "Mark Kirk",
+     "party": "R",
+     "state": "IL",
+     "blurb": "A moderate, socially liberal Republican from deep-blue Illinois, recently back from a stroke, facing voters who just backed Obama twice.",
+     "photo": "photos/K000360.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "Manchin-Toomey Background Checks",
+     "desc": "April 17, 2013 \u2014 four months after Sandy Hook. A bipartisan compromise extending background checks to gun shows and internet sales, far short of an assault-weapons ban, polling near 90% support. Under the deal in force, it needs 60 votes.",
+     "date": "April 17, 2013",
+     "question": "On the Amendment S.Amdt. 715 to S. 649 (Safe Communities, Safe Schools Act of2013)",
+     "result": "Amendment Rejected",
+     "yeas": 54,
+     "nays": 46,
+     "votes": {
+      "manchin": "yea",
+      "toomey": "yea",
+      "cruz": "nay",
+      "warren": "yea",
+      "kirk": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Gang of Eight Immigration Bill",
+     "desc": "June 2013. Comprehensive immigration reform: a 13-year path to citizenship for 11 million undocumented immigrants, a doubling of the Border Patrol, 700 miles of fencing, and mandatory E-Verify.",
+     "date": "June 27, 2013",
+     "question": "On Passage of the Bill S. 744",
+     "result": "Bill Passed",
+     "yeas": 68,
+     "nays": 32,
+     "votes": {
+      "manchin": "yea",
+      "toomey": "nay",
+      "cruz": "nay",
+      "warren": "yea",
+      "kirk": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Reopening the Government",
+     "desc": "October 16, 2013 \u2014 day 16 of the shutdown, hours from a debt default. The deal reopens the government and raises the debt ceiling with essentially nothing given to the defund-Obamacare campaign that started it.",
+     "date": "October 16, 2013",
+     "question": "On Passage of the Bill H.R. 2775",
+     "result": "Bill Passed",
+     "yeas": 81,
+     "nays": 18,
+     "votes": {
+      "manchin": "yea",
+      "toomey": "nay",
+      "cruz": "nay",
+      "warren": "yea",
+      "kirk": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "fifty-one-forty-nine",
+   "title": "Three Votes to Lose",
+   "era": "115th Congress \u00b7 2017\u20132018",
+   "intro": "Unified Republican government and a razor-thin Senate. With almost no margin for error, every landmark vote hangs on a handful of senators who answer to no one.",
+   "senators": [
+    {
+     "key": "collins",
+     "name": "Susan Collins",
+     "party": "R",
+     "state": "ME",
+     "blurb": "Twenty years in, the chamber's definitive swing vote: pro-choice, deficit-conscious, protective of Maine's rural hospitals, and increasingly willing to buck her party's new president.",
+     "photo": "photos/C001035.jpg"
+    },
+    {
+     "key": "murkowski",
+     "name": "Lisa Murkowski",
+     "party": "R",
+     "state": "AK",
+     "blurb": "Alaska's senator owes her seat to a write-in campaign, not the party \u2014 she once lost her own primary and won anyway. Energy development and Alaska's native healthcare systems outrank party loyalty.",
+     "photo": "photos/M001153.jpg"
+    },
+    {
+     "key": "manchin",
+     "name": "Joe Manchin",
+     "party": "D",
+     "state": "WV",
+     "blurb": "Still the reddest-state Democrat, now facing re-election in a state Trump carried by 42 points. He votes with the President more than any other Democrat \u2014 when he thinks West Virginia wants it.",
+     "photo": "photos/M001183.jpg"
+    },
+    {
+     "key": "rpaul",
+     "name": "Rand Paul",
+     "party": "R",
+     "state": "KY",
+     "blurb": "The libertarian: wants government out of health care, taxes near zero, and deficits actually shrinking. Happily votes against Republican bills for being insufficiently conservative.",
+     "photo": "photos/P000603.jpg"
+    },
+    {
+     "key": "heitkamp",
+     "name": "Heidi Heitkamp",
+     "party": "D",
+     "state": "ND",
+     "blurb": "A North Dakota Democrat holding the Senate's most endangered seat, balancing her party's base against a state Trump won by 36. Every vote is a re-election calculation.",
+     "photo": "photos/H001069.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "'Skinny' Obamacare Repeal",
+     "desc": "July 28, 2017, 1:30 a.m. After full repeal has already failed, Republicans try 'skinny repeal' \u2014 killing the individual mandate and a few taxes \u2014 as a vehicle to keep the repeal effort alive in conference. Leadership swears it will never become law as written. Fifty votes will do it, and the floor is thick with rumors.",
+     "date": "July 28, 2017",
+     "question": "On the Amendment S.Amdt. 667 to S.Amdt. 267 to H.R. 1628 (American Health Care Act of 2017)",
+     "result": "Amendment Rejected",
+     "yeas": 49,
+     "nays": 51,
+     "votes": {
+      "collins": "nay",
+      "murkowski": "nay",
+      "manchin": "nay",
+      "rpaul": "yea",
+      "heitkamp": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Trump Tax Cuts",
+     "desc": "December 2, 2017, nearly 2 a.m. The Tax Cuts and Jobs Act: the corporate rate slashed from 35% to 20%, individual cuts that expire after 2025, the ACA's mandate penalty zeroed out, and roughly $1.4 trillion added to the deficit. Handwritten amendments are still being scribbled in the margins.",
+     "date": "December 2, 2017",
+     "question": "On Passage of the Bill H.R. 1",
+     "result": "Bill Passed",
+     "yeas": 51,
+     "nays": 49,
+     "votes": {
+      "collins": "yea",
+      "murkowski": "yea",
+      "manchin": "nay",
+      "rpaul": "yea",
+      "heitkamp": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Confirming Brett Kavanaugh",
+     "desc": "October 6, 2018. After Christine Blasey Ford's testimony and a supplemental FBI investigation, the Supreme Court confirmation comes to the floor with the chamber \u2014 and the country \u2014 at a boil. A simple majority confirms.",
+     "date": "October 6, 2018",
+     "question": "On the Nomination PN2259",
+     "result": "Nomination Confirmed",
+     "yeas": 50,
+     "nays": 48,
+     "votes": {
+      "collins": "yea",
+      "murkowski": "nay",
+      "manchin": "yea",
+      "rpaul": "yea",
+      "heitkamp": "nay"
+     },
+     "notes": {
+      "murkowski": "Murkowski's declared vote was No. She withdrew it and voted 'present' as a courtesy 'live pair' with Steve Daines (R-MT), a Kavanaugh supporter away at his daughter's wedding \u2014 old Senate custom, same effect as a Nay."
+     }
+    }
+   ]
+  },
+  {
+   "id": "clinton-years",
+   "title": "November 1993",
+   "era": "103rd Congress \u00b7 1993",
+   "intro": "A young President Clinton, a Democratic Congress full of Southern conservatives, and one extraordinary week in November: trade, guns, and crime, back to back.",
+   "senators": [
+    {
+     "key": "biden",
+     "name": "Joe Biden",
+     "party": "D",
+     "state": "DE",
+     "blurb": "Two decades in, chairman of the Judiciary Committee: a deal-making Delaware Democrat, tough-on-crime by design and trade-friendly by instinct.",
+     "photo": "photos/B000444.jpg"
+    },
+    {
+     "key": "byrd",
+     "name": "Robert Byrd",
+     "party": "D",
+     "state": "WV",
+     "blurb": "The Appropriations king and guardian of West Virginia's mines and mills. Suspicious of anything that might ship jobs overseas; devoted to the working man as he defines him.",
+     "photo": "photos/B001210.jpg"
+    },
+    {
+     "key": "mccain",
+     "name": "John McCain",
+     "party": "R",
+     "state": "AZ",
+     "blurb": "An Arizona conservative with a westerner's view of government: pro-trade, pro-military, and as skeptical of gun laws as his voters are.",
+     "photo": "photos/M000303.jpg"
+    },
+    {
+     "key": "feinstein",
+     "name": "Dianne Feinstein",
+     "party": "D",
+     "state": "CA",
+     "blurb": "San Francisco's former mayor, in the Senate less than a year. She became mayor the day a colleague was assassinated at City Hall \u2014 gun violence is personal, and she has chosen it as her first great fight.",
+     "photo": "photos/F000062.jpg"
+    },
+    {
+     "key": "helms",
+     "name": "Jesse Helms",
+     "party": "R",
+     "state": "NC",
+     "blurb": "'Senator No.' The hard-right anchor of the chamber: anti-communist, protectionist where tobacco and textiles are concerned, and against nearly anything with 'new' in the name.",
+     "photo": "photos/H000463.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The Assault Weapons Ban",
+     "desc": "November 17, 1993. An amendment to the crime bill banning the manufacture of 19 named semiautomatic 'assault weapons' and high-capacity magazines for ten years. Even many Democrats from rural states are queasy.",
+     "date": "November 17, 1993",
+     "question": "On the Amendment S.Amdt. 1152 to S.Amdt. 1151 to S. 1607 (Violent Crime Control and Law Enforcement Act of 1993)",
+     "result": "Amendment Agreed to",
+     "yeas": 56,
+     "nays": 43,
+     "votes": {
+      "biden": "yea",
+      "byrd": "yea",
+      "mccain": "nay",
+      "feinstein": "yea",
+      "helms": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Brady Bill",
+     "desc": "November 20, 1993. A five-day waiting period and background check for handgun purchases, named for Reagan's press secretary, shot and paralyzed in 1981. The NRA has fought it for seven years straight.",
+     "date": "November 20, 1993",
+     "question": "On Passage of the Bill H.R. 1025",
+     "result": "Bill Passed",
+     "yeas": 63,
+     "nays": 36,
+     "votes": {
+      "biden": "yea",
+      "byrd": "yea",
+      "mccain": "nay",
+      "feinstein": "yea",
+      "helms": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "NAFTA",
+     "desc": "Also November 20, 1993. The North American Free Trade Agreement \u2014 negotiated by Bush, embraced by Clinton over his own party's objections and organized labor's fury. Ross Perot says you can already hear a 'giant sucking sound' of jobs going south.",
+     "date": "November 20, 1993",
+     "question": "On Passage of the Bill H.R. 3450",
+     "result": "Bill Passed",
+     "yeas": 61,
+     "nays": 38,
+     "votes": {
+      "biden": "yea",
+      "byrd": "nay",
+      "mccain": "yea",
+      "feinstein": "nay",
+      "helms": "nay"
+     },
+     "notes": {}
+    }
+   ]
+  }
+ ]
+}
