@@ -609,6 +609,814 @@
      "notes": {}
     }
    ]
+  },
+  {
+   "id": "line-in-the-sand",
+   "title": "Line in the Sand",
+   "era": "102nd Congress \u00b7 1991",
+   "intro": "Half a million American troops sit in the Saudi desert while Congress holds its first real war debate since Vietnam. Nine months later, a Supreme Court nomination ends in the most explosive hearings ever held.",
+   "senators": [
+    {
+     "key": "gore",
+     "name": "Al Gore",
+     "party": "D",
+     "state": "TN",
+     "blurb": "A cerebral Tennessee moderate with presidential ambitions and a hawkish streak rare in his party's rising generation. He agonizes over big votes \u2014 and enjoys telling you so.",
+     "photo": "photos/G000321.jpg"
+    },
+    {
+     "key": "nunn",
+     "name": "Sam Nunn",
+     "party": "D",
+     "state": "GA",
+     "blurb": "Chairman of Armed Services and the Democrats' most trusted voice on the military. A Georgia conservative \u2014 but a believer that sanctions and patience can win wars cheaper than blood.",
+     "photo": "photos/N000171.jpg"
+    },
+    {
+     "key": "dole",
+     "name": "Bob Dole",
+     "party": "R",
+     "state": "KS",
+     "blurb": "The Republican leader: a wounded World War II veteran, sharp-tongued dealmaker, and reliable soldier for the Bush White House.",
+     "photo": "photos/D000401.jpg"
+    },
+    {
+     "key": "kerry",
+     "name": "John Kerry",
+     "party": "D",
+     "state": "MA",
+     "blurb": "A decorated Vietnam veteran who came home to protest the war. Two decades later, deeply wary of committing American troops before every alternative is exhausted.",
+     "photo": "photos/K000148.jpg"
+    },
+    {
+     "key": "kassebaum",
+     "name": "Nancy Kassebaum",
+     "party": "R",
+     "state": "KS",
+     "blurb": "A plainspoken Kansas internationalist, budget-minded and independent \u2014 one of only two women in the chamber.",
+     "photo": "photos/K000017.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "Authorizing the Gulf War",
+     "desc": "January 12, 1991. Saddam Hussein has occupied Kuwait for five months, and the UN deadline expires in three days. The resolution authorizes the President to drive Iraq out by force. The debate is somber and the outcome genuinely in doubt \u2014 the closest vote to authorize war in American history.",
+     "date": "January 12, 1991",
+     "question": "On the Joint Resolution S.J.Res. 2",
+     "result": "Joint Resolution Passed",
+     "yeas": 52,
+     "nays": 47,
+     "votes": {
+      "gore": "yea",
+      "nunn": "nay",
+      "dole": "yea",
+      "kerry": "nay",
+      "kassebaum": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Confirming Clarence Thomas",
+     "desc": "October 15, 1991. Clarence Thomas's Supreme Court nomination reaches the floor days after Anita Hill's testimony transfixed the country. He would fill Thurgood Marshall's seat \u2014 and shift the Court for a generation.",
+     "date": "October 15, 1991",
+     "question": "On the Nomination PN456",
+     "result": "Nomination Confirmed",
+     "yeas": 52,
+     "nays": 48,
+     "votes": {
+      "gore": "nay",
+      "nunn": "yea",
+      "dole": "yea",
+      "kerry": "nay",
+      "kassebaum": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Civil Rights Act of 1991",
+     "desc": "October 30, 1991. After two years of veto fights over 'quotas,' a compromise civil-rights bill restoring workers' power to sue for discrimination \u2014 finally pre-cleared with the White House.",
+     "date": "October 30, 1991",
+     "question": "On Passage of the Bill S. 1745",
+     "result": "Bill Passed",
+     "yeas": 93,
+     "nays": 5,
+     "votes": {
+      "gore": "yea",
+      "nunn": "yea",
+      "dole": "yea",
+      "kerry": "yea",
+      "kassebaum": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "republican-revolution",
+   "title": "The Republican Revolution",
+   "era": "104th Congress \u00b7 1996",
+   "intro": "Two years after Gingrich's landslide, a Democratic president runs toward the center with an election looming. Welfare, marriage, wages \u2014 1996 is one long argument about what the parties are for.",
+   "senators": [
+    {
+     "key": "moynihan",
+     "name": "Daniel Patrick Moynihan",
+     "party": "D",
+     "state": "NY",
+     "blurb": "The Senate's scholar \u2014 a Harvard sociologist who wrote the book on poverty policy, literally. Party loyalty means little when he believes a bill will hurt the poor.",
+     "photo": "photos/M001054.jpg"
+    },
+    {
+     "key": "lieberman",
+     "name": "Joe Lieberman",
+     "party": "D",
+     "state": "CT",
+     "blurb": "A moralist Connecticut Democrat comfortable scolding his own party: pro-business, hawkish, and outspoken about family values.",
+     "photo": "photos/L000304.jpg"
+    },
+    {
+     "key": "boxer",
+     "name": "Barbara Boxer",
+     "party": "D",
+     "state": "CA",
+     "blurb": "A Marin County liberal and one of the chamber's most reliable progressive votes, especially where civil rights are concerned.",
+     "photo": "photos/B000711.jpg"
+    },
+    {
+     "key": "santorum",
+     "name": "Rick Santorum",
+     "party": "R",
+     "state": "PA",
+     "blurb": "The youngest Republican senator: a combative Pennsylvania culture warrior who courts blue-collar Catholics with the occasional populist economic vote.",
+     "photo": "photos/S000059.jpg"
+    },
+    {
+     "key": "gramm",
+     "name": "Phil Gramm",
+     "party": "R",
+     "state": "TX",
+     "blurb": "A Texas economics professor turned budget hawk, fresh off a presidential run about slashing government. If a bill spends money or regulates business, count him out.",
+     "photo": "photos/G000365.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "Welfare Reform",
+     "desc": "August 1, 1996. 'The end of welfare as we know it': time limits, work requirements, and block grants replacing a six-decade federal guarantee for poor families. Clinton has vetoed two versions and promised to sign this one. Half his party feels betrayed.",
+     "date": "August 1, 1996",
+     "question": "On the Conference Report H.R. 3734",
+     "result": "Conference Report Agreed to",
+     "yeas": 78,
+     "nays": 21,
+     "votes": {
+      "moynihan": "nay",
+      "lieberman": "yea",
+      "boxer": "nay",
+      "santorum": "yea",
+      "gramm": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Defense of Marriage Act",
+     "desc": "September 10, 1996. DOMA: no federal recognition of same-sex marriages, and no state required to honor another state's. Clinton says he'll sign it. Only a handful of senators are willing to be counted against it.",
+     "date": "September 10, 1996",
+     "question": "On Passage of the Bill H.R. 3396",
+     "result": "Bill Passed",
+     "yeas": 85,
+     "nays": 14,
+     "votes": {
+      "moynihan": "nay",
+      "lieberman": "yea",
+      "boxer": "nay",
+      "santorum": "yea",
+      "gramm": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Minimum Wage Increase",
+     "desc": "July 9, 1996. A 90-cent raise in the minimum wage \u2014 $4.25 to $5.15 \u2014 riding on a package of small-business tax breaks. Election-year pressure has cracked the Republican leadership's resistance.",
+     "date": "July 9, 1996",
+     "question": "On Passage of the Bill H.R. 3448",
+     "result": "Bill Passed",
+     "yeas": 74,
+     "nays": 24,
+     "votes": {
+      "moynihan": "yea",
+      "lieberman": "yea",
+      "boxer": "yea",
+      "santorum": "yea",
+      "gramm": "nay"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "america-and-the-world",
+   "title": "America & the World",
+   "era": "105th\u2013106th Congress \u00b7 1997\u20132000",
+   "intro": "With the Cold War won, Washington argues about what comes next: disarmament treaties, an expanding NATO, and whether to bet the future on trade with China.",
+   "senators": [
+    {
+     "key": "helms",
+     "name": "Jesse Helms",
+     "party": "R",
+     "state": "NC",
+     "blurb": "Chairman of Foreign Relations and scourge of the striped-pants set. Treaties, foreign aid, the UN \u2014 he distrusts them all, and buries what he distrusts.",
+     "photo": "photos/H000463.jpg"
+    },
+    {
+     "key": "lugar",
+     "name": "Richard Lugar",
+     "party": "R",
+     "state": "IN",
+     "blurb": "The Republicans' soft-spoken foreign-policy intellectual, co-author of the program dismantling loose Soviet nukes. An internationalist to his fingertips.",
+     "photo": "photos/L000504.jpg"
+    },
+    {
+     "key": "moynihan",
+     "name": "Daniel Patrick Moynihan",
+     "party": "D",
+     "state": "NY",
+     "blurb": "The Senate's contrarian scholar \u2014 a former UN ambassador with his own theories about secrecy, ethnicity, and international law, cheerfully immune to conventional wisdom.",
+     "photo": "photos/M001054.jpg"
+    },
+    {
+     "key": "wellstone",
+     "name": "Paul Wellstone",
+     "party": "D",
+     "state": "MN",
+     "blurb": "The happiest warrior of the left: a former wrestling coach and campus organizer who votes his conscience on labor and human rights, popularity be damned.",
+     "photo": "photos/W000288.jpg"
+    },
+    {
+     "key": "biden",
+     "name": "Joe Biden",
+     "party": "D",
+     "state": "DE",
+     "blurb": "The Democrats' garrulous front man on Foreign Relations \u2014 an institutionalist who believes in American alliances and American engagement, almost anywhere.",
+     "photo": "photos/B000444.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The Chemical Weapons Treaty",
+     "desc": "April 24, 1997. The Chemical Weapons Convention: a global ban on producing and stockpiling chemical arms, signed by the first President Bush. Ratification needs 67 votes, and conservatives warn it is unverifiable and toothless.",
+     "date": "April 24, 1997",
+     "question": "On the Resolution of Ratification S.Res. 75",
+     "result": "Resolution of Ratification Agreed to",
+     "yeas": 74,
+     "nays": 26,
+     "votes": {
+      "helms": "nay",
+      "lugar": "yea",
+      "moynihan": "yea",
+      "wellstone": "yea",
+      "biden": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Expanding NATO Eastward",
+     "desc": "April 30, 1998. Admitting Poland, Hungary, and the Czech Republic to NATO \u2014 extending America's defense umbrella to Russia's old doorstep. Critics ask what the alliance is now for, and whom it might provoke. Treaties need 67 votes.",
+     "date": "April 30, 1998",
+     "question": "On the Resolution of Ratification Treaty Doc. 105-36",
+     "result": "Resolution of Ratification Agreed to",
+     "yeas": 80,
+     "nays": 19,
+     "votes": {
+      "helms": "yea",
+      "lugar": "yea",
+      "moynihan": "nay",
+      "wellstone": "nay",
+      "biden": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Permanent Trade with China",
+     "desc": "September 19, 2000. Permanent normal trade relations with China, clearing its path into the World Trade Organization. Business is euphoric. Labor and human-rights advocates call it a historic sellout.",
+     "date": "September 19, 2000",
+     "question": "On Passage of the Bill H.R. 4444",
+     "result": "Bill Passed",
+     "yeas": 83,
+     "nays": 15,
+     "votes": {
+      "helms": "nay",
+      "lugar": "yea",
+      "moynihan": "yea",
+      "wellstone": "nay",
+      "biden": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "bush-majority",
+   "title": "The Bush Majority",
+   "era": "108th Congress \u00b7 2003",
+   "intro": "War in Iraq, tax cuts at home, and a Republican Party at high tide. For Democrats, every vote is a choice between conviction and survival.",
+   "senators": [
+    {
+     "key": "mccain",
+     "name": "John McCain",
+     "party": "R",
+     "state": "AZ",
+     "blurb": "The maverick restored: hawkish on the war, but a deficit scold who has rediscovered his taste for bucking his own White House on spending.",
+     "photo": "photos/M000303.jpg"
+    },
+    {
+     "key": "kennedy",
+     "name": "Ted Kennedy",
+     "party": "D",
+     "state": "MA",
+     "blurb": "Forty years in and pugnacious as ever \u2014 he calls the Iraq war a 'fraud cooked up in Texas,' while still cutting domestic deals with this White House when it serves his causes.",
+     "photo": "photos/K000105.jpg"
+    },
+    {
+     "key": "daschle",
+     "name": "Tom Daschle",
+     "party": "D",
+     "state": "SD",
+     "blurb": "The Democratic leader: a soft-spoken South Dakotan balancing a liberal caucus against a state Bush carried by 22 points \u2014 with his own re-election looming.",
+     "photo": "photos/D000064.jpg"
+    },
+    {
+     "key": "specter",
+     "name": "Arlen Specter",
+     "party": "R",
+     "state": "PA",
+     "blurb": "Pennsylvania's cranky Republican moderate: pro-choice, pro-labor by his party's standards, and facing a bruising primary from his right next spring.",
+     "photo": "photos/S000709.jpg"
+    },
+    {
+     "key": "zmiller",
+     "name": "Zell Miller",
+     "party": "D",
+     "state": "GA",
+     "blurb": "A Georgia Democrat in name only by now: he keynoted for Clinton in '92, but has embraced Bush's agenda nearly wholesale \u2014 and relishes infuriating his own party.",
+     "photo": "photos/M001141.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The Partial-Birth Abortion Ban",
+     "desc": "March 13, 2003. A federal ban on the late-term procedure opponents call partial-birth abortion \u2014 the first federal criminal prohibition of an abortion method since Roe, with an exception for the mother's life but not her health.",
+     "date": "March 13, 2003",
+     "question": "On Passage of the Bill S. 3",
+     "result": "Bill Passed",
+     "yeas": 64,
+     "nays": 33,
+     "votes": {
+      "mccain": "yea",
+      "kennedy": "nay",
+      "daschle": "yea",
+      "specter": "yea",
+      "zmiller": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "$87 Billion for Iraq",
+     "desc": "October 17, 2003. Eighty-seven billion dollars for the occupations of Iraq and Afghanistan \u2014 six months after 'Mission Accomplished,' with no weapons found and the insurgency growing. Voting no reads as abandoning the troops; voting yes as endorsing the war.",
+     "date": "October 17, 2003",
+     "question": "On Passage of the Bill S. 1689",
+     "result": "Bill Passed",
+     "yeas": 87,
+     "nays": 12,
+     "votes": {
+      "mccain": "yea",
+      "kennedy": "nay",
+      "daschle": "yea",
+      "specter": "yea",
+      "zmiller": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Medicare Prescription Drugs",
+     "desc": "November 25, 2003. The biggest Medicare expansion in history: a prescription-drug benefit delivered through private insurers, with the government barred from negotiating prices. Liberals call it a giveaway to industry; conservatives call it a budget-buster.",
+     "date": "November 25, 2003",
+     "question": "On the Conference Report H.R. 1",
+     "result": "Conference Report Agreed to",
+     "yeas": 54,
+     "nays": 44,
+     "votes": {
+      "mccain": "nay",
+      "kennedy": "nay",
+      "daschle": "nay",
+      "specter": "yea",
+      "zmiller": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "second-term-blues",
+   "title": "Second-Term Blues",
+   "era": "109th Congress \u00b7 2005\u20132006",
+   "intro": "A re-elected George W. Bush spends his political capital fast: bankruptcy law for the banks, a fence for the border, and military tribunals for the age of terror.",
+   "senators": [
+    {
+     "key": "obama",
+     "name": "Barack Obama",
+     "party": "D",
+     "state": "IL",
+     "blurb": "The celebrity freshman, two years from announcing for president: a constitutional-law lecturer's instincts inside a cautious legislator's record.",
+     "photo": "photos/O000167.jpg"
+    },
+    {
+     "key": "biden",
+     "name": "Joe Biden",
+     "party": "D",
+     "state": "DE",
+     "blurb": "Foreign Relations' top Democrat \u2014 and Delaware's senator, which means the credit-card industry's senator, as his critics never tire of noting.",
+     "photo": "photos/B000444.jpg"
+    },
+    {
+     "key": "chafee",
+     "name": "Lincoln Chafee",
+     "party": "R",
+     "state": "RI",
+     "blurb": "The chamber's loneliest Republican: anti-war, pro-environment, pro-civil-liberties, and fighting for his political life in deep-blue Rhode Island this November.",
+     "photo": "photos/C001040.jpg"
+    },
+    {
+     "key": "coburn",
+     "name": "Tom Coburn",
+     "party": "R",
+     "state": "OK",
+     "blurb": "'Dr. No.' An Oklahoma obstetrician who hunts wasteful spending for sport and votes against nearly anything that grows the government.",
+     "photo": "photos/C000560.jpg"
+    },
+    {
+     "key": "feinstein",
+     "name": "Dianne Feinstein",
+     "party": "D",
+     "state": "CA",
+     "blurb": "California's businesslike centrist: tough on crime and terrorism by her party's standards, a dealmaker on the Judiciary Committee.",
+     "photo": "photos/F000062.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The Bankruptcy Bill",
+     "desc": "March 10, 2005. The credit-card industry's decade-long dream: means tests and new hurdles making it far harder for consumers to erase debts in bankruptcy. Banks say it targets abuse; consumer advocates say it punishes the sick, the divorced, and the broke.",
+     "date": "March 10, 2005",
+     "question": "On Passage of the Bill S. 256",
+     "result": "Bill Passed",
+     "yeas": 74,
+     "nays": 25,
+     "votes": {
+      "obama": "nay",
+      "biden": "yea",
+      "chafee": "yea",
+      "coburn": "yea",
+      "feinstein": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Secure Fence Act",
+     "desc": "September 29, 2006. Seven hundred miles of double-layer fencing along the Mexican border, voted weeks before the midterms \u2014 the enforcement-only answer after comprehensive immigration reform collapsed.",
+     "date": "September 29, 2006",
+     "question": "On Passage of the Bill H.R. 6061",
+     "result": "Bill Passed",
+     "yeas": 80,
+     "nays": 19,
+     "votes": {
+      "obama": "yea",
+      "biden": "yea",
+      "chafee": "nay",
+      "coburn": "yea",
+      "feinstein": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Military Commissions Act",
+     "desc": "September 28, 2006. Military tribunals for Guant\u00e1namo detainees, stripped of habeas corpus review, with the CIA's interrogation program written into law \u2014 rushed through in the September dash to adjourn and campaign.",
+     "date": "September 28, 2006",
+     "question": "On Passage of the Bill S. 3930",
+     "result": "Bill Passed",
+     "yeas": 65,
+     "nays": 34,
+     "votes": {
+      "obama": "nay",
+      "biden": "nay",
+      "chafee": "nay",
+      "coburn": "yea",
+      "feinstein": "nay"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "tea-party-senate",
+   "title": "The Tea Party Senate",
+   "era": "112th Congress \u00b7 2011\u20132012",
+   "intro": "A debt-ceiling standoff brings the country within days of default, and the parties' new wings \u2014 Tea Party right, progressive left \u2014 treat every compromise as surrender.",
+   "senators": [
+    {
+     "key": "rubio",
+     "name": "Marco Rubio",
+     "party": "R",
+     "state": "FL",
+     "blurb": "The Tea Party's polished new star from Florida, elected over the establishment's pick: young, ambitious, and allergic to anything that smells like business as usual.",
+     "photo": "photos/R000595.jpg"
+    },
+    {
+     "key": "rpaul",
+     "name": "Rand Paul",
+     "party": "R",
+     "state": "KY",
+     "blurb": "The movement's ideologist: an eye doctor who reads deficits as theft and most federal programs as unconstitutional. Compromise is what he came to Washington to stop.",
+     "photo": "photos/P000603.jpg"
+    },
+    {
+     "key": "sanders",
+     "name": "Bernie Sanders",
+     "party": "I",
+     "state": "VT",
+     "blurb": "Vermont's socialist, now a national voice against austerity \u2014 he recently held the floor for eight and a half hours against extending the Bush tax cuts.",
+     "photo": "photos/S000033.jpg"
+    },
+    {
+     "key": "sbrown",
+     "name": "Scott Brown",
+     "party": "R",
+     "state": "MA",
+     "blurb": "The Massachusetts surprise: a Republican in Ted Kennedy's old seat, driving a pickup truck and hugging the center line for dear life before 2012.",
+     "photo": "photos/B001268.jpg"
+    },
+    {
+     "key": "mccaskill",
+     "name": "Claire McCaskill",
+     "party": "D",
+     "state": "MO",
+     "blurb": "A Missouri Democrat with an auditor's temperament, hunting earmarks and waste to survive in a state drifting steadily redder.",
+     "photo": "photos/M001170.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The Debt-Ceiling Deal",
+     "desc": "August 2, 2011 \u2014 default is hours away. The Budget Control Act raises the debt ceiling in exchange for a decade of spending caps and an automatic 'sequester' guillotine. Nobody loves it, and leadership is begging for votes from the middle outward.",
+     "date": "August 2, 2011",
+     "question": "On the Motion (Motion to Concur in the House Amendment to S. 365)",
+     "result": "Motion Agreed to",
+     "yeas": 74,
+     "nays": 26,
+     "votes": {
+      "rubio": "nay",
+      "rpaul": "nay",
+      "sanders": "nay",
+      "sbrown": "yea",
+      "mccaskill": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Violence Against Women Act",
+     "desc": "April 26, 2012. Reauthorizing the Violence Against Women Act \u2014 routine for eighteen years, now a fight over newly added protections for Native American, immigrant, and LGBT victims.",
+     "date": "April 26, 2012",
+     "question": "On Passage of the Bill S. 1925",
+     "result": "Bill Passed",
+     "yeas": 68,
+     "nays": 31,
+     "votes": {
+      "rubio": "nay",
+      "rpaul": "nay",
+      "sanders": "yea",
+      "sbrown": "yea",
+      "mccaskill": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Buffett Rule",
+     "desc": "April 16, 2012. A minimum 30% tax rate on incomes over $1 million, named for the billionaire who pays a lower rate than his secretary. It needs 60 votes to advance and everyone knows it won't get them \u2014 this vote is for the campaign ads.",
+     "date": "April 16, 2012",
+     "question": "On Cloture on the Motion to Proceed S. 2230",
+     "result": "Cloture on the Motion to Proceed Rejected",
+     "yeas": 51,
+     "nays": 45,
+     "votes": {
+      "rubio": "nay",
+      "rpaul": "nay",
+      "sanders": "yea",
+      "sbrown": "nay",
+      "mccaskill": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "election-year-fever",
+   "title": "Election Year Fever",
+   "era": "116th Congress \u00b7 2020",
+   "intro": "An impeachment ends, a pandemic begins, and a Supreme Court seat opens six weeks before the election. 2020 asks every senator exactly one question: how brave are you feeling?",
+   "senators": [
+    {
+     "key": "collins",
+     "name": "Susan Collins",
+     "party": "R",
+     "state": "ME",
+     "blurb": "The last New England Republican, defending a seat in a state Trump lost. Her approval has cratered since the Kavanaugh vote, and every roll call is scrutinized for daylight from the President.",
+     "photo": "photos/C001035.jpg"
+    },
+    {
+     "key": "romney",
+     "name": "Mitt Romney",
+     "party": "R",
+     "state": "UT",
+     "blurb": "The party's 2012 nominee, reborn as its most conspicuous internal critic \u2014 the first senator in history to vote to remove a president of his own party.",
+     "photo": "photos/R000615.jpg"
+    },
+    {
+     "key": "sanders",
+     "name": "Bernie Sanders",
+     "party": "I",
+     "state": "VT",
+     "blurb": "Running for president again as the progressive standard-bearer, against the trade deals and foreign wars of both parties' establishments.",
+     "photo": "photos/S000033.jpg"
+    },
+    {
+     "key": "sinema",
+     "name": "Kyrsten Sinema",
+     "party": "D",
+     "state": "AZ",
+     "blurb": "Arizona's unpredictable first-termer: a former Green Party activist turned proud centrist who prizes her bipartisan brand above her party's agenda.",
+     "photo": "photos/S001191.jpg"
+    },
+    {
+     "key": "cotton",
+     "name": "Tom Cotton",
+     "party": "R",
+     "state": "AR",
+     "blurb": "An Army veteran of Iraq and Afghanistan and the Senate's most disciplined hawk: maximum pressure abroad, maximum loyalty to the President at home.",
+     "photo": "photos/C001095.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The USMCA Trade Deal",
+     "desc": "January 16, 2020. NAFTA's replacement: modernized rules, tougher labor enforcement in Mexico, and the rare blessing of both the AFL-CIO and the Chamber of Commerce \u2014 the last major bill before the impeachment trial consumes the chamber.",
+     "date": "January 16, 2020",
+     "question": "On Passage of the Bill H.R. 5430",
+     "result": "Bill Passed",
+     "yeas": 89,
+     "nays": 10,
+     "votes": {
+      "collins": "yea",
+      "romney": "yea",
+      "sanders": "nay",
+      "sinema": "yea",
+      "cotton": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Iran War Powers Resolution",
+     "desc": "February 13, 2020. Weeks after the drone strike killing Qassem Soleimani brought the U.S. and Iran to the brink, a resolution ordering the President to halt hostilities against Iran absent congressional authorization. A veto is certain; the vote is about the principle.",
+     "date": "February 13, 2020",
+     "question": "On the Joint Resolution S.J.Res. 68",
+     "result": "Joint Resolution Passed",
+     "yeas": 55,
+     "nays": 45,
+     "votes": {
+      "collins": "yea",
+      "romney": "nay",
+      "sanders": "yea",
+      "sinema": "yea",
+      "cotton": "nay"
+     },
+     "notes": {}
+    },
+    {
+     "name": "Confirming Amy Coney Barrett",
+     "desc": "October 26, 2020 \u2014 eight days before the election, with millions of votes already cast. Amy Coney Barrett's confirmation to Ruth Bader Ginsburg's seat, four years after the majority held Scalia's seat open for ten months on election-year principle.",
+     "date": "October 26, 2020",
+     "question": "On the Nomination PN2252",
+     "result": "Nomination Confirmed",
+     "yeas": 52,
+     "nays": 48,
+     "votes": {
+      "collins": "nay",
+      "romney": "yea",
+      "sanders": "nay",
+      "sinema": "nay",
+      "cotton": "yea"
+     },
+     "notes": {}
+    }
+   ]
+  },
+  {
+   "id": "fifty-fifty-senate",
+   "title": "The Fifty-Fifty Senate",
+   "era": "117th Congress \u00b7 2021\u20132022",
+   "intro": "A dead-even chamber where the Vice President breaks ties and any single senator holds veto power. Somehow, it becomes the most legislatively productive Congress in a generation.",
+   "senators": [
+    {
+     "key": "mcconnell",
+     "name": "Mitch McConnell",
+     "party": "R",
+     "state": "KY",
+     "blurb": "The Republican leader and self-described Grim Reaper of Democratic bills \u2014 but a master tactician who occasionally deals when he judges the party's long-term interest demands it.",
+     "photo": "photos/M000355.jpg"
+    },
+    {
+     "key": "murkowski",
+     "name": "Lisa Murkowski",
+     "party": "R",
+     "state": "AK",
+     "blurb": "Alaska's write-in survivor, openly estranged from Trump and facing his endorsed challenger next year \u2014 as independent as a Republican can be and still keep the label.",
+     "photo": "photos/M001153.jpg"
+    },
+    {
+     "key": "cruz",
+     "name": "Ted Cruz",
+     "party": "R",
+     "state": "TX",
+     "blurb": "Still the Senate's happiest warrior of the right, with 2024 on his mind and a camera never far away.",
+     "photo": "photos/C001098.jpg"
+    },
+    {
+     "key": "baldwin",
+     "name": "Tammy Baldwin",
+     "party": "D",
+     "state": "WI",
+     "blurb": "Wisconsin's workmanlike progressive and the first openly gay senator \u2014 a patient vote-counter who prefers quietly assembling coalitions to cable-news combat.",
+     "photo": "photos/B001230.jpg"
+    },
+    {
+     "key": "sinema",
+     "name": "Kyrsten Sinema",
+     "party": "D",
+     "state": "AZ",
+     "blurb": "Now the Senate's most-watched Democrat alongside Joe Manchin: filibuster defender, dealmaker on infrastructure and guns, and scourge of her own party's left wing.",
+     "photo": "photos/S001191.jpg"
+    }
+   ],
+   "bills": [
+    {
+     "name": "The American Rescue Plan",
+     "desc": "March 6, 2021. $1.9 trillion in pandemic relief: $1,400 checks, an expanded child tax credit, and vaccine money, pushed through budget reconciliation after an all-night vote-a-rama. The new President wants it passed before unemployment benefits lapse.",
+     "date": "March 6, 2021",
+     "question": "On Passage of the Bill H.R. 1319",
+     "result": "Bill Passed",
+     "yeas": 50,
+     "nays": 49,
+     "votes": {
+      "mcconnell": "nay",
+      "murkowski": "nay",
+      "cruz": "nay",
+      "baldwin": "yea",
+      "sinema": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Infrastructure Law",
+     "desc": "August 10, 2021. $550 billion in new money for roads, bridges, broadband, and transit, negotiated by ten senators from the middle. The question isn't whether it passes \u2014 it's which Republicans dare to touch it.",
+     "date": "August 10, 2021",
+     "question": "On Passage of the Bill H.R. 3684",
+     "result": "Bill Passed",
+     "yeas": 69,
+     "nays": 30,
+     "votes": {
+      "mcconnell": "yea",
+      "murkowski": "yea",
+      "cruz": "nay",
+      "baldwin": "yea",
+      "sinema": "yea"
+     },
+     "notes": {}
+    },
+    {
+     "name": "The Respect for Marriage Act",
+     "desc": "November 29, 2022. Federal recognition of same-sex and interracial marriages, written as insurance after the Dobbs decision shook faith in precedent. Twenty-six years after DOMA passed this chamber 85\u201314, the Senate votes on marriage again.",
+     "date": "November 29, 2022",
+     "question": "On Passage of the Bill H.R. 8404",
+     "result": "Bill Passed",
+     "yeas": 61,
+     "nays": 36,
+     "votes": {
+      "mcconnell": "nay",
+      "murkowski": "yea",
+      "cruz": "nay",
+      "baldwin": "yea",
+      "sinema": "yea"
+     },
+     "notes": {}
+    }
+   ]
   }
  ]
 }

@@ -19,7 +19,7 @@ cd web && python3 -m http.server 8642
 # → http://localhost:8642
 ```
 
-Add `?p=N` to the URL to play any puzzle in the archive (N = 0–5).
+Add `?p=N` to the URL to play any puzzle in the archive (N = 0–13).
 
 ## How it's built
 
@@ -50,3 +50,11 @@ and progress is saved in `localStorage`.
 | 113th · 2013 | Guns & Borders | Manchin-Toomey · Gang of Eight · Shutdown deal |
 | 115th · 2017–18 | Three Votes to Lose | Skinny repeal · Trump tax cuts · Kavanaugh |
 | 103rd · 1993 | November 1993 | Assault weapons ban · Brady Bill · NAFTA |
+| 102nd · 1991 | Line in the Sand | Gulf War · Clarence Thomas · Civil Rights Act of 1991 |
+| 104th · 1996 | The Republican Revolution | Welfare reform · DOMA · Minimum wage |
+| 105th–106th · 1997–2000 | America & the World | Chemical weapons treaty · NATO expansion · China trade |
+| 108th · 2003 | The Bush Majority | Partial-birth ban · $87B for Iraq · Medicare Part D |
+| 109th · 2005–06 | Second-Term Blues | Bankruptcy bill · Secure Fence · Military Commissions |
+| 112th · 2011–12 | The Tea Party Senate | Debt-ceiling deal · VAWA · Buffett Rule |
+| 116th · 2020 | Election Year Fever | USMCA · Iran war powers · Amy Coney Barrett |
+| 117th · 2021–22 | The Fifty-Fifty Senate | American Rescue Plan · Infrastructure · Respect for Marriage |

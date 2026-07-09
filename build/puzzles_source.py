@@ -25,6 +25,31 @@ SENATORS = {
     "heitkamp":  ("H001069", "Heidi Heitkamp", "D", "ND"),
     "feinstein": ("F000062", "Dianne Feinstein", "D", "CA"),
     "helms":     ("H000463", "Jesse Helms", "R", "NC"),
+    "gore":      ("G000321", "Al Gore", "D", "TN"),
+    "nunn":      ("N000171", "Sam Nunn", "D", "GA"),
+    "dole":      ("D000401", "Bob Dole", "R", "KS"),
+    "kerry":     ("K000148", "John Kerry", "D", "MA"),
+    "kassebaum": ("K000017", "Nancy Kassebaum", "R", "KS"),
+    "moynihan":  ("M001054", "Daniel Patrick Moynihan", "D", "NY"),
+    "wellstone": ("W000288", "Paul Wellstone", "D", "MN"),
+    "gramm":     ("G000365", "Phil Gramm", "R", "TX"),
+    "lugar":     ("L000504", "Richard Lugar", "R", "IN"),
+    "boxer":     ("B000711", "Barbara Boxer", "D", "CA"),
+    "lieberman": ("L000304", "Joe Lieberman", "D", "CT"),
+    "santorum":  ("S000059", "Rick Santorum", "R", "PA"),
+    "daschle":   ("D000064", "Tom Daschle", "D", "SD"),
+    "specter":   ("S000709", "Arlen Specter", "R", "PA"),
+    "zmiller":   ("M001141", "Zell Miller", "D", "GA"),
+    "coburn":    ("C000560", "Tom Coburn", "R", "OK"),
+    "mcconnell": ("M000355", "Mitch McConnell", "R", "KY"),
+    "rubio":     ("R000595", "Marco Rubio", "R", "FL"),
+    "sbrown":    ("B001268", "Scott Brown", "R", "MA"),
+    "mccaskill": ("M001170", "Claire McCaskill", "D", "MO"),
+    "romney":    ("R000615", "Mitt Romney", "R", "UT"),
+    "sinema":    ("S001191", "Kyrsten Sinema", "D", "AZ"),
+    "warnock":   ("W000790", "Raphael Warnock", "D", "GA"),
+    "cotton":    ("C001095", "Tom Cotton", "R", "AR"),
+    "baldwin":   ("B001230", "Tammy Baldwin", "D", "WI"),
 }
 
 PUZZLES = [
@@ -331,6 +356,406 @@ PUZZLES = [
                          "negotiated by Bush, embraced by Clinton over his own party's "
                          "objections and organized labor's fury. Ross Perot says you can "
                          "already hear a 'giant sucking sound' of jobs going south."),
+            },
+        ],
+    },
+    {
+        "id": "line-in-the-sand",
+        "title": "Line in the Sand",
+        "era": "102nd Congress · 1991",
+        "intro": ("Half a million American troops sit in the Saudi desert while Congress "
+                  "holds its first real war debate since Vietnam. Nine months later, a "
+                  "Supreme Court nomination ends in the most explosive hearings ever held."),
+        "senators": [
+            ("gore",      "A cerebral Tennessee moderate with presidential ambitions and a "
+                          "hawkish streak rare in his party's rising generation. He agonizes "
+                          "over big votes — and enjoys telling you so."),
+            ("nunn",      "Chairman of Armed Services and the Democrats' most trusted voice on "
+                          "the military. A Georgia conservative — but a believer that sanctions "
+                          "and patience can win wars cheaper than blood."),
+            ("dole",      "The Republican leader: a wounded World War II veteran, sharp-tongued "
+                          "dealmaker, and reliable soldier for the Bush White House."),
+            ("kerry",     "A decorated Vietnam veteran who came home to protest the war. Two "
+                          "decades later, deeply wary of committing American troops before "
+                          "every alternative is exhausted."),
+            ("kassebaum", "A plainspoken Kansas internationalist, budget-minded and "
+                          "independent — one of only two women in the chamber."),
+        ],
+        "bills": [
+            {
+                "congress": 102, "session": 1, "vote": 2,
+                "name": "Authorizing the Gulf War",
+                "desc": ("January 12, 1991. Saddam Hussein has occupied Kuwait for five "
+                         "months, and the UN deadline expires in three days. The resolution "
+                         "authorizes the President to drive Iraq out by force. The debate is "
+                         "somber and the outcome genuinely in doubt — the closest vote to "
+                         "authorize war in American history."),
+            },
+            {
+                "congress": 102, "session": 1, "vote": 220,
+                "name": "Confirming Clarence Thomas",
+                "desc": ("October 15, 1991. Clarence Thomas's Supreme Court nomination "
+                         "reaches the floor days after Anita Hill's testimony transfixed the "
+                         "country. He would fill Thurgood Marshall's seat — and shift the "
+                         "Court for a generation."),
+            },
+            {
+                "congress": 102, "session": 1, "vote": 238,
+                "name": "The Civil Rights Act of 1991",
+                "desc": ("October 30, 1991. After two years of veto fights over 'quotas,' a "
+                         "compromise civil-rights bill restoring workers' power to sue for "
+                         "discrimination — finally pre-cleared with the White House."),
+            },
+        ],
+    },
+    {
+        "id": "republican-revolution",
+        "title": "The Republican Revolution",
+        "era": "104th Congress · 1996",
+        "intro": ("Two years after Gingrich's landslide, a Democratic president runs toward "
+                  "the center with an election looming. Welfare, marriage, wages — 1996 is "
+                  "one long argument about what the parties are for."),
+        "senators": [
+            ("moynihan", "The Senate's scholar — a Harvard sociologist who wrote the book on "
+                         "poverty policy, literally. Party loyalty means little when he "
+                         "believes a bill will hurt the poor."),
+            ("lieberman","A moralist Connecticut Democrat comfortable scolding his own party: "
+                         "pro-business, hawkish, and outspoken about family values."),
+            ("boxer",    "A Marin County liberal and one of the chamber's most reliable "
+                         "progressive votes, especially where civil rights are concerned."),
+            ("santorum", "The youngest Republican senator: a combative Pennsylvania culture "
+                         "warrior who courts blue-collar Catholics with the occasional "
+                         "populist economic vote."),
+            ("gramm",    "A Texas economics professor turned budget hawk, fresh off a "
+                         "presidential run about slashing government. If a bill spends money "
+                         "or regulates business, count him out."),
+        ],
+        "bills": [
+            {
+                "congress": 104, "session": 2, "vote": 262,
+                "name": "Welfare Reform",
+                "desc": ("August 1, 1996. 'The end of welfare as we know it': time limits, "
+                         "work requirements, and block grants replacing a six-decade federal "
+                         "guarantee for poor families. Clinton has vetoed two versions and "
+                         "promised to sign this one. Half his party feels betrayed."),
+            },
+            {
+                "congress": 104, "session": 2, "vote": 280,
+                "name": "The Defense of Marriage Act",
+                "desc": ("September 10, 1996. DOMA: no federal recognition of same-sex "
+                         "marriages, and no state required to honor another state's. Clinton "
+                         "says he'll sign it. Only a handful of senators are willing to be "
+                         "counted against it."),
+            },
+            {
+                "congress": 104, "session": 2, "vote": 186,
+                "name": "Minimum Wage Increase",
+                "desc": ("July 9, 1996. A 90-cent raise in the minimum wage — $4.25 to $5.15 "
+                         "— riding on a package of small-business tax breaks. Election-year "
+                         "pressure has cracked the Republican leadership's resistance."),
+            },
+        ],
+    },
+    {
+        "id": "america-and-the-world",
+        "title": "America & the World",
+        "era": "105th–106th Congress · 1997–2000",
+        "intro": ("With the Cold War won, Washington argues about what comes next: "
+                  "disarmament treaties, an expanding NATO, and whether to bet the future "
+                  "on trade with China."),
+        "senators": [
+            ("helms",     "Chairman of Foreign Relations and scourge of the striped-pants "
+                          "set. Treaties, foreign aid, the UN — he distrusts them all, and "
+                          "buries what he distrusts."),
+            ("lugar",     "The Republicans' soft-spoken foreign-policy intellectual, "
+                          "co-author of the program dismantling loose Soviet nukes. An "
+                          "internationalist to his fingertips."),
+            ("moynihan",  "The Senate's contrarian scholar — a former UN ambassador with his "
+                          "own theories about secrecy, ethnicity, and international law, "
+                          "cheerfully immune to conventional wisdom."),
+            ("wellstone", "The happiest warrior of the left: a former wrestling coach and "
+                          "campus organizer who votes his conscience on labor and human "
+                          "rights, popularity be damned."),
+            ("biden",     "The Democrats' garrulous front man on Foreign Relations — an "
+                          "institutionalist who believes in American alliances and American "
+                          "engagement, almost anywhere."),
+        ],
+        "bills": [
+            {
+                "congress": 105, "session": 1, "vote": 51,
+                "name": "The Chemical Weapons Treaty",
+                "desc": ("April 24, 1997. The Chemical Weapons Convention: a global ban on "
+                         "producing and stockpiling chemical arms, signed by the first "
+                         "President Bush. Ratification needs 67 votes, and conservatives "
+                         "warn it is unverifiable and toothless."),
+            },
+            {
+                "congress": 105, "session": 2, "vote": 117,
+                "name": "Expanding NATO Eastward",
+                "desc": ("April 30, 1998. Admitting Poland, Hungary, and the Czech Republic "
+                         "to NATO — extending America's defense umbrella to Russia's old "
+                         "doorstep. Critics ask what the alliance is now for, and whom it "
+                         "might provoke. Treaties need 67 votes."),
+            },
+            {
+                "congress": 106, "session": 2, "vote": 251,
+                "name": "Permanent Trade with China",
+                "desc": ("September 19, 2000. Permanent normal trade relations with China, "
+                         "clearing its path into the World Trade Organization. Business is "
+                         "euphoric. Labor and human-rights advocates call it a historic "
+                         "sellout."),
+            },
+        ],
+    },
+    {
+        "id": "bush-majority",
+        "title": "The Bush Majority",
+        "era": "108th Congress · 2003",
+        "intro": ("War in Iraq, tax cuts at home, and a Republican Party at high tide. For "
+                  "Democrats, every vote is a choice between conviction and survival."),
+        "senators": [
+            ("mccain",  "The maverick restored: hawkish on the war, but a deficit scold who "
+                        "has rediscovered his taste for bucking his own White House on "
+                        "spending."),
+            ("kennedy", "Forty years in and pugnacious as ever — he calls the Iraq war a "
+                        "'fraud cooked up in Texas,' while still cutting domestic deals with "
+                        "this White House when it serves his causes."),
+            ("daschle", "The Democratic leader: a soft-spoken South Dakotan balancing a "
+                        "liberal caucus against a state Bush carried by 22 points — with his "
+                        "own re-election looming."),
+            ("specter", "Pennsylvania's cranky Republican moderate: pro-choice, pro-labor by "
+                        "his party's standards, and facing a bruising primary from his right "
+                        "next spring."),
+            ("zmiller", "A Georgia Democrat in name only by now: he keynoted for Clinton in "
+                        "'92, but has embraced Bush's agenda nearly wholesale — and relishes "
+                        "infuriating his own party."),
+        ],
+        "bills": [
+            {
+                "congress": 108, "session": 1, "vote": 51,
+                "name": "The Partial-Birth Abortion Ban",
+                "desc": ("March 13, 2003. A federal ban on the late-term procedure opponents "
+                         "call partial-birth abortion — the first federal criminal "
+                         "prohibition of an abortion method since Roe, with an exception for "
+                         "the mother's life but not her health."),
+            },
+            {
+                "congress": 108, "session": 1, "vote": 400,
+                "name": "$87 Billion for Iraq",
+                "desc": ("October 17, 2003. Eighty-seven billion dollars for the occupations "
+                         "of Iraq and Afghanistan — six months after 'Mission Accomplished,' "
+                         "with no weapons found and the insurgency growing. Voting no reads "
+                         "as abandoning the troops; voting yes as endorsing the war."),
+            },
+            {
+                "congress": 108, "session": 1, "vote": 459,
+                "name": "Medicare Prescription Drugs",
+                "desc": ("November 25, 2003. The biggest Medicare expansion in history: a "
+                         "prescription-drug benefit delivered through private insurers, with "
+                         "the government barred from negotiating prices. Liberals call it a "
+                         "giveaway to industry; conservatives call it a budget-buster."),
+            },
+        ],
+    },
+    {
+        "id": "second-term-blues",
+        "title": "Second-Term Blues",
+        "era": "109th Congress · 2005–2006",
+        "intro": ("A re-elected George W. Bush spends his political capital fast: "
+                  "bankruptcy law for the banks, a fence for the border, and military "
+                  "tribunals for the age of terror."),
+        "senators": [
+            ("obama",     "The celebrity freshman, two years from announcing for president: "
+                          "a constitutional-law lecturer's instincts inside a cautious "
+                          "legislator's record."),
+            ("biden",     "Foreign Relations' top Democrat — and Delaware's senator, which "
+                          "means the credit-card industry's senator, as his critics never "
+                          "tire of noting."),
+            ("chafee",    "The chamber's loneliest Republican: anti-war, pro-environment, "
+                          "pro-civil-liberties, and fighting for his political life in "
+                          "deep-blue Rhode Island this November."),
+            ("coburn",    "'Dr. No.' An Oklahoma obstetrician who hunts wasteful spending "
+                          "for sport and votes against nearly anything that grows the "
+                          "government."),
+            ("feinstein", "California's businesslike centrist: tough on crime and terrorism "
+                          "by her party's standards, a dealmaker on the Judiciary Committee."),
+        ],
+        "bills": [
+            {
+                "congress": 109, "session": 1, "vote": 44,
+                "name": "The Bankruptcy Bill",
+                "desc": ("March 10, 2005. The credit-card industry's decade-long dream: "
+                         "means tests and new hurdles making it far harder for consumers to "
+                         "erase debts in bankruptcy. Banks say it targets abuse; consumer "
+                         "advocates say it punishes the sick, the divorced, and the broke."),
+            },
+            {
+                "congress": 109, "session": 2, "vote": 262,
+                "name": "The Secure Fence Act",
+                "desc": ("September 29, 2006. Seven hundred miles of double-layer fencing "
+                         "along the Mexican border, voted weeks before the midterms — the "
+                         "enforcement-only answer after comprehensive immigration reform "
+                         "collapsed."),
+            },
+            {
+                "congress": 109, "session": 2, "vote": 259,
+                "name": "The Military Commissions Act",
+                "desc": ("September 28, 2006. Military tribunals for Guantánamo detainees, "
+                         "stripped of habeas corpus review, with the CIA's interrogation "
+                         "program written into law — rushed through in the September dash to "
+                         "adjourn and campaign."),
+            },
+        ],
+    },
+    {
+        "id": "tea-party-senate",
+        "title": "The Tea Party Senate",
+        "era": "112th Congress · 2011–2012",
+        "intro": ("A debt-ceiling standoff brings the country within days of default, and "
+                  "the parties' new wings — Tea Party right, progressive left — treat every "
+                  "compromise as surrender."),
+        "senators": [
+            ("rubio",     "The Tea Party's polished new star from Florida, elected over the "
+                          "establishment's pick: young, ambitious, and allergic to anything "
+                          "that smells like business as usual."),
+            ("rpaul",     "The movement's ideologist: an eye doctor who reads deficits as "
+                          "theft and most federal programs as unconstitutional. Compromise "
+                          "is what he came to Washington to stop."),
+            ("sanders",   "Vermont's socialist, now a national voice against austerity — he "
+                          "recently held the floor for eight and a half hours against "
+                          "extending the Bush tax cuts."),
+            ("sbrown",    "The Massachusetts surprise: a Republican in Ted Kennedy's old "
+                          "seat, driving a pickup truck and hugging the center line for "
+                          "dear life before 2012."),
+            ("mccaskill", "A Missouri Democrat with an auditor's temperament, hunting "
+                          "earmarks and waste to survive in a state drifting steadily "
+                          "redder."),
+        ],
+        "bills": [
+            {
+                "congress": 112, "session": 1, "vote": 123,
+                "name": "The Debt-Ceiling Deal",
+                "desc": ("August 2, 2011 — default is hours away. The Budget Control Act "
+                         "raises the debt ceiling in exchange for a decade of spending caps "
+                         "and an automatic 'sequester' guillotine. Nobody loves it, and "
+                         "leadership is begging for votes from the middle outward."),
+            },
+            {
+                "congress": 112, "session": 2, "vote": 87,
+                "name": "Violence Against Women Act",
+                "desc": ("April 26, 2012. Reauthorizing the Violence Against Women Act — "
+                         "routine for eighteen years, now a fight over newly added "
+                         "protections for Native American, immigrant, and LGBT victims."),
+            },
+            {
+                "congress": 112, "session": 2, "vote": 65,
+                "name": "The Buffett Rule",
+                "desc": ("April 16, 2012. A minimum 30% tax rate on incomes over $1 million, "
+                         "named for the billionaire who pays a lower rate than his "
+                         "secretary. It needs 60 votes to advance and everyone knows it "
+                         "won't get them — this vote is for the campaign ads."),
+            },
+        ],
+    },
+    {
+        "id": "election-year-fever",
+        "title": "Election Year Fever",
+        "era": "116th Congress · 2020",
+        "intro": ("An impeachment ends, a pandemic begins, and a Supreme Court seat opens "
+                  "six weeks before the election. 2020 asks every senator exactly one "
+                  "question: how brave are you feeling?"),
+        "senators": [
+            ("collins", "The last New England Republican, defending a seat in a state Trump "
+                        "lost. Her approval has cratered since the Kavanaugh vote, and every "
+                        "roll call is scrutinized for daylight from the President."),
+            ("romney",  "The party's 2012 nominee, reborn as its most conspicuous internal "
+                        "critic — the first senator in history to vote to remove a president "
+                        "of his own party."),
+            ("sanders", "Running for president again as the progressive standard-bearer, "
+                        "against the trade deals and foreign wars of both parties' "
+                        "establishments."),
+            ("sinema",  "Arizona's unpredictable first-termer: a former Green Party activist "
+                        "turned proud centrist who prizes her bipartisan brand above her "
+                        "party's agenda."),
+            ("cotton",  "An Army veteran of Iraq and Afghanistan and the Senate's most "
+                        "disciplined hawk: maximum pressure abroad, maximum loyalty to the "
+                        "President at home."),
+        ],
+        "bills": [
+            {
+                "congress": 116, "session": 2, "vote": 14,
+                "name": "The USMCA Trade Deal",
+                "desc": ("January 16, 2020. NAFTA's replacement: modernized rules, tougher "
+                         "labor enforcement in Mexico, and the rare blessing of both the "
+                         "AFL-CIO and the Chamber of Commerce — the last major bill before "
+                         "the impeachment trial consumes the chamber."),
+            },
+            {
+                "congress": 116, "session": 2, "vote": 52,
+                "name": "Iran War Powers Resolution",
+                "desc": ("February 13, 2020. Weeks after the drone strike killing Qassem "
+                         "Soleimani brought the U.S. and Iran to the brink, a resolution "
+                         "ordering the President to halt hostilities against Iran absent "
+                         "congressional authorization. A veto is certain; the vote is about "
+                         "the principle."),
+            },
+            {
+                "congress": 116, "session": 2, "vote": 224,
+                "name": "Confirming Amy Coney Barrett",
+                "desc": ("October 26, 2020 — eight days before the election, with millions "
+                         "of votes already cast. Amy Coney Barrett's confirmation to Ruth "
+                         "Bader Ginsburg's seat, four years after the majority held "
+                         "Scalia's seat open for ten months on election-year principle."),
+            },
+        ],
+    },
+    {
+        "id": "fifty-fifty-senate",
+        "title": "The Fifty-Fifty Senate",
+        "era": "117th Congress · 2021–2022",
+        "intro": ("A dead-even chamber where the Vice President breaks ties and any single "
+                  "senator holds veto power. Somehow, it becomes the most legislatively "
+                  "productive Congress in a generation."),
+        "senators": [
+            ("mcconnell", "The Republican leader and self-described Grim Reaper of "
+                          "Democratic bills — but a master tactician who occasionally deals "
+                          "when he judges the party's long-term interest demands it."),
+            ("murkowski", "Alaska's write-in survivor, openly estranged from Trump and "
+                          "facing his endorsed challenger next year — as independent as a "
+                          "Republican can be and still keep the label."),
+            ("cruz",      "Still the Senate's happiest warrior of the right, with 2024 on "
+                          "his mind and a camera never far away."),
+            ("baldwin",   "Wisconsin's workmanlike progressive and the first openly gay "
+                          "senator — a patient vote-counter who prefers quietly assembling "
+                          "coalitions to cable-news combat."),
+            ("sinema",    "Now the Senate's most-watched Democrat alongside Joe Manchin: "
+                          "filibuster defender, dealmaker on infrastructure and guns, and "
+                          "scourge of her own party's left wing."),
+        ],
+        "bills": [
+            {
+                "congress": 117, "session": 1, "vote": 110,
+                "name": "The American Rescue Plan",
+                "desc": ("March 6, 2021. $1.9 trillion in pandemic relief: $1,400 checks, an "
+                         "expanded child tax credit, and vaccine money, pushed through "
+                         "budget reconciliation after an all-night vote-a-rama. The new "
+                         "President wants it passed before unemployment benefits lapse."),
+            },
+            {
+                "congress": 117, "session": 1, "vote": 314,
+                "name": "The Infrastructure Law",
+                "desc": ("August 10, 2021. $550 billion in new money for roads, bridges, "
+                         "broadband, and transit, negotiated by ten senators from the "
+                         "middle. The question isn't whether it passes — it's which "
+                         "Republicans dare to touch it."),
+            },
+            {
+                "congress": 117, "session": 2, "vote": 362,
+                "name": "The Respect for Marriage Act",
+                "desc": ("November 29, 2022. Federal recognition of same-sex and interracial "
+                         "marriages, written as insurance after the Dobbs decision shook "
+                         "faith in precedent. Twenty-six years after DOMA passed this "
+                         "chamber 85–14, the Senate votes on marriage again."),
             },
         ],
     },
