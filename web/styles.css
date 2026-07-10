@@ -139,7 +139,7 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 }
 .portrait-frame img {
   display: block; width: 100%; aspect-ratio: 225/275; object-fit: cover;
-  filter: grayscale(1) contrast(1.12) brightness(1.03);
+  filter: contrast(1.04) saturate(.95);
 }
 .party-seal {
   position: absolute; bottom: -8px; right: -8px;
@@ -250,7 +250,7 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 .ballot-portrait {
   width: 58px; height: 68px; object-fit: cover; object-position: top;
   border: 1px solid var(--hairline-minor); background: #fff; padding: 2px;
-  filter: grayscale(1) contrast(1.12) brightness(1.03);
+  filter: contrast(1.04) saturate(.95);
 }
 
 .ballot-id .senator-name { font-size: 18.5px; text-align: left; }
