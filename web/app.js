@@ -1,4 +1,4 @@
-/* Roll Call — daily congressional vote guessing game */
+/* Yea or Nay — daily congressional vote guessing game */
 (function () {
   "use strict";
 
@@ -245,7 +245,7 @@
     document.getElementById("share").onclick = () => {
       const grid = puzzle.bills.map((b, i) => puzzle.senators.map((s) =>
         state.guesses[i][s.key] === b.votes[s.key] ? "\u{1F7E9}" : "\u{1F7E5}").join("")).join("\n");
-      const text = `Roll Call №${isPractice ? " (archive)" : puzzleNo} — ${puzzle.title}\n` +
+      const text = `Yea or Nay №${isPractice ? " (archive)" : puzzleNo} — ${puzzle.title}\n` +
                    `${score}/${max} · ${title}\n${grid}`;
       navigator.clipboard.writeText(text).then(() => {
         document.getElementById("share-fb").textContent = "COPIED TO CLIPBOARD";

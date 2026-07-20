@@ -64,7 +64,7 @@ def main() -> int:
     CACHE.mkdir(parents=True, exist_ok=True)
     PHOTOS.mkdir(parents=True, exist_ok=True)
     problems = []
-    out = {"gameName": "Roll Call", "epoch": "2026-07-08", "puzzles": []}
+    out = {"gameName": "Yea or Nay", "epoch": "2026-07-08", "puzzles": []}
 
     for pz in PUZZLES:
         print(f"\n=== {pz['title']} ({pz['era']}) ===")

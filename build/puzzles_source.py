@@ -1,4 +1,4 @@
-# Source-of-truth puzzle definitions for Roll Call.
+# Source-of-truth puzzle definitions for Yea or Nay.
 # Vote answers are NOT written here — they are fetched from senate.gov roll-call XML
 # by fetch.py, so every answer in the game is a verified real vote.
 

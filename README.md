@@ -1,4 +1,4 @@
-# Roll Call 🏛️
+# Yea or Nay 🏛️
 
 **The daily congressional vote game.** Each day presents a real bill that came
 to the U.S. Senate floor, and five senators with short profiles of their
