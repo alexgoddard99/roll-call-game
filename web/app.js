@@ -114,22 +114,23 @@
     const pips = puzzle.bills.map((_, j) =>
       `<span class="pip ${state.revealed[j] ? "done" : j === i ? "now" : ""}"></span>`).join("");
 
+    const [labYea, labNay] = bill.labels || ["YEA", "NAY"];
     const rows = puzzle.senators.map((sen) => {
       const guess = state.guesses[i][sen.key];
       let right;
       if (!revealed) {
         right = `<div class="stamp-pair">
           <button class="stamp ${guess === "yea" ? "stamped-yea" : guess ? "faded" : ""}"
-                  data-sen="${sen.key}" data-vote="yea">YEA</button>
+                  data-sen="${sen.key}" data-vote="yea">${labYea}</button>
           <button class="stamp ${guess === "nay" ? "stamped-nay" : guess ? "faded" : ""}"
-                  data-sen="${sen.key}" data-vote="nay">NAY</button>
+                  data-sen="${sen.key}" data-vote="nay">${labNay}</button>
         </div>`;
       } else {
         const actual = bill.votes[sen.key];
         const hit = guess === actual;
         right = `<div class="stamp-pair">
           <span class="verdict ${hit ? "hit" : "miss"}">${hit ? "✓" : "✗"}</span>
-          <span class="actual-stamp ${actual}">${actual.toUpperCase()}</span>
+          <span class="actual-stamp ${actual}">${actual === "yea" ? labYea : labNay}</span>
         </div>`;
       }
       const note = revealed && bill.notes && bill.notes[sen.key]

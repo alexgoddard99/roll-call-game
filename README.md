@@ -19,7 +19,7 @@ cd web && python3 -m http.server 8642
 # → http://localhost:8642
 ```
 
-Add `?p=N` to the URL to play any puzzle in the archive (N = 0–13).
+Add `?p=N` to the URL to play any puzzle in the archive (N = 0–73).
 
 ## How it's built
 
@@ -42,19 +42,12 @@ and progress is saved in `localStorage`.
 
 ## Current puzzle bank
 
-| Era | Title | Bills |
-|---|---|---|
-| 111th · 2009–10 | The Obama Wave | ACA · Dodd-Frank · DADT repeal |
-| 107th · 2001–02 | After September 11 | PATRIOT Act · No Child Left Behind · Iraq AUMF |
-| 110th · 2007–08 | The Class of 2008 | Minimum wage · Iraq funding · TARP |
-| 113th · 2013 | Guns & Borders | Manchin-Toomey · Gang of Eight · Shutdown deal |
-| 115th · 2017–18 | Three Votes to Lose | Skinny repeal · Trump tax cuts · Kavanaugh |
-| 103rd · 1993 | November 1993 | Assault weapons ban · Brady Bill · NAFTA |
-| 102nd · 1991 | Line in the Sand | Gulf War · Clarence Thomas · Civil Rights Act of 1991 |
-| 104th · 1996 | The Republican Revolution | Welfare reform · DOMA · Minimum wage |
-| 105th–106th · 1997–2000 | America & the World | Chemical weapons treaty · NATO expansion · China trade |
-| 108th · 2003 | The Bush Majority | Partial-birth ban · $87B for Iraq · Medicare Part D |
-| 109th · 2005–06 | Second-Term Blues | Bankruptcy bill · Secure Fence · Military Commissions |
-| 112th · 2011–12 | The Tea Party Senate | Debt-ceiling deal · VAWA · Buffett Rule |
-| 116th · 2020 | Election Year Fever | USMCA · Iran war powers · Amy Coney Barrett |
-| 117th · 2021–22 | The Fifty-Fifty Senate | American Rescue Plan · Infrastructure · Respect for Marriage |
+**74 puzzles · 222 bills · 1,110 verified votes**, spanning the Civil Rights Act
+of 1964 through the 119th Congress (2025). Two verified data sources: senate.gov
+roll-call XML (1989–present) and voteview.com (pre-1989). Highlights: the 1964
+civil-rights filibuster, Gulf of Tonkin, the Panama Canal treaties, Bork, both
+Clinton impeachment articles, TARP, the Obamacare wars, both Trump trials, the
+January 6th electoral objections, and the 2025 confirmation fights.
+
+Puzzle packs live in `build/batches/batch_*.py` and are auto-merged into the
+daily rotation by `build/fetch.py` — add a pack, run the pipeline, redeploy.
