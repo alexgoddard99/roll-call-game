@@ -222,7 +222,6 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 }
 .docket-desc {
   font-size: 17px; line-height: 1.62; color: var(--ink-soft);
-  columns: 2; column-gap: 34px; column-rule: 1px solid var(--hairline-minor);
   margin-bottom: 8px;
 }
 .docket-desc::first-letter {
@@ -384,7 +383,6 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 }
 
 @media (max-width: 720px) {
-  .docket-desc { columns: 1; }
   .ballot-row { grid-template-columns: 48px 1fr; }
   .ballot-portrait { width: 48px; height: 56px; align-self: start; }
   .stamp-pair { grid-column: 1 / -1; justify-content: flex-end; }
