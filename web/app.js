@@ -202,8 +202,7 @@
           const score = totalScore(), max = nBills * nSens;
           const pct = Math.round(100 * score / max);
           track("puzzle_complete", {
-            score, max, pct,
-            outcome: pct >= 66 ? "win" : "loss",
+            score, max, pct_correct: pct,
             perfect: score === max ? 1 : 0,
             rank: rank(score, max)[0],
             streak: isPractice ? 0 : computeStats(loadArchive()).cur,
