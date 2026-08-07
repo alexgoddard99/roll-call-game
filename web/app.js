@@ -268,7 +268,164 @@
     btn.onclick = () => (i + 1 < nBills ? showBillReview(i + 1) : showSummary());
   }
 
+  // ---------- results archive (local, + cloud sync when signed in) ----------
+  const ARCHIVE_KEY = "yon-results";
+
+  function loadArchive() {
+    try { return JSON.parse(localStorage.getItem(ARCHIVE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveArchive(a) {
+    try { localStorage.setItem(ARCHIVE_KEY, JSON.stringify(a)); } catch (e) {}
+  }
+
+  // Reconstruct results from old per-day saves (pre-stats players keep history)
+  function reconstructArchive() {
+    const archive = loadArchive();
+    let changed = false;
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      const m = k && k.match(/^rollcall-(\d{4}-\d{2}-\d{2})$/);
+      if (!m || archive[m[1]]) continue;
+      try {
+        const saved = JSON.parse(localStorage.getItem(k));
+        const pz = PUZZLES[saved.puzzleIdx];
+        if (!pz || !saved.state.revealed.every(Boolean)) continue;
+        let score = 0;
+        pz.bills.forEach((b, bi) => pz.senators.forEach((s) => {
+          if (saved.state.guesses[bi][s.key] === b.votes[s.key]) score++;
+        }));
+        archive[m[1]] = { puzzleId: pz.id, title: pz.title, era: pz.era,
+                          score, max: pz.bills.length * pz.senators.length };
+        changed = true;
+      } catch (e) { /* skip */ }
+    }
+    if (changed) saveArchive(archive);
+    return archive;
+  }
+
+  function recordResult() {
+    if (isPractice) return;
+    const archive = loadArchive();
+    if (archive[dateStr]) return;
+    const result = { puzzleId: puzzle.id, title: puzzle.title, era: puzzle.era,
+                     score: totalScore(), max: nBills * nSens, no: puzzleNo };
+    archive[dateStr] = result;
+    saveArchive(archive);
+    cloud("logEvent", "puzzle_complete",
+          { puzzle_id: puzzle.id, puzzle_no: puzzleNo, score: result.score, max: result.max });
+    cloud("saveResult", dateStr, result);
+  }
+
+  // ---------- cloud / auth ----------
+  function cloud(method, ...args) {
+    const c = window.YonCloud;
+    if (c && c.enabled && c[method]) return c[method](...args);
+  }
+
+  async function syncWithCloud() {
+    const c = window.YonCloud;
+    if (!c || !c.enabled || !c.user()) return;
+    try {
+      const remote = await c.fetchResults();
+      const local = loadArchive();
+      let changed = false;
+      for (const [date, r] of Object.entries(remote)) {
+        if (!local[date]) { local[date] = r; changed = true; }
+      }
+      for (const [date, r] of Object.entries(local)) {
+        if (!remote[date]) c.saveResult(date, r);
+      }
+      if (changed) saveArchive(local);
+    } catch (e) { /* offline is fine */ }
+  }
+
+  const authLink = document.getElementById("auth-link");
+  window.addEventListener("yon-cloud-ready", () => {
+    const c = window.YonCloud;
+    if (!c.enabled) return;
+    authLink.hidden = false;
+    c.onUser((u) => {
+      authLink.textContent = u ? "Sign Out (" + (u.displayName || "you").split(" ")[0] + ")" : "Sign In";
+      if (u) syncWithCloud();
+    });
+    authLink.onclick = () => (c.user() ? c.signOut() : c.signIn().catch(() => {}));
+    cloud("logEvent", "page_open", { puzzle_no: puzzleNo });
+  });
+
+  // ---------- stats modal ----------
+  function computeStats(archive) {
+    const dates = Object.keys(archive).sort();
+    const n = dates.length;
+    const total = dates.reduce((a, d) => a + archive[d].score, 0);
+    const maxes = dates.reduce((a, d) => a + archive[d].max, 0);
+    const perfect = dates.filter((d) => archive[d].score === archive[d].max).length;
+    let best = 0, cur = 0;
+    const dayMs = 86400000;
+    const played = new Set(dates);
+    const key = (t) => new Date(t).toISOString().slice(0, 10); // date-only keys, UTC
+    for (let i = 0; i < n; i++) {
+      let run = 1;
+      let t = Date.parse(dates[i]); // date-only string parses as UTC midnight
+      while (played.has(key(t + dayMs))) { run++; t += dayMs; }
+      best = Math.max(best, run);
+    }
+    // current streak: count back from today (or yesterday if today unplayed)
+    let t = Date.parse(dateStr);
+    if (!played.has(dateStr)) t -= dayMs;
+    while (played.has(key(t))) { cur++; t -= dayMs; }
+    return { played: n, avg: n ? (total / n).toFixed(1) : "–",
+             pct: maxes ? Math.round(100 * total / maxes) : 0, perfect, best, cur };
+  }
+
+  function showStats() {
+    const archive = reconstructArchive();
+    const s = computeStats(archive);
+    const rows = Object.keys(archive).sort().reverse().slice(0, 60).map((d) => {
+      const r = archive[d];
+      const nice = new Date(d + "T12:00:00Z").toLocaleDateString("en-US",
+        { month: "short", day: "numeric", year: "numeric" });
+      return `<tr><td class="bill-name">${nice}</td>
+        <td class="bill-name" style="font-style:italic">${esc(r.title || "")}</td>
+        <td><strong>${r.score}/${r.max}</strong></td></tr>`;
+    }).join("");
+    const signedIn = window.YonCloud && window.YonCloud.enabled && window.YonCloud.user();
+    const overlay = document.createElement("div");
+    overlay.className = "modal-overlay";
+    overlay.innerHTML = `<div class="modal-card">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="section-rule">My Record</div>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">${s.played}</div><div class="stat-label">Played</div></div>
+        <div class="stat"><div class="stat-num">${s.avg}</div><div class="stat-label">Avg Score</div></div>
+        <div class="stat"><div class="stat-num">${s.pct}%</div><div class="stat-label">Votes Called</div></div>
+        <div class="stat"><div class="stat-num">${s.cur}</div><div class="stat-label">Streak</div></div>
+        <div class="stat"><div class="stat-num">${s.best}</div><div class="stat-label">Best Streak</div></div>
+        <div class="stat"><div class="stat-num">${s.perfect}</div><div class="stat-label">Perfect</div></div>
+      </div>
+      ${rows ? `<div class="history-scroll"><table class="result-table">
+          <tr><th>Date</th><th>Edition</th><th>Score</th></tr>${rows}</table></div>`
+        : `<p class="whip-note">No completed games yet — finish today's edition and it will appear here.</p>`}
+      <p class="sync-note">${signedIn
+        ? "Synced to your Google account."
+        : (window.YonCloud && window.YonCloud.enabled
+            ? "Stored on this device — sign in to keep your record across devices."
+            : "Stored on this device.")}</p>
+    </div>`;
+    document.body.appendChild(overlay);
+    const close = () => overlay.remove();
+    overlay.querySelector(".modal-close").onclick = close;
+    overlay.onclick = (e) => { if (e.target === overlay) close(); };
+    cloud("logEvent", "stats_open", {});
+  }
+  document.getElementById("stats-link").onclick = showStats;
+
   // ---------- boot ----------
-  if (allRevealed() && Object.keys(state.guesses[0]).length) showSummary();
+  reconstructArchive();
+  if (allRevealed() && Object.keys(state.guesses[0]).length) { recordResult(); showSummary(); }
   else showCover();
+
+  // record at the moment the last bill is revealed
+  const _origShowSummary = showSummary;
+  showSummary = function () { recordResult(); _origShowSummary(); };
 })();
