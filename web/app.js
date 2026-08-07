@@ -103,6 +103,7 @@
       </div>
     </section>`;
     document.getElementById("go").onclick = () => {
+      track("open_docket", {});
       const next = state.revealed.findIndex((r) => !r);
       next === -1 ? showSummary() : showBill(next);
     };
@@ -176,6 +177,12 @@
     if (!revealed) {
       app.querySelectorAll(".stamp").forEach((b) => {
         b.onclick = () => {
+          if (!startTracked) {
+            startTracked = true;
+            const fresh = state.guesses.every((g) => !Object.keys(g).length)
+                          && !state.revealed.some(Boolean);
+            if (fresh) track("puzzle_start", {});
+          }
           state.guesses[i][b.dataset.sen] = b.dataset.vote;
           persist();
           showBillStamps(i);
@@ -187,6 +194,21 @@
       if (!state.revealed[i]) {
         state.revealed[i] = true;
         persist();
+        track("bill_revealed", {
+          bill_index: i + 1, bill_name: bill.name, bill_score: billScore(i),
+        });
+        if (allRevealed()) {
+          recordResult();
+          const score = totalScore(), max = nBills * nSens;
+          const pct = Math.round(100 * score / max);
+          track("puzzle_complete", {
+            score, max, pct,
+            outcome: pct >= 66 ? "win" : "loss",
+            perfect: score === max ? 1 : 0,
+            rank: rank(score, max)[0],
+            streak: isPractice ? 0 : computeStats(loadArchive()).cur,
+          });
+        }
         showBill(i); // re-render in revealed mode
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else if (i + 1 < nBills && !state.revealed[i + 1]) {
@@ -248,14 +270,19 @@
         state.guesses[i][s.key] === b.votes[s.key] ? "\u{1F7E9}" : "\u{1F7E5}").join("")).join("\n");
       const text = `Yea or Nay №${isPractice ? " (archive)" : puzzleNo} — ${puzzle.title}\n` +
                    `${score}/${max} · ${title}\n${grid}`;
+      track("share_result", { score, max });
       navigator.clipboard.writeText(text).then(() => {
         document.getElementById("share-fb").textContent = "COPIED TO CLIPBOARD";
       }).catch(() => {
         document.getElementById("share-fb").textContent = text;
       });
     };
-    document.getElementById("review").onclick = () => showBillReview(0);
+    document.getElementById("review").onclick = () => {
+      track("review_votes", {});
+      showBillReview(0);
+    };
     document.getElementById("practice").onclick = () => {
+      track("archive_click", {});
       location.search = "?p=" + ((puzzleIdx + 1) % PUZZLES.length);
     };
   }
@@ -312,8 +339,6 @@
                      score: totalScore(), max: nBills * nSens, no: puzzleNo };
     archive[dateStr] = result;
     saveArchive(archive);
-    cloud("logEvent", "puzzle_complete",
-          { puzzle_id: puzzle.id, puzzle_no: puzzleNo, score: result.score, max: result.max });
     cloud("saveResult", dateStr, result);
   }
 
@@ -322,6 +347,15 @@
     const c = window.YonCloud;
     if (c && c.enabled && c[method]) return c[method](...args);
   }
+
+  // GA4 event with common game context on every hit
+  function track(name, extra) {
+    cloud("logEvent", name, Object.assign({
+      puzzle_id: puzzle.id, puzzle_no: puzzleNo, era: puzzle.era,
+      practice: isPractice ? 1 : 0,
+    }, extra || {}));
+  }
+  let startTracked = false;
 
   async function syncWithCloud() {
     const c = window.YonCloud;
@@ -349,8 +383,16 @@
       authLink.textContent = u ? "Sign Out (" + (u.displayName || "you").split(" ")[0] + ")" : "Sign In";
       if (u) syncWithCloud();
     });
-    authLink.onclick = () => (c.user() ? c.signOut() : c.signIn().catch(() => {}));
-    cloud("logEvent", "page_open", { puzzle_no: puzzleNo });
+    authLink.onclick = () => {
+      if (c.user()) {
+        track("sign_out", {});
+        c.signOut();
+      } else {
+        c.signIn().then(() => cloud("logEvent", "login", { method: "google" }))
+                  .catch(() => {});
+      }
+    };
+    track("page_open", {});
   });
 
   // ---------- stats modal ----------
@@ -416,7 +458,7 @@
     const close = () => overlay.remove();
     overlay.querySelector(".modal-close").onclick = close;
     overlay.onclick = (e) => { if (e.target === overlay) close(); };
-    cloud("logEvent", "stats_open", {});
+    track("stats_open", { games_played: s.played, streak: s.cur });
   }
   document.getElementById("stats-link").onclick = showStats;
 
