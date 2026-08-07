@@ -418,6 +418,13 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 .history-scroll .result-table { width: 100%; }
 .history-scroll .result-table td { text-align: left; }
 
+.practice-note {
+  text-align: center; font-family: var(--sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--gold, #8d6b2d);
+  border: 1px solid var(--hairline-minor); padding: 8px 14px;
+  max-width: 460px; margin: 0 auto 24px;
+}
+
 .sync-note {
   text-align: center; font-family: var(--sans); font-size: 10px;
   letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint);

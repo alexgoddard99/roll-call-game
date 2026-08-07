@@ -255,6 +255,8 @@
       <div class="summary-score">${score}<span class="of"> / ${max}</span></div>
       <div class="summary-rank">&ldquo;${title}&rdquo;</div>
       <p class="summary-rank-note">${note}</p>
+      ${isPractice ? `<p class="practice-note">Archive edition &mdash; played for practice,
+        not counted in your record. Come back tomorrow for the next scored daily.</p>` : ""}
       <table class="result-table">${header}${body}</table>
       <div class="share-row">
         <button class="btn-primary" id="share">Share Result</button>
