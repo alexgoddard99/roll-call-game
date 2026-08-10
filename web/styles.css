@@ -368,14 +368,12 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 /* ---------------- Utility bar, stats modal ---------------- */
 
 .utility-bar {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: flex-end; align-items: center;
   gap: 10px; padding: 0 2px 8px;
 }
-.utility-buttons { display: flex; gap: 10px; }
-
 .games-menu { position: relative; }
 .games-dropdown {
-  display: none; position: absolute; top: 100%; left: 0; z-index: 50;
+  display: none; position: absolute; top: 100%; right: 0; z-index: 50;
   min-width: 100%; background: var(--paper);
   border: 1.5px solid var(--ink); border-top: none;
   box-shadow: 0 6px 18px rgba(25,25,25,.18);
