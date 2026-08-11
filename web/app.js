@@ -131,7 +131,14 @@
         const hit = guess === actual;
         right = `<div class="stamp-pair">
           <span class="verdict ${hit ? "hit" : "miss"}">${hit ? "✓" : "✗"}</span>
-          <span class="actual-stamp ${actual}">${actual === "yea" ? labYea : labNay}</span>
+          <span class="reveal-cell">
+            <span class="reveal-label">Your call</span>
+            <span class="your-call ${hit ? "" : "wrong"}">${guess === "yea" ? labYea : labNay}</span>
+          </span>
+          <span class="reveal-cell">
+            <span class="reveal-label">Voted</span>
+            <span class="actual-stamp ${actual}">${actual === "yea" ? labYea : labNay}</span>
+          </span>
         </div>`;
       }
       const note = revealed && bill.notes && bill.notes[sen.key]
