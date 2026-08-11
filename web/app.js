@@ -13,11 +13,12 @@
   const app = document.getElementById("app");
 
   // ---------- daily selection ----------
+  // The edition flips at midnight US Eastern time for all players worldwide.
   const today = new Date();
-  const dateStr = today.toISOString().slice(0, 10);
-  const epoch = new Date(DATA.epoch + "T00:00:00");
+  const dateStr = new Intl.DateTimeFormat("en-CA",
+    { timeZone: "America/New_York" }).format(today); // YYYY-MM-DD in ET
   const dayNumber = Math.max(0, Math.round(
-    (new Date(today.getFullYear(), today.getMonth(), today.getDate()) - epoch) / 86400000));
+    (Date.parse(dateStr) - Date.parse(DATA.epoch)) / 86400000));
 
   const params = new URLSearchParams(location.search);
   const practiceIdx = params.has("p") ? parseInt(params.get("p"), 10) : null;
@@ -33,7 +34,8 @@
 
   // ---------- dateline ----------
   document.getElementById("dateline-left").textContent = today
-    .toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })
+    .toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric",
+                                   year: "numeric", timeZone: "America/New_York" })
     .toUpperCase();
   document.getElementById("dateline-right").textContent = isPractice
     ? "ARCHIVE EDITION" : "PUZZLE № " + puzzleNo;

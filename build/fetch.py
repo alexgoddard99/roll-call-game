@@ -187,7 +187,7 @@ def main() -> int:
     CACHE.mkdir(parents=True, exist_ok=True)
     PHOTOS.mkdir(parents=True, exist_ok=True)
     problems = []
-    out = {"gameName": "Yea or Nay", "epoch": "2026-08-11", "puzzles": []}  # launch day = Puzzle No. 1
+    out = {"gameName": "Yea or Nay", "epoch": "2026-08-10", "puzzles": []}  # ET edition date minus this = puzzle index
 
     dry_run = len(sys.argv) > 1
     if dry_run:
