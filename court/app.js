@@ -222,7 +222,7 @@
             : "split missed, no bonus"}</div>
       </div>` })() : "";
 
-    app.innerHTML = `<section class="screen">
+    app.innerHTML = `<section class="screen${revealed ? "" : " has-count"}">
       <div class="docket">
         <div class="docket-eyebrow">In the Supreme Court &mdash; ${esc(puzzle.era)}</div>
         <h2 class="docket-title">${esc(puzzle.caseTitle)}</h2>
@@ -232,14 +232,16 @@
           <div class="question-label">The question before the Court</div>
           <div class="question-text">${esc(puzzle.question)}</div>
         </div>
-        <div class="ballot">${rows}</div>
+        <div class="ballot bench-ballot">${rows}</div>
         ${held}
       </div>
       <div class="action-row">
         <button class="btn-primary" id="advance" ${revealed ? "" : "disabled"}>
           ${revealed ? "See Your Score →" : "Hand Down the Decision"}</button>
       </div>
+      ${revealed ? "" : `<div class="live-count" id="live-count"></div>`}
     </section>`;
+    updateLiveCount();
 
     if (!revealed) {
       app.querySelectorAll(".stamp").forEach((b) => {
@@ -257,6 +259,7 @@
           });
           document.getElementById("advance").disabled =
             !puzzle.justices.every((j) => state.guesses[j.key]);
+          updateLiveCount();
         };
       });
       document.getElementById("advance").disabled =
@@ -280,6 +283,19 @@
         showSummary();
       }
     };
+  }
+
+  function updateLiveCount() {
+    const el = document.getElementById("live-count");
+    if (!el) return;
+    const yes = guessYesCount();
+    const marked = puzzle.justices.filter((j) => state.guesses[j.key]).length;
+    const no = marked - yes, left = nJust - marked;
+    el.innerHTML = `<span class="lc-yes">${yes} yes</span>
+      <span class="lc-sep">&middot;</span>
+      <span class="lc-no">${no} no</span>
+      <span class="lc-sep">&middot;</span>
+      <span class="lc-left">${left ? left + " undecided" : "the bench is set"}</span>`;
   }
 
   function showSummary() {
