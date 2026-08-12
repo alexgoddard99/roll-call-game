@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Court — A Yea or Nay Game</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Libre+Franklin:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="paper-grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="utility-bar">
+    <a class="utility-link bmc-link" href="https://buymeacoffee.com/resortle"
+       target="_blank" rel="noopener"><span class="cup">&#9749;</span>Buy Me a Coffee</a>
+    <div class="games-menu">
+      <button class="utility-link games-menu-btn">Other Games &#9662;</button>
+      <div class="games-dropdown">
+        <a href="https://playyeaornay.com">Yea or Nay</a>
+        <a href="https://resortle.com" target="_blank" rel="noopener">Resortle</a>
+      </div>
+    </div>
+    <button class="utility-link" id="stats-link">My Record</button>
+    <button class="utility-link" id="auth-link" hidden>Sign In</button>
+  </div>
+  <div class="dateline">
+    <span id="dateline-left">…</span>
+    <span class="dateline-center">★ ★ ★ ★</span>
+    <span id="dateline-right">…</span>
+  </div>
+  <h1 class="masthead-title">The Court.</h1>
+  <div class="masthead-tagline">
+    <span>A Yea or Nay Game</span>
+    <span class="tagline-sep">—</span>
+    <span>Nine Justices. One Case. How Did They Rule?</span>
+  </div>
+</header>
+
+<main id="app" aria-live="polite"></main>
+
+<footer class="colophon">
+  <p>Every vote is drawn from the
+  <a href="http://scdb.wustl.edu/">Supreme Court Database</a> (Washington
+  University in St.&nbsp;Louis), the scholarly record of every vote cast on the
+  Court. Portraits: public collections via Wikipedia.
+  Sister paper: <a href="https://playyeaornay.com">Yea or Nay</a>.</p>
+</footer>
+
+<script src="puzzles.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+<script type="module" src="cloud.js"></script>
+</body>
+</html>
