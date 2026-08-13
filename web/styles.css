@@ -401,6 +401,7 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 }
 .games-dropdown a:first-child { border-top: none; }
 .games-dropdown a:hover { background: var(--ink); color: var(--paper); }
+.advertise-link { margin-right: auto; text-decoration: none; }
 .utility-link {
   font-family: var(--sans); font-size: 11px; font-weight: 700;
   letter-spacing: .16em; text-transform: uppercase;
