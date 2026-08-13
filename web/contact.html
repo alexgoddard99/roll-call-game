@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Yea or Nay</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Libre+Franklin:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .letters-wrap { max-width: 620px; margin: 0 auto; padding: 26px 18px 60px; }
+  .letters-head {
+    font-family: var(--display); font-weight: 800; font-size: clamp(26px, 5vw, 36px);
+    text-align: center; margin: 10px 0 6px;
+  }
+  .letters-sub {
+    font-family: var(--serif); font-style: italic; text-align: center;
+    color: var(--ink-soft, #444); margin: 0 0 26px; font-size: 15.5px;
+  }
+  .letters-form { border-top: 3px double var(--ink); padding-top: 22px; }
+  .letters-form label {
+    display: block; font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--ink-faint);
+    margin: 16px 0 5px;
+  }
+  .letters-form input, .letters-form textarea {
+    width: 100%; box-sizing: border-box;
+    font-family: var(--serif); font-size: 16px; color: var(--ink);
+    background: rgba(255,255,255,.5); border: 1px solid var(--ink);
+    border-radius: 0; padding: 10px 12px;
+  }
+  .letters-form textarea { min-height: 160px; resize: vertical; }
+  .letters-form input:focus, .letters-form textarea:focus {
+    outline: 2px solid var(--ink); outline-offset: -1px;
+  }
+  .letters-actions { margin-top: 22px; display: flex; align-items: center; gap: 16px; }
+  .letters-note {
+    font-family: var(--sans); font-size: 12px; color: var(--ink-faint);
+    margin-top: 18px; line-height: 1.5;
+  }
+  .letters-status {
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+  }
+  .letters-status.ok { color: var(--yea-green); }
+  .letters-status.err { color: var(--nay-red); }
+  .sent-card {
+    border: 2px solid var(--ink); padding: 34px 26px; text-align: center;
+    margin-top: 26px; background: rgba(255,255,255,.4);
+  }
+  .sent-card .sent-head {
+    font-family: var(--display); font-weight: 800; font-size: 24px; margin-bottom: 8px;
+  }
+  .sent-card p { font-family: var(--serif); font-size: 15.5px; margin: 0 0 18px; }
+  .back-row { text-align: center; margin-top: 30px; }
+  .hp-field { display: none; }
+</style>
+</head>
+<body>
+<div class="paper-grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="dateline">
+    <span id="dateline-left">Contact</span>
+    <span class="dateline-center">★ ★ ★ ★</span>
+    <span id="dateline-right">Est. 2026</span>
+  </div>
+  <h1 class="masthead-title"><a href="index.html" style="color:inherit;text-decoration:none;">Yea or Nay.</a></h1>
+  <div class="masthead-tagline">
+    <span>The Daily Congressional Vote Game</span>
+  </div>
+</header>
+
+<main class="letters-wrap">
+  <h2 class="letters-head">Contact</h2>
+  <p class="letters-sub">Questions, suggestions, or bug reports — every message gets read.</p>
+
+  <form class="letters-form" id="letters-form">
+    <label for="lf-name">Your name</label>
+    <input id="lf-name" name="name" type="text" autocomplete="name" required>
+
+    <label for="lf-email">Your email</label>
+    <input id="lf-email" name="email" type="email" autocomplete="email" required>
+
+    <label for="lf-message">Message</label>
+    <textarea id="lf-message" name="message" required></textarea>
+
+    <!-- honeypot: bots fill this, humans never see it -->
+    <input class="hp-field" type="text" name="_honey" tabindex="-1" autocomplete="off">
+
+    <div class="letters-actions">
+      <button type="submit" class="btn-primary" id="lf-send">Send</button>
+      <span class="letters-status" id="lf-status" aria-live="polite"></span>
+    </div>
+  </form>
+
+  <div class="sent-card" id="sent-card" hidden>
+    <div class="sent-head">Message sent.</div>
+    <p>Thanks for reaching out — you&rsquo;ll hear back soon.</p>
+    <a class="btn-primary" href="index.html" style="text-decoration:none;">Back to Today&rsquo;s Edition</a>
+  </div>
+
+  <p class="letters-note">Your address is used only to reply to your message.</p>
+
+  <div class="back-row">
+    <a class="utility-link" href="index.html" style="text-decoration:none;">&larr; Back to the game</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById("letters-form");
+  var status = document.getElementById("lf-status");
+  var sendBtn = document.getElementById("lf-send");
+  // base64 so scrapers can't harvest the address from source
+  var dest = atob("YWZnNTNAY29ybmVsbC5lZHU=");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (form.querySelector('[name="_honey"]').value) return; // bot
+    sendBtn.disabled = true;
+    status.className = "letters-status";
+    status.textContent = "Sending…";
+
+    fetch("https://formsubmit.co/ajax/" + dest, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        name: form.querySelector('[name="name"]').value,
+        email: form.querySelector('[name="email"]').value,
+        message: form.querySelector('[name="message"]').value,
+        _subject: "Yea or Nay — Contact Form",
+        _template: "table"
+      })
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      if (data.success === "true" || data.success === true) {
+        form.hidden = true;
+        document.getElementById("sent-card").hidden = false;
+        status.textContent = "";
+      } else {
+        throw new Error(data.message || "send failed");
+      }
+    }).catch(function () {
+      status.className = "letters-status err";
+      status.textContent = "Couldn't send — please try again in a moment.";
+      sendBtn.disabled = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>
