@@ -273,13 +273,7 @@
         <button class="btn-ghost" id="practice">Play the Archive</button>
       </div>
       <div class="share-feedback" id="share-fb"></div>
-      <div class="bmc-summary">
-        <a class="bmc-official" href="https://buymeacoffee.com/resortle"
-           target="_blank" rel="noopener" id="bmc-summary-link">
-          <span class="bmc-cup">&#9749;</span><span>Buy me a coffee</span></a>
-      </div>
     </section>`;
-    document.getElementById("bmc-summary-link").onclick = () => track("bmc_click", { from: "summary" });
 
     document.getElementById("share").onclick = () => {
       const grid = puzzle.bills.map((b, i) => puzzle.senators.map((s) =>
