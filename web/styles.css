@@ -494,6 +494,15 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
   .tagline-sep { display: none; }
 }
 
+@media (max-width: 620px) {
+  .utility-bar { flex-wrap: wrap; justify-content: center; row-gap: 8px; gap: 8px; }
+  .advertise-link { margin-right: 0; }
+  .utility-link {
+    height: 30px; padding: 0 11px;
+    font-size: 10px; letter-spacing: .1em; white-space: nowrap;
+  }
+}
+
 @media (max-width: 500px) {
   .senator-grid { grid-template-columns: 1fr; }
   .senator-card { border-left: none; padding: 0 0 16px;
