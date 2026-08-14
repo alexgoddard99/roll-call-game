@@ -216,9 +216,10 @@ PUZZLES = [
                   "attacking Hillary Clinton and was told it couldn't air "
                   "during primary season. The Court ordered the case "
                   "reargued — a signal it may reach far beyond one movie."),
-        "desc": ("Hillary: The Movie is unrelieved attack, and under "
-                 "McCain-Feingold a corporation may not broadcast "
-                 "'electioneering' close to an election. Citizens United, the "
+        "desc": ("Hillary: The Movie is a ninety-minute case against Hillary "
+                 "Clinton's fitness for the presidency — and because it was "
+                 "made with corporate money, McCain-Feingold bars it from the "
+                 "airwaves close to an election. Citizens United, the "
                  "nonprofit behind it, sued. At the first argument the "
                  "government's lawyer conceded its logic might even reach "
                  "banning books — and the Court took the rare step of "
