@@ -382,8 +382,7 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
   display: flex; justify-content: flex-end; align-items: center;
   gap: 10px; padding: 0 2px 8px;
 }
-.bmc-link { margin-right: auto; text-decoration: none; gap: 7px; }
-.bmc-link .cup { font-size: 13px; line-height: 0; }
+.advertise-link { margin-right: auto; text-decoration: none; }
 
 .games-menu { position: relative; }
 .games-dropdown {
@@ -493,6 +492,15 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
   .stamp-pair { grid-column: 1 / -1; justify-content: flex-end; }
   .masthead-tagline { flex-direction: column; gap: 0; }
   .tagline-sep { display: none; }
+}
+
+@media (max-width: 620px) {
+  .utility-bar { flex-wrap: wrap; justify-content: center; row-gap: 8px; gap: 8px; }
+  .advertise-link { margin-right: 0; }
+  .utility-link {
+    height: 30px; padding: 0 11px;
+    font-size: 10px; letter-spacing: .1em; white-space: nowrap;
+  }
 }
 
 @media (max-width: 500px) {
