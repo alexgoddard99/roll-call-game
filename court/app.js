@@ -203,6 +203,7 @@
         <img class="ballot-portrait" src="${j.photo}" alt="">
         <div class="ballot-id">
           <div class="senator-name">${esc(j.name)}</div>
+          ${j.meta ? `<div class="senator-meta">${esc(j.meta)}</div>` : ""}
           <div class="ballot-blurb">${esc(j.blurb)}</div>
         </div>
         ${right}

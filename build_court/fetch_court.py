@@ -30,6 +30,48 @@ SCDB_URL = ("http://scdb.wustl.edu/_brickFiles/2024_01/"
 
 UA = {"User-Agent": "yea-or-nay-court-builder/1.0 (personal project)"}
 
+# Appointing president and party, keyed by SCDB justiceName. Public record
+# (Federal Judicial Center); every justice used in a puzzle must appear here.
+APPOINTED = {
+    "HLBlack":      ("Franklin Roosevelt", "D"),
+    "SFReed":       ("Franklin Roosevelt", "D"),
+    "FFrankfurter": ("Franklin Roosevelt", "D"),
+    "WODouglas":    ("Franklin Roosevelt", "D"),
+    "RHJackson":    ("Franklin Roosevelt", "D"),
+    "HHBurton":     ("Truman", "D"),
+    "TCClark":      ("Truman", "D"),
+    "SMinton":      ("Truman", "D"),
+    "EWarren":      ("Eisenhower", "R"),
+    "JHarlan2":     ("Eisenhower", "R"),
+    "WJBrennan":    ("Eisenhower", "R"),
+    "CEWhittaker":  ("Eisenhower", "R"),
+    "PStewart":     ("Eisenhower", "R"),
+    "BRWhite":      ("Kennedy", "D"),
+    "AJGoldberg":   ("Kennedy", "D"),
+    "AFortas":      ("Lyndon Johnson", "D"),
+    "TMarshall":    ("Lyndon Johnson", "D"),
+    "WEBurger":     ("Nixon", "R"),
+    "HABlackmun":   ("Nixon", "R"),
+    "LFPowell":     ("Nixon", "R"),
+    "WHRehnquist":  ("Nixon", "R"),
+    "JPStevens":    ("Ford", "R"),
+    "SDOConnor":    ("Reagan", "R"),
+    "AScalia":      ("Reagan", "R"),
+    "AMKennedy":    ("Reagan", "R"),
+    "DHSouter":     ("George H. W. Bush", "R"),
+    "CThomas":      ("George H. W. Bush", "R"),
+    "RBGinsburg":   ("Clinton", "D"),
+    "SGBreyer":     ("Clinton", "D"),
+    "JGRoberts":    ("George W. Bush", "R"),
+    "SAAlito":      ("George W. Bush", "R"),
+    "SSotomayor":   ("Obama", "D"),
+    "EKagan":       ("Obama", "D"),
+    "NMGorsuch":    ("Trump", "R"),
+    "BMKavanaugh":  ("Trump", "R"),
+    "ACBarrett":    ("Trump", "R"),
+    "KBJackson":    ("Biden", "D"),
+}
+
 
 def load_scdb():
     if not SCDB_CSV.exists():
@@ -155,7 +197,12 @@ def main() -> int:
                 problems.append(f"{pz['id']}: {display} not among this case's voters "
                                 f"(wrong bench?) — remove from this puzzle")
                 continue
+            if scdb_name not in APPOINTED:
+                problems.append(f"{pz['id']}: no APPOINTED entry for {scdb_name}")
+                continue
+            pres, party = APPOINTED[scdb_name]
             p_out["justices"].append({"key": key, "name": display,
+                                      "meta": f"{pres} appointee ({party})",
                                       "blurb": blurb, "photo": f"photos/{key}.jpg"})
             p_out["votes"][key] = scdb_votes[scdb_name]
             print(f"  {display:22s} {scdb_votes[scdb_name]}")
