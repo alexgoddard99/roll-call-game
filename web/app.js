@@ -24,6 +24,28 @@
   const practiceIdx = params.has("p") ? parseInt(params.get("p"), 10) : null;
   const isPractice = practiceIdx !== null && !Number.isNaN(practiceIdx);
 
+  // the archive holds only the last 10 published editions (by day, so it
+  // follows the rotation correctly even after the bank wraps)
+  const archDays = [];
+  for (let d = Math.max(0, dayNumber - 9); d <= dayNumber; d++)
+    archDays.push(d % PUZZLES.length);
+  // early days: pad the archive to 10 with editions from the far end of the
+  // bank, which won't come up in the daily rotation for months
+  for (let i = PUZZLES.length - 1; archDays.length < 10 && i >= 0; i--)
+    if (!archDays.includes(i)) archDays.unshift(i);
+  if (isPractice && !archDays.includes(practiceIdx)) {
+    document.getElementById("dateline-left").textContent = "ARCHIVE";
+    document.getElementById("dateline-right").textContent = "NOT AVAILABLE";
+    app.innerHTML = `<section class="screen" style="text-align:center">
+      <p class="practice-note" style="margin-top:40px">This edition isn&rsquo;t available
+        &mdash; the archive holds the ten most recent daily puzzles.</p>
+      <div class="share-row" style="justify-content:center">
+        <a class="btn-primary" href="./" style="text-decoration:none">Play Today&rsquo;s Edition</a>
+      </div>
+    </section>`;
+    return;
+  }
+
   const puzzleIdx = isPractice
     ? ((practiceIdx % PUZZLES.length) + PUZZLES.length) % PUZZLES.length
     : dayNumber % PUZZLES.length;
@@ -279,7 +301,7 @@
       const grid = puzzle.bills.map((b, i) => puzzle.senators.map((s) =>
         state.guesses[i][s.key] === b.votes[s.key] ? "\u{1F7E9}" : "\u{1F7E5}").join("")).join("\n");
       const text = `Yea or Nay №${isPractice ? " (archive)" : puzzleNo} — ${puzzle.title}\n` +
-                   `${score}/${max} · ${title}\n${grid}`;
+                   `${score}/${max} · ${title}\n${grid}\nplayyeaornay.com`;
       track("share_result", { score, max });
       navigator.clipboard.writeText(text).then(() => {
         document.getElementById("share-fb").textContent = "COPIED TO CLIPBOARD";
@@ -293,7 +315,8 @@
     };
     document.getElementById("practice").onclick = () => {
       track("archive_click", {});
-      location.search = "?p=" + ((puzzleIdx + 1) % PUZZLES.length);
+      const pos = archDays.indexOf(puzzleIdx);
+      location.search = "?p=" + archDays[(pos + 1) % archDays.length];
     };
   }
 
