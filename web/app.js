@@ -484,9 +484,7 @@
         : `<p class="whip-note">No completed games yet — finish today's edition and it will appear here.</p>`}
       <p class="sync-note">${signedIn
         ? "Synced to your Google account."
-        : (window.YonCloud && window.YonCloud.enabled
-            ? "Stored on this device — sign in to keep your record across devices."
-            : "Stored on this device.")}</p>
+        : "Stored on this device — sign in with Google to save your scores."}</p>
     </div>`;
     document.body.appendChild(overlay);
     const close = () => overlay.remove();

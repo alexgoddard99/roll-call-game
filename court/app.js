@@ -397,9 +397,7 @@
           <tr><th>Date</th><th>Case</th><th>Score</th></tr>${rows}</table></div>`
         : `<p class="whip-note">No decisions yet — finish today's case and it will appear here.</p>`}
       <p class="sync-note">${signedIn ? "Synced to your Google account."
-        : (window.YonCloud && window.YonCloud.enabled
-            ? "Stored on this device — sign in to keep your record across devices."
-            : "Stored on this device.")}</p>
+        : "Stored on this device — sign in with Google to save your scores."}</p>
     </div>`;
     document.body.appendChild(overlay);
     overlay.querySelector(".modal-close").onclick = () => overlay.remove();
