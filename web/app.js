@@ -484,12 +484,21 @@
         : `<p class="whip-note">No completed games yet — finish today's edition and it will appear here.</p>`}
       <p class="sync-note">${signedIn
         ? "Synced to your Google account."
-        : "Stored on this device — sign in with Google to save your scores."}</p>
+        : `Stored on this device — <a href="#" id="sync-signin">sign in with Google</a> to save your scores.`}</p>
     </div>`;
     document.body.appendChild(overlay);
     const close = () => overlay.remove();
     overlay.querySelector(".modal-close").onclick = close;
     overlay.onclick = (e) => { if (e.target === overlay) close(); };
+    const signin = overlay.querySelector("#sync-signin");
+    if (signin) signin.onclick = (e) => {
+      e.preventDefault();
+      close();
+      const c = window.YonCloud;
+      if (c && c.enabled)
+        c.signIn().then(() => cloud("logEvent", "login", { method: "google" }))
+                  .catch(() => {});
+    };
     track("stats_open", { games_played: s.played, streak: s.cur });
   }
   document.getElementById("stats-link").onclick = showStats;

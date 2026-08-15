@@ -397,11 +397,20 @@
           <tr><th>Date</th><th>Case</th><th>Score</th></tr>${rows}</table></div>`
         : `<p class="whip-note">No decisions yet — finish today's case and it will appear here.</p>`}
       <p class="sync-note">${signedIn ? "Synced to your Google account."
-        : "Stored on this device — sign in with Google to save your scores."}</p>
+        : `Stored on this device — <a href="#" id="sync-signin">sign in with Google</a> to save your scores.`}</p>
     </div>`;
     document.body.appendChild(overlay);
     overlay.querySelector(".modal-close").onclick = () => overlay.remove();
     overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+    const signin = overlay.querySelector("#sync-signin");
+    if (signin) signin.onclick = (e) => {
+      e.preventDefault();
+      overlay.remove();
+      const c = window.YonCloud;
+      if (c && c.enabled)
+        c.signIn().then(() => cloud("logEvent", "login", { method: "google" }))
+                  .catch(() => {});
+    };
     track("stats_open", { games_played: s.played, streak: s.cur });
   }
   document.getElementById("stats-link").onclick = showStats;
