@@ -33,7 +33,8 @@
   // bank, which won't come up in the daily rotation for months
   for (let i = PUZZLES.length - 1; archDays.length < 10 && i >= 0; i--)
     if (!archDays.includes(i)) archDays.unshift(i);
-  if (isPractice && !archDays.includes(practiceIdx)) {
+  // YON_DEV_PREVIEW is set only by the dev-only preview wrapper (web-dev/)
+  if (isPractice && !archDays.includes(practiceIdx) && !window.YON_DEV_PREVIEW) {
     document.getElementById("dateline-left").textContent = "ARCHIVE";
     document.getElementById("dateline-right").textContent = "NOT AVAILABLE";
     app.innerHTML = `<section class="screen" style="text-align:center">

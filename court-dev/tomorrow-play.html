@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<title>Play Tomorrow — The Court (dev)</title>
+</head>
+<body>
+<p style="font-family:sans-serif;text-align:center;margin-top:40px">Loading tomorrow&rsquo;s case&hellip;</p>
+<script src="puzzles.js"></script>
+<script>
+  var fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" });
+  var day = Math.round((Date.parse(fmt.format(new Date(Date.now() + 86400000)))
+    - Date.parse(window.COURT_DATA.epoch)) / 86400000);
+  location.replace("/?p=" +
+    (((day % window.COURT_DATA.puzzles.length) + window.COURT_DATA.puzzles.length)
+      % window.COURT_DATA.puzzles.length));
+</script>
+</body>
+</html>
