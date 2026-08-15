@@ -335,19 +335,20 @@ PUZZLES = [
         ],
         "bills": [
             {
-                "congress": 103, "session": 1, "vote": 375,
-                "name": "The Assault Weapons Ban",
-                "desc": ("November 17, 1993. An amendment to the crime bill banning the "
-                         "manufacture of 19 named semiautomatic 'assault weapons' and "
-                         "high-capacity magazines for ten years. Even many Democrats from "
-                         "rural states are queasy."),
+                "congress": 103, "session": 1, "vote": 377,
+                "name": "Death for the Drug Kingpins",
+                "desc": ("November 17, 1993. A crime-bill amendment adding the death "
+                         "penalty for 'kingpins' who run large drug enterprises, even absent "
+                         "a murder. Tough-on-crime is the season's religion — but expanding "
+                         "the death penalty still divides both parties in odd ways."),
             },
             {
-                "congress": 103, "session": 1, "vote": 394,
-                "name": "The Brady Bill",
-                "desc": ("November 20, 1993. A five-day waiting period and background check for "
-                         "handgun purchases, named for Reagan's press secretary, shot and "
-                         "paralyzed in 1981. The NRA has fought it for seven years straight."),
+                "congress": 103, "session": 1, "vote": 375,
+                "name": "The Assault Weapons Ban",
+                "desc": ("Also November 17, 1993. An amendment to the same crime bill, "
+                         "banning the manufacture of 19 named semiautomatic 'assault "
+                         "weapons' and high-capacity magazines for ten years. Even many "
+                         "Democrats from rural states are queasy."),
             },
             {
                 "congress": 103, "session": 1, "vote": 395,
