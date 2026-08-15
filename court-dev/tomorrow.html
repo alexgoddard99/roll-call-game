@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Tomorrow's Case — The Court (dev)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Libre+Franklin:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .tmw-wrap { max-width: 720px; margin: 0 auto; padding: 20px 18px 60px; }
+  .tmw-banner {
+    background: var(--nay-red); color: #fff; text-align: center;
+    font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; padding: 8px 12px;
+  }
+  .tmw-head { font-family: var(--display); font-weight: 800;
+    font-size: clamp(24px, 5vw, 34px); text-align: center; margin: 22px 0 2px; }
+  .tmw-era { font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; text-align: center;
+    color: var(--ink-faint); margin-bottom: 14px; }
+  .tmw-intro { font-family: var(--serif); font-style: italic; font-size: 16.5px;
+    text-align: center; max-width: 560px; margin: 0 auto 20px; }
+  .tmw-desc { font-family: var(--serif); font-size: 15.5px; line-height: 1.55;
+    border-top: 3px double var(--ink); padding-top: 16px; }
+  .tmw-q { font-family: var(--sans); font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; margin: 14px 0; }
+  .tmw-held { font-family: var(--display); font-weight: 800; font-size: 20px;
+    text-align: center; margin: 18px 0; }
+  .tmw-votes { width: 100%; border-collapse: collapse; margin: 14px 0 8px;
+    font-family: var(--sans); font-size: 13px; }
+  .tmw-votes td { border: 1px solid var(--hairline-minor); padding: 7px 10px; }
+  .tmw-yes { color: var(--yea-green); font-weight: 700; }
+  .tmw-no { color: var(--nay-red); font-weight: 700; }
+  .tmw-blurbs { border-top: 1px solid var(--hairline); margin-top: 24px; padding-top: 12px; }
+  .tmw-j { margin: 10px 0; font-family: var(--serif); font-size: 14.5px; }
+  .tmw-j b { font-family: var(--sans); font-size: 13px; }
+  .tmw-meta { color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="paper-grain" aria-hidden="true"></div>
+<div class="tmw-banner">Dev preview — tomorrow's case · answers shown · not linked from the site</div>
+<main class="tmw-wrap" id="tmw">Loading…</main>
+<script src="puzzles.js"></script>
+<script>
+(function () {
+  var DATA = window.COURT_DATA;
+  var el = document.getElementById("tmw");
+  var fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" });
+  var tomorrow = new Date(Date.now() + 86400000);
+  var dayNumber = Math.round(
+    (Date.parse(fmt.format(tomorrow)) - Date.parse(DATA.epoch)) / 86400000);
+  var idx = ((dayNumber % DATA.puzzles.length) + DATA.puzzles.length) % DATA.puzzles.length;
+  var p = DATA.puzzles[idx];
+  var esc = function (s) { return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+
+  var dateLabel = tomorrow.toLocaleDateString("en-US",
+    { weekday: "long", month: "long", day: "numeric", year: "numeric",
+      timeZone: "America/New_York" });
+
+  el.innerHTML =
+    '<div class="tmw-era">' + esc(dateLabel) + ' · Case № ' + (dayNumber + 1) +
+      ' · ?p=' + idx + '</div>' +
+    '<h1 class="tmw-head">' + esc(p.caseTitle) + '</h1>' +
+    '<div class="tmw-era">' + esc(p.era) + ' · decided ' + esc(p.decided) + '</div>' +
+    '<p class="tmw-intro">' + esc(p.intro) + '</p>' +
+    '<p class="tmw-desc">' + esc(p.desc) + '</p>' +
+    '<div class="tmw-q">Question: ' + esc(p.question) + '</div>' +
+    '<div class="tmw-held">Held: ' + esc(p.answer.toUpperCase()) +
+      ' · ' + esc(p.split) + '</div>' +
+    '<table class="tmw-votes">' +
+    p.justices.map(function (j) {
+      var v = p.votes[j.key];
+      return '<tr><td>' + esc(j.name) +
+        ' <span class="tmw-meta">' + esc(j.meta || "") + '</span></td>' +
+        '<td class="' + (v === "yes" ? "tmw-yes" : "tmw-no") + '">' +
+        esc(String(v).toUpperCase()) + '</td></tr>';
+    }).join("") + '</table>' +
+    '<div class="tmw-blurbs"><div class="tmw-q">The bench, as introduced</div>' +
+    p.justices.map(function (j) {
+      return '<p class="tmw-j"><b>' + esc(j.name) + '</b> — ' + esc(j.blurb) + '</p>';
+    }).join("") + '</div>';
+})();
+</script>
+</body>
+</html>

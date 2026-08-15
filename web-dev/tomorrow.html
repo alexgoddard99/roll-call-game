@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Tomorrow's Edition — Yea or Nay (dev)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Libre+Franklin:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .tmw-wrap { max-width: 760px; margin: 0 auto; padding: 20px 18px 60px; }
+  .tmw-banner {
+    background: var(--nay-red); color: #fff; text-align: center;
+    font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; padding: 8px 12px;
+  }
+  .tmw-head { font-family: var(--display); font-weight: 800;
+    font-size: clamp(24px, 5vw, 34px); text-align: center; margin: 22px 0 2px; }
+  .tmw-era { font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; text-align: center;
+    color: var(--ink-faint); margin-bottom: 14px; }
+  .tmw-intro { font-family: var(--serif); font-style: italic; font-size: 16.5px;
+    text-align: center; max-width: 560px; margin: 0 auto 26px; }
+  .tmw-bill { border-top: 3px double var(--ink); padding: 18px 0 8px; }
+  .tmw-bill-name { font-family: var(--display); font-weight: 700; font-size: 20px; }
+  .tmw-bill-q { font-family: var(--sans); font-size: 11px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint);
+    margin: 4px 0 10px; }
+  .tmw-bill-desc { font-family: var(--serif); font-size: 15.5px; line-height: 1.55; }
+  .tmw-votes { width: 100%; border-collapse: collapse; margin: 14px 0 8px;
+    font-family: var(--sans); font-size: 13px; }
+  .tmw-votes td { border: 1px solid var(--hairline-minor); padding: 7px 10px; }
+  .tmw-yea { color: var(--yea-green); font-weight: 700; }
+  .tmw-nay { color: var(--nay-red); font-weight: 700; }
+  .tmw-meta { font-family: var(--sans); font-size: 11.5px; color: var(--ink-faint);
+    margin: 4px 0 10px; }
+  .tmw-sens { border-top: 1px solid var(--hairline); margin-top: 26px; padding-top: 14px; }
+  .tmw-sen { margin: 10px 0; font-family: var(--serif); font-size: 14.5px; }
+  .tmw-sen b { font-family: var(--sans); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="paper-grain" aria-hidden="true"></div>
+<div class="tmw-banner">Dev preview — tomorrow's edition · answers shown · not linked from the site</div>
+<main class="tmw-wrap" id="tmw">Loading…</main>
+<script src="puzzles.js"></script>
+<script>
+(function () {
+  var DATA = window.ROLLCALL_DATA;
+  var el = document.getElementById("tmw");
+  var fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" });
+  var tomorrow = new Date(Date.now() + 86400000);
+  var dayNumber = Math.round(
+    (Date.parse(fmt.format(tomorrow)) - Date.parse(DATA.epoch)) / 86400000);
+  var idx = ((dayNumber % DATA.puzzles.length) + DATA.puzzles.length) % DATA.puzzles.length;
+  var p = DATA.puzzles[idx];
+  var esc = function (s) { return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); };
+
+  var dateLabel = tomorrow.toLocaleDateString("en-US",
+    { weekday: "long", month: "long", day: "numeric", year: "numeric",
+      timeZone: "America/New_York" });
+
+  var html = '<div class="tmw-era">' + esc(dateLabel) + ' · Puzzle № ' +
+    (dayNumber + 1) + ' · ?p=' + idx + '</div>' +
+    '<h1 class="tmw-head">' + esc(p.title) + '</h1>' +
+    '<div class="tmw-era">' + esc(p.era) + '</div>' +
+    '<p class="tmw-intro">' + esc(p.intro) + '</p>';
+
+  p.bills.forEach(function (b, i) {
+    html += '<section class="tmw-bill">' +
+      '<div class="tmw-bill-name">Bill ' + (i + 1) + ': ' + esc(b.name) + '</div>' +
+      '<div class="tmw-bill-q">' + esc(b.question || "") + '</div>' +
+      '<p class="tmw-bill-desc">' + esc(b.desc) + '</p>' +
+      '<div class="tmw-meta">' + esc(b.date || "") +
+        (b.result ? " — actual result: " + esc(b.result) : "") +
+        (b.yeas != null ? " (" + b.yeas + "–" + b.nays + ")" : "") + '</div>' +
+      '<table class="tmw-votes">' +
+      p.senators.map(function (s) {
+        var v = b.votes[s.key];
+        return '<tr><td>' + esc(s.name) + ' (' + esc(s.party) + '–' + esc(s.state) +
+          ')</td><td class="' + (v === "yea" ? "tmw-yea" : "tmw-nay") + '">' +
+          esc(String(v).toUpperCase()) + '</td></tr>';
+      }).join("") + '</table>' +
+      (b.notes ? '<div class="tmw-meta">Note: ' + esc(b.notes) + '</div>' : "") +
+      '</section>';
+  });
+
+  html += '<div class="tmw-sens"><div class="tmw-bill-q">The senators, as introduced</div>' +
+    p.senators.map(function (s) {
+      return '<p class="tmw-sen"><b>' + esc(s.name) + ' (' + esc(s.party) + '–' +
+        esc(s.state) + ')</b> — ' + esc(s.blurb) + '</p>';
+    }).join("") + '</div>';
+
+  el.innerHTML = html;
+})();
+</script>
+</body>
+</html>
