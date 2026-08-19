@@ -329,7 +329,7 @@
     document.getElementById("share").onclick = () => {
       const grid = puzzle.justices.map((j) =>
         state.guesses[j.key] === puzzle.votes[j.key] ? "\u{1F7E9}" : "\u{1F7E5}").join("");
-      const text = `The Court №${isPractice ? " (archive)" : puzzleNo} — a Yea or Nay game\n` +
+      const text = `Split Decision №${isPractice ? " (archive)" : puzzleNo} — a Yea or Nay game\n` +
         `${score}/${maxScore} · ${title}\n${grid} ⚖️ split ${tallyHit() ? "✓" : "✗"}`;
       track("share_result", { score, max: maxScore });
       navigator.clipboard.writeText(text).then(() => {

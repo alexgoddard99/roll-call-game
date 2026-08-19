@@ -148,7 +148,7 @@ def main() -> int:
         puzzles = pin + rest
     problems = []
     seen_ids = set()
-    out = {"gameName": "Yea or Nay: The Court", "epoch": "2026-08-12", "puzzles": []}
+    out = {"gameName": "Yea or Nay: Split Decision", "epoch": "2026-08-12", "puzzles": []}
 
     for pz in puzzles:
         if pz["id"] in seen_ids:
