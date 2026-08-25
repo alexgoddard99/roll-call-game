@@ -115,6 +115,7 @@
 
   // ---------- screens ----------
   function showCover() {
+    pageview("/cover", "Cover — " + puzzle.title);
     app.innerHTML = `<section class="screen">
       <div class="era-banner">${esc(puzzle.era)}</div>
       <h2 class="puzzle-title">${esc(puzzle.title)}</h2>
@@ -137,6 +138,7 @@
   function showBill(i) {
     const bill = puzzle.bills[i];
     const revealed = state.revealed[i];
+    pageview("/bill/" + (i + 1), "Bill " + (i + 1) + " — " + bill.name);
     const pips = puzzle.bills.map((_, j) =>
       `<span class="pip ${state.revealed[j] ? "done" : j === i ? "now" : ""}"></span>`).join("");
 
@@ -268,6 +270,7 @@
   }
 
   function showSummary() {
+    pageview("/score", "Score — " + puzzle.title);
     const score = totalScore();
     const max = nBills * nSens;
     const [title, note] = rank(score, max);
@@ -391,6 +394,20 @@
   }
   let startTracked = false;
 
+  // Synthetic page_view per screen, so GA4 Views reflect screens seen rather
+  // than one hit per session. Views fired before the cloud layer loads are
+  // queued and flushed on yon-cloud-ready.
+  let lastPageview = null;
+  const pageviewQueue = [];
+  function pageview(path, title) {
+    if (path === lastPageview) return; // same-screen re-render (e.g. reveal)
+    lastPageview = path;
+    const params = { page_title: title, page_path: path,
+                     page_location: location.origin + path };
+    if (window.YonCloud) cloud("logEvent", "page_view", params);
+    else pageviewQueue.push(params);
+  }
+
   async function syncWithCloud() {
     const c = window.YonCloud;
     if (!c || !c.enabled || !c.user()) return;
@@ -427,6 +444,7 @@
       }
     };
     track("page_open", {});
+    pageviewQueue.splice(0).forEach((p) => cloud("logEvent", "page_view", p));
   });
 
   // ---------- stats modal ----------
