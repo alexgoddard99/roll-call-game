@@ -1520,108 +1520,103 @@
    ]
   },
   {
-   "id": "sixty-eight",
-   "title": "1968",
-   "era": "90th Congress \u00b7 1968",
-   "intro": "The most convulsive year in postwar politics: King assassinated in April, Kennedy in June, cities burning, a war souring, a president renouncing re-election \u2014 and the Senate voting through all of it.",
+   "id": "jeffords-spring",
+   "title": "Jeffords Spring",
+   "era": "107th Congress \u00b7 2001",
+   "intro": "A president who lost the popular vote meets a Senate split exactly 50-50, with Dick Cheney breaking ties and committees shared like a divorced couple's kitchen. Every senator matters \u2014 and one mild Vermonter is about to matter most.",
    "senators": [
     {
-     "key": "fulbright",
-     "name": "J. William Fulbright",
+     "key": "jeffords",
+     "name": "Jim Jeffords",
+     "party": "R",
+     "state": "VT",
+     "blurb": "Vermont's soft-spoken Republican, a moderate the party's Texas ascendancy keeps forgetting to consult. He wants full funding for special education and a smaller tax cut \u2014 grievances piling up faster than leadership has noticed.",
+     "photo": "photos/J000072.jpg"
+    },
+    {
+     "key": "zmiller",
+     "name": "Zell Miller",
      "party": "D",
-     "state": "AR",
-     "blurb": "Chairman of Foreign Relations and the war's most prominent critic \u2014 his televised hearings made dissent respectable. But the Rhodes Scholar from Arkansas signed the Southern Manifesto, and his civil rights record reads like his region's.",
-     "photo": "photos/F000401.jpg"
+     "state": "GA",
+     "blurb": "Georgia's new Democrat, an old-school Southern populist who keynoted for Clinton in '92 \u2014 and signed on as an original cosponsor of Bush's tax cut before the ink on his own oath was dry.",
+     "photo": "photos/M001141.jpg"
     },
     {
-     "key": "thurmond",
-     "name": "Strom Thurmond",
+     "key": "mccain",
+     "name": "John McCain",
      "party": "R",
-     "state": "SC",
-     "blurb": "The South Carolina Republican, this year's kingmaker: he is holding the South for Richard Nixon at the convention and demanding a say on judges in return. Order, he believes, is on the ballot.",
-     "photo": "photos/T000254.jpg"
+     "state": "AZ",
+     "blurb": "The maverick, months past a bitter primary loss to Bush. He came back with scores to settle and a signature cause: driving unregulated 'soft money' out of American politics.",
+     "photo": "photos/M000303.jpg"
     },
     {
-     "key": "kennedy",
-     "name": "Ted Kennedy",
+     "key": "feingold",
+     "name": "Russ Feingold",
      "party": "D",
-     "state": "MA",
-     "blurb": "The last Kennedy brother, 36 years old. Robert was murdered in June; Ted has returned to the floor grief-stricken but determined, the family's causes \u2014 the poor, the disenfranchised, gun laws \u2014 now his alone to carry.",
-     "photo": "photos/K000105.jpg"
+     "state": "WI",
+     "blurb": "McCain's Democratic partner in the campaign-finance crusade and the chamber's resident purist \u2014 he polices his own side's loopholes too, and votes against Democratic comforts as readily as Republican ones.",
+     "photo": "photos/F000061.jpg"
     },
     {
-     "key": "mcsmith",
-     "name": "Margaret Chase Smith",
-     "party": "R",
-     "state": "ME",
-     "blurb": "Twenty years into her Senate career, Maine's flinty Republican matriarch: hawkish on defense, protective of institutions, and immune to pressure campaigns from any direction.",
-     "photo": "photos/S000590.jpg"
-    },
-    {
-     "key": "javits",
-     "name": "Jacob Javits",
-     "party": "R",
+     "key": "clinton",
+     "name": "Hillary Clinton",
+     "party": "D",
      "state": "NY",
-     "blurb": "New York's liberal Republican \u2014 a Lincoln Republican, he'd say \u2014 who votes for civil rights, urban aid, and gun control as readily as any Democrat, and usually earlier.",
-     "photo": "photos/J000064.jpg"
+     "blurb": "The freshman from New York by way of the White House: studiously humble, diligently briefed, voting with her caucus while an entire press corps waits for her to do something interesting.",
+     "photo": "photos/C001041.jpg"
     }
    ],
    "bills": [
     {
-     "name": "The Fair Housing Act",
-     "desc": "March 11, 1968. The last great civil rights bill: a ban on racial discrimination in the sale and rental of most of the nation's housing, attached to protections for civil rights workers. It survived weeks of filibuster on a knife's-edge cloture vote. One month later, King is dead and the House passes it in days.",
+     "name": "The Bankruptcy Bill",
+     "desc": "March 15, 2001. The credit-card industry's bill is back: means tests to push filers from Chapter 7 into repayment plans, new paperwork, fewer exits. Clinton pocket-vetoed the last version in December; the new President is eager to sign. Consumer advocates call it a collections agency with a gavel.",
      "votes": {
-      "fulbright": "nay",
-      "thurmond": "nay",
-      "kennedy": "yea",
-      "mcsmith": "yea",
-      "javits": "yea"
+      "jeffords": "yea",
+      "zmiller": "yea",
+      "mccain": "yea",
+      "feingold": "nay",
+      "clinton": "yea"
      },
      "notes": {},
-     "date": "March 11, 1968",
-     "question": "On Passage of H.R. 2516",
+     "date": "March 15, 2001",
+     "question": "On Passage of the Bill S. 420",
      "result": "Bill Passed",
-     "yeas": 71,
-     "nays": 20
+     "yeas": 83,
+     "nays": 15
     },
     {
-     "name": "The Gun Control Act of 1968",
-     "desc": "September 18, 1968, after a spring and summer of assassination. The bill bans mail-order sales of rifles and shotguns \u2014 the way Oswald bought his carbine \u2014 bars felons from buying guns, and requires dealers to be licensed. The NRA calls it a step toward confiscation; sportsmen's states are restive.",
+     "name": "McCain-Feingold",
+     "desc": "April 2, 2001. After six years of filibusters, campaign finance reform finally passes something: a ban on unlimited 'soft money' donations to the parties and limits on sham 'issue ads' before elections. Opponents call it an assault on the First Amendment; supporters call it plumbing repair for democracy.",
      "votes": {
-      "fulbright": "nay",
-      "thurmond": "nay",
-      "kennedy": "yea",
-      "mcsmith": "yea",
-      "javits": "yea"
+      "jeffords": "yea",
+      "zmiller": "yea",
+      "mccain": "yea",
+      "feingold": "yea",
+      "clinton": "yea"
      },
-     "notes": {
-      "fulbright": "Position recorded by announcement or pairing rather than a floor vote \u2014 the Congressional Record counts it as a Nay.",
-      "mcsmith": "Position recorded by announcement or pairing rather than a floor vote \u2014 the Congressional Record counts it as a Yea."
-     },
-     "date": "September 18, 1968",
-     "question": "On Passage of H.R. 17735",
+     "notes": {},
+     "date": "April 2, 2001",
+     "question": "On Passage of the Bill S. 27",
      "result": "Bill Passed",
-     "yeas": 70,
-     "nays": 17
+     "yeas": 59,
+     "nays": 41
     },
     {
-     "name": "Cloture on Abe Fortas",
-     "desc": "October 1, 1968. Johnson has nominated Justice Abe Fortas \u2014 his confidant \u2014 to be Chief Justice, and a coalition of Republicans and Southern Democrats has filibustered a Supreme Court nomination for the first time. Critics cite cronyism, outside fees, and the Warren Court itself. A yea is a vote to end debate and save the nomination.",
+     "name": "The Bush Tax Cut",
+     "desc": "May 26, 2001. $1.35 trillion over eleven years: lower rates in every bracket, rebate checks this summer, the estate tax phased toward zero \u2014 all sunsetting in 2010 to squeeze under budget rules. Two days earlier, Jim Jeffords announced he was leaving the Republican Party, handing Democrats the Senate; this is the old majority's parting gift to itself.",
      "votes": {
-      "fulbright": "nay",
-      "thurmond": "nay",
-      "kennedy": "yea",
-      "mcsmith": "nay",
-      "javits": "yea"
+      "jeffords": "yea",
+      "zmiller": "yea",
+      "mccain": "nay",
+      "feingold": "nay",
+      "clinton": "nay"
      },
-     "notes": {
-      "mcsmith": "Position recorded by announcement or pairing rather than a floor vote \u2014 the Congressional Record counts it as a Nay."
-     },
-     "date": "October 1, 1968",
-     "question": "On Cloture on the Nomination of Abe Fortas",
-     "result": "Cloture Motion Rejected",
-     "yeas": 45,
-     "nays": 43
+     "notes": {},
+     "date": "May 26, 2001",
+     "question": "On the Conference Report H.R. 1836",
+     "result": "Conference Report Agreed to",
+     "yeas": 58,
+     "nays": 33
     }
    ]
   },
@@ -1826,107 +1821,6 @@
      "result": "Motion Agreed to",
      "yeas": 68,
      "nays": 29
-    }
-   ]
-  },
-  {
-   "id": "jeffords-spring",
-   "title": "Jeffords Spring",
-   "era": "107th Congress \u00b7 2001",
-   "intro": "A president who lost the popular vote meets a Senate split exactly 50-50, with Dick Cheney breaking ties and committees shared like a divorced couple's kitchen. Every senator matters \u2014 and one mild Vermonter is about to matter most.",
-   "senators": [
-    {
-     "key": "jeffords",
-     "name": "Jim Jeffords",
-     "party": "R",
-     "state": "VT",
-     "blurb": "Vermont's soft-spoken Republican, a moderate the party's Texas ascendancy keeps forgetting to consult. He wants full funding for special education and a smaller tax cut \u2014 grievances piling up faster than leadership has noticed.",
-     "photo": "photos/J000072.jpg"
-    },
-    {
-     "key": "zmiller",
-     "name": "Zell Miller",
-     "party": "D",
-     "state": "GA",
-     "blurb": "Georgia's new Democrat, an old-school Southern populist who keynoted for Clinton in '92 \u2014 and signed on as an original cosponsor of Bush's tax cut before the ink on his own oath was dry.",
-     "photo": "photos/M001141.jpg"
-    },
-    {
-     "key": "mccain",
-     "name": "John McCain",
-     "party": "R",
-     "state": "AZ",
-     "blurb": "The maverick, months past a bitter primary loss to Bush. He came back with scores to settle and a signature cause: driving unregulated 'soft money' out of American politics.",
-     "photo": "photos/M000303.jpg"
-    },
-    {
-     "key": "feingold",
-     "name": "Russ Feingold",
-     "party": "D",
-     "state": "WI",
-     "blurb": "McCain's Democratic partner in the campaign-finance crusade and the chamber's resident purist \u2014 he polices his own side's loopholes too, and votes against Democratic comforts as readily as Republican ones.",
-     "photo": "photos/F000061.jpg"
-    },
-    {
-     "key": "clinton",
-     "name": "Hillary Clinton",
-     "party": "D",
-     "state": "NY",
-     "blurb": "The freshman from New York by way of the White House: studiously humble, diligently briefed, voting with her caucus while an entire press corps waits for her to do something interesting.",
-     "photo": "photos/C001041.jpg"
-    }
-   ],
-   "bills": [
-    {
-     "name": "The Bankruptcy Bill",
-     "desc": "March 15, 2001. The credit-card industry's bill is back: means tests to push filers from Chapter 7 into repayment plans, new paperwork, fewer exits. Clinton pocket-vetoed the last version in December; the new President is eager to sign. Consumer advocates call it a collections agency with a gavel.",
-     "votes": {
-      "jeffords": "yea",
-      "zmiller": "yea",
-      "mccain": "yea",
-      "feingold": "nay",
-      "clinton": "yea"
-     },
-     "notes": {},
-     "date": "March 15, 2001",
-     "question": "On Passage of the Bill S. 420",
-     "result": "Bill Passed",
-     "yeas": 83,
-     "nays": 15
-    },
-    {
-     "name": "McCain-Feingold",
-     "desc": "April 2, 2001. After six years of filibusters, campaign finance reform finally passes something: a ban on unlimited 'soft money' donations to the parties and limits on sham 'issue ads' before elections. Opponents call it an assault on the First Amendment; supporters call it plumbing repair for democracy.",
-     "votes": {
-      "jeffords": "yea",
-      "zmiller": "yea",
-      "mccain": "yea",
-      "feingold": "yea",
-      "clinton": "yea"
-     },
-     "notes": {},
-     "date": "April 2, 2001",
-     "question": "On Passage of the Bill S. 27",
-     "result": "Bill Passed",
-     "yeas": 59,
-     "nays": 41
-    },
-    {
-     "name": "The Bush Tax Cut",
-     "desc": "May 26, 2001. $1.35 trillion over eleven years: lower rates in every bracket, rebate checks this summer, the estate tax phased toward zero \u2014 all sunsetting in 2010 to squeeze under budget rules. Two days earlier, Jim Jeffords announced he was leaving the Republican Party, handing Democrats the Senate; this is the old majority's parting gift to itself.",
-     "votes": {
-      "jeffords": "yea",
-      "zmiller": "yea",
-      "mccain": "nay",
-      "feingold": "nay",
-      "clinton": "nay"
-     },
-     "notes": {},
-     "date": "May 26, 2001",
-     "question": "On the Conference Report H.R. 1836",
-     "result": "Conference Report Agreed to",
-     "yeas": 58,
-     "nays": 33
     }
    ]
   },

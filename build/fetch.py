@@ -212,6 +212,19 @@ def main() -> int:
                 raise SystemExit(f"duplicate puzzle id: {p['id']}")
             seen.add(p["id"])
         extra.sort(key=lambda p: hashlib.md5(p["id"].encode()).hexdigest())
+        # Rotation overrides. PINNED_HEAD ids take the first slots after the
+        # base puzzles, in this order; PARKED ids sit out of the rotation
+        # entirely (their definitions stay in the batch files). Editing either
+        # list shifts the daily rotation from the affected slot onward — never
+        # touch slots at or before the current day's index.
+        PINNED_HEAD = ["helms-objection", "jeffords-spring"]
+        PARKED = {"sixty-eight"}
+        by_id = {p["id"]: p for p in extra}
+        missing = [i for i in PINNED_HEAD if i not in by_id] + [i for i in PARKED if i not in by_id]
+        if missing:
+            raise SystemExit(f"rotation override references unknown ids: {missing}")
+        extra = [by_id[i] for i in PINNED_HEAD] + [
+            p for p in extra if p["id"] not in PARKED and p["id"] not in PINNED_HEAD]
         puzzles_all += extra
     vv_cache = {}
 
