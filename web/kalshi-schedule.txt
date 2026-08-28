@@ -1,0 +1,15 @@
+# Kalshi featured-market schedule (dev only). One line per day, ET:
+#   YYYY-MM-DD   EVENT-TICKER   [https://kalshi.com/... market page URL]   [| custom question text]   # note
+# The line for today is used; if today has no line, the most recent past line
+# stays up (so the unit never goes dark). Keep appending days at the bottom.
+# Event tickers come from Kalshi's API (GET /trade-api/v2/events?series_ticker=…).
+# Question text is generated from Kalshi's title ("Who will win the 2026 Maine Senate
+# race?"); add "| Your wording here" before the # to override it for that day.
+
+2026-08-28   CONTROLH-2026    https://kalshi.com/markets/controlh/house-winner/controlh-2026        # 1. Which party will win the House
+2026-08-29   SENATEMI-26      https://kalshi.com/markets/senatemi/michigan-senate-race/senatemi-26   # 2. Michigan Senate winner (alt: KXMISENATE-26 lists 4 candidates)
+2026-08-30   SENATEOHS-26     https://kalshi.com/markets/senateohs/special-senate-election-in-ohio/senateohs-26   # 3. Ohio Senate winner (2026 special: Brown vs Husted)
+2026-08-31   CONTROLS-2026    https://kalshi.com/markets/controls/senate-winner/controls-2026        # 4. Which party will win the Senate
+2026-09-01   SENATEME-26      https://kalshi.com/markets/senateme/maine-senate-race/senateme-26      # 5. Maine Senate winner
+2026-09-02   GOVPARTYOH-26    https://kalshi.com/markets/govpartyoh/ohio-governor/govpartyoh-26      # 6. Ohio Governor winner
+2026-09-03   SENATEIA-26      https://kalshi.com/markets/senateia/iowa-senate-race/senateia-26       # 7. Iowa Senate winner

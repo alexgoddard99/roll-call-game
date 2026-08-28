@@ -18,6 +18,24 @@ Never deploy directly to production. Required flow for ALL changes:
    Production deploys ship ONLY the site dir — the dev-only pages in
    `web-dev/` / `court-dev/` must never be copied into `web/` or `court/`.
 
+## Kalshi integration (senate site)
+
+- `web/kalshi-live.js` + `web/kalshi.css`: "Presented by Kalshi" ticker, featured-market
+  ledger with outcome rows (under the vote button on bills, above the share row on
+  the score page) and the midterms-hub CTA. The featured market rotates daily per
+  `web/kalshi-schedule.txt` — one line per ET date
+  (`YYYY-MM-DD  EVENT-TICKER  [url]  [| custom question]  # note`); today's line, else
+  the latest past line. Append a line and redeploy. `?kdate=YYYY-MM-DD` previews a day.
+- `web/_worker.js` (Pages advanced-mode worker) proxies `/api/kalshi?event=…` — only
+  tickers present in the schedule — and signs requests with the Kalshi API key held as
+  Pages secrets `KALSHI_KEY_ID` / `KALSHI_PRIVATE_KEY` (PKCS#8 PEM) on BOTH the
+  production and preview environments. Everything else passes through to static assets.
+- Local key material lives in `kalshikeys/` (gitignored) — never commit it. Retired
+  prototype variants are in `kalshi-archive/` (gitignored). Kalshi's market-data
+  endpoints reject browser-origin requests and rate-limit unsigned ones, hence the proxy.
+- Finding tickers: signed `GET /trade-api/v2/series?category=Elections`, then
+  `/events?series_ticker=…&status=open&with_nested_markets=true`.
+
 Both sites are Cloudflare Pages projects (`roll-call-game`, `court-yea-or-nay`),
 direct upload — git pushes do NOT auto-deploy. Zone caching respects origin
 headers, so production updates appear within seconds.
