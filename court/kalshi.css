@@ -1,0 +1,109 @@
+/* Kalshi sponsor integration — presented-by partner units. */
+
+.k-badge {
+  display: inline-block; font-family: var(--sans); font-weight: 800;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: #fff; background: #00996a; padding: 2px 8px 1px; border-radius: 2px;
+}
+.k-logo { height: 18px; width: auto; display: inline-block; vertical-align: middle; }
+.k-g { color: #00794f; } .k-n { color: var(--link-navy); }
+
+.kalshi-unit { animation: rise .45s .1s both; }
+
+/* attribution line */
+.k-feat-head {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  color: var(--ink-faint); padding-bottom: 8px;
+}
+.k-feat-info {
+  display: inline-grid; place-items: center; width: 14px; height: 14px;
+  border: 1px solid var(--ink-faint); border-radius: 50%;
+  font-size: 9px; font-style: italic; font-family: Georgia, serif;
+  cursor: help;
+}
+
+/* ledger: editorial two-column spread between rules, outcome rows on the right */
+.k-ledger {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 0 28px;
+  max-width: 960px; margin: 34px auto; padding: 24px 4px 22px;
+  border-top: 1px solid var(--hairline); border-bottom: 3px double var(--hairline);
+}
+.k-ledger .k-logo { height: 24px; }
+.k-led-right { border-left: 1px solid var(--hairline-minor); padding-left: 28px; }
+.k-led-q {
+  display: block; font-family: var(--display); font-weight: 700; font-size: 21px;
+  line-height: 1.2; color: var(--ink); text-decoration: none; margin: 10px 0 12px;
+}
+.k-led-q:hover { text-decoration: underline; }
+.k-led-cta {
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: #00593d; text-decoration: none; border-bottom: 1.5px solid #00996a;
+}
+.k-led-vol {
+  font-family: var(--sans); font-size: 10px; color: var(--ink-faint); margin-top: 6px;
+}
+.k-led-more {
+  display: inline-block; margin-top: 10px;
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: #00593d; text-decoration: none;
+}
+.k-led-more:hover { text-decoration: underline; }
+
+.k-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+.k-row + .k-row { border-top: 1px solid var(--hairline-minor); }
+.k-row-name { font-family: var(--sans); font-weight: 700; font-size: 15px; flex: 1; }
+.k-row-chance {
+  font-family: var(--sans); font-weight: 800; font-size: 20px;
+  display: inline-flex; align-items: baseline; gap: 7px;
+}
+.k-row-delta { font-size: 11.5px; font-weight: 700; letter-spacing: .02em; }
+.k-row-delta.up { color: #00996a; }
+.k-row-delta.down { color: var(--nay-red); }
+.k-row-stamp {
+  font-family: var(--sans); font-weight: 700; font-size: 12px;
+  letter-spacing: .18em; text-transform: uppercase; white-space: nowrap;
+  text-decoration: none; color: #00794f; border: 1.5px solid #00996a;
+  padding: 9px 18px; transition: background .15s, color .15s, transform .15s;
+}
+.k-row-stamp:hover { background: #00996a; color: #fff; transform: rotate(-2deg); }
+
+/* masthead ticker: "Presented by Kalshi | Today's Market: …" */
+.kalshi-ticker {
+  display: flex; justify-content: center; align-items: center; gap: 14px; row-gap: 3px;
+  flex-wrap: wrap; padding: 7px 10px; margin-top: -1px; line-height: 1.5;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--sans); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+}
+.kalshi-ticker .grp { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.kalshi-ticker .bar { color: var(--hairline-minor); font-weight: 400; }
+.kalshi-ticker a.q {
+  font-weight: 600; color: var(--ink); text-align: center; text-decoration: none;
+  border-bottom: 1px solid var(--hairline-minor);
+}
+.kalshi-ticker a.q:hover { color: #00593d; border-bottom-color: #00996a; }
+
+/* midterms-hub CTA on the score page */
+.k-midterms { text-align: center; margin: 6px auto 34px; max-width: 520px; }
+.k-mid-q {
+  font-family: var(--display); font-style: italic; font-weight: 700;
+  font-size: 19px; margin-bottom: 12px;
+}
+.k-cta { text-align: center; margin-top: 20px; }
+.k-cta a {
+  display: inline-block; text-decoration: none;
+  font-family: var(--sans); font-size: 11.5px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: #00593d; border: 1.5px solid #00996a; padding: 12px 26px;
+  transition: background .15s, color .15s;
+}
+.k-cta a:hover { background: #00996a; color: #fff; }
+
+@media (max-width: 720px) {
+  .k-ledger { grid-template-columns: 1fr; padding: 18px 4px 16px; }
+  .k-led-right { border-left: none; padding-left: 0; margin-top: 14px; }
+  .k-row { gap: 10px; padding: 11px 0; }
+  .k-row-stamp { padding: 8px 12px; letter-spacing: .12em; }
+}
