@@ -119,17 +119,17 @@
       return '<div class="k-row">' +
         '<span class="k-row-name">' + esc(o.name) + '</span>' +
         '<span class="k-row-chance">' + o.pct + '%' + deltaHtml + '</span>' +
-        '<a class="k-row-stamp" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
+        '<a class="k-row-stamp" data-k="row" data-outcome="' + esc(o.name) + '" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
           'Yes &middot; ' + o.pct + '%</a>' +
       '</div>';
     }).join("");
-    var more = MARKET.more ? '<a class="k-led-more" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
+    var more = MARKET.more ? '<a class="k-led-more" data-k="more" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
       '+' + MARKET.more + ' more on Kalshi &rarr;</a>' : "";
     return '<div class="kalshi-unit k-ledger">' +
       '<div class="k-led-left">' + attribution() +
-        '<a class="k-led-q" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
+        '<a class="k-led-q" data-k="question" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
           esc(MARKET.question) + '</a>' +
-        '<a class="k-led-cta" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
+        '<a class="k-led-cta" data-k="odds_cta" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
           'See the live odds on Kalshi &rarr;</a></div>' +
       '<div class="k-led-right">' + rows + more +
         '<div class="k-led-vol">' + esc(MARKET.volume.replace(" traded", "")) +
@@ -142,7 +142,7 @@
     return '<div class="kalshi-unit k-midterms">' +
       '<div class="k-sponsored-tag">Sponsored &middot; Kalshi</div>' +
       '<p class="k-mid-q">Who will be a part of the 120th Congress?</p>' +
-      '<div class="k-cta"><a href="' + MIDTERMS_URL + '" target="_blank" rel="noopener sponsored">' +
+      '<div class="k-cta"><a data-k="midterms_cta" href="' + MIDTERMS_URL + '" target="_blank" rel="noopener sponsored">' +
         'Check out the odds on Kalshi &rarr;</a></div>' +
     '</div>';
   }
@@ -157,7 +157,7 @@
         '<span class="bar">|</span>Presented by ' +
         '<img class="k-logo" src="kalshi-logo.png" alt="Kalshi">' +
         '<span class="bar">|</span>Today&rsquo;s Market:</span>' +
-      '<a class="q" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
+      '<a class="q" data-k="ticker" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
         esc(MARKET.question) + '</a>';
     head.appendChild(t);
   }
@@ -186,6 +186,28 @@
   }
 
   new MutationObserver(injectUnits).observe(app, { childList: true });
+
+  /* ---------- analytics: GA4 "kalshi_click" on any outbound Kalshi link ---------- */
+  function currentScreen() {
+    if (app.querySelector(".summary-score")) return "score";
+    if (app.querySelector(".docket")) return "vote";
+    return "cover";
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-k]");
+    if (!a || !/kalshi\.com/.test(a.href)) return;
+    var c = window.YonCloud;
+    if (!c || !c.enabled) return;
+    var params = {
+      placement: a.dataset.k,
+      screen: currentScreen(),
+      event_ticker: MARKET ? MARKET.event : "",
+      link_url: a.href
+    };
+    if (a.dataset.outcome) params.outcome = a.dataset.outcome;
+    if (window.COURT_DATA) params.game = "court";
+    c.logEvent("kalshi_click", params);
+  });
 
   loadSchedule().then(function (rows) {
     var entry = pickEntry(rows);
