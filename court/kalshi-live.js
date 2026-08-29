@@ -14,6 +14,8 @@
   if (!app) return;
 
   var MIDTERMS_URL = "https://kalshi.com/category/elections/midterms";
+  var FINE_PRINT = "Sponsored by Kalshi. Prices reflect live trading on Kalshi, a " +
+    "CFTC-regulated exchange, and are not predictions or investment advice.";
   var MAX_ROWS = 4;
   var SHORT = { "Democratic Party": "Democrats", "Republican Party": "Republicans" };
   var params = new URLSearchParams(location.search);
@@ -105,7 +107,7 @@
   /* ---------- units ---------- */
   function attribution() {
     return '<div class="k-feat-head"><img class="k-logo" src="kalshi-logo.png" alt="Kalshi">' +
-      '<span>| A Yea or Nay partner</span>' +
+      '<span class="k-sponsored">| Sponsored</span>' +
       '<span class="k-feat-info" title="Prices reflect live trading on Kalshi, a ' +
         'CFTC-regulated prediction market. Not investment advice.">i</span></div>';
   }
@@ -132,11 +134,13 @@
       '<div class="k-led-right">' + rows + more +
         '<div class="k-led-vol">' + esc(MARKET.volume.replace(" traded", "")) +
           ' traded &middot; ' + esc(MARKET.settles) + '</div></div>' +
+      '<p class="k-fine">' + esc(FINE_PRINT) + '</p>' +
     '</div>';
   }
 
   function unitCTA() {
     return '<div class="kalshi-unit k-midterms">' +
+      '<div class="k-sponsored-tag">Sponsored &middot; Kalshi</div>' +
       '<p class="k-mid-q">Who will be a part of the 120th Congress?</p>' +
       '<div class="k-cta"><a href="' + MIDTERMS_URL + '" target="_blank" rel="noopener sponsored">' +
         'Check out the odds on Kalshi &rarr;</a></div>' +
@@ -149,7 +153,8 @@
     if (!head) return;
     var t = document.createElement("div");
     t.className = "kalshi-ticker";
-    t.innerHTML = '<span class="grp">Presented by ' +
+    t.innerHTML = '<span class="grp"><span class="k-sponsored">Sponsored</span>' +
+        '<span class="bar">|</span>Presented by ' +
         '<img class="k-logo" src="kalshi-logo.png" alt="Kalshi">' +
         '<span class="bar">|</span>Today&rsquo;s Market:</span>' +
       '<a class="q" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +

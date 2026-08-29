@@ -16,6 +16,17 @@
   font-family: var(--sans); font-size: 10px; font-weight: 500;
   color: var(--ink-faint); padding-bottom: 8px;
 }
+.k-feat-head .k-sponsored { color: var(--ink); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.kalshi-ticker .k-sponsored { font-weight: 800; color: var(--ink); }
+.k-fine {
+  grid-column: 1 / -1; margin-top: 16px; padding-top: 10px;
+  border-top: 1px solid var(--hairline-minor);
+  font-family: var(--sans); font-size: 11px; line-height: 1.45; color: var(--ink-soft);
+}
+.k-sponsored-tag {
+  font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;
+}
 .k-feat-info {
   display: inline-grid; place-items: center; width: 14px; height: 14px;
   border: 1px solid var(--ink-faint); border-radius: 50%;
