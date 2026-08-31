@@ -5,7 +5,10 @@
   font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
   color: #fff; background: #00996a; padding: 2px 8px 1px; border-radius: 2px;
 }
-.k-logo { height: 18px; width: auto; display: inline-block; vertical-align: middle; }
+.k-logo {
+  height: 18px; width: auto; display: inline-block; vertical-align: middle;
+  position: relative; top: -2.5px; /* optically center the wordmark against uppercase text */
+}
 .k-g { color: #00794f; } .k-n { color: var(--link-navy); }
 
 .kalshi-unit { animation: rise .45s .1s both; }
