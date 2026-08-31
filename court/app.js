@@ -32,6 +32,30 @@
   const nJust = puzzle.justices.length;
   const maxScore = nJust + TALLY_BONUS;
 
+  // ---------- crowd counters (silent tracking; UI ships separately) ----------
+  // One shared per-day doc in Firestore (collection "daily", see firestore.rules):
+  // n completions, s0..s11 score histogram, v0..v9 per-call correct counts
+  // (v9 = split call), t1..t30 current-streak histogram. Dev previews share the
+  // Firebase project, so they write to a separate "-dev-" doc.
+  const IS_DEV_HOST = /^(dev\.|localhost$|127\.)/.test(location.hostname)
+                      || location.protocol === "file:";
+  const DAILY_ID = "court" + (IS_DEV_HOST ? "-dev" : "") + "-" + dateStr;
+  const STREAK_CAP = 30;   // t30 = 30 days or more
+  const cloudReady = new Promise((res) => {
+    if (window.YonCloud) res();
+    else window.addEventListener("yon-cloud-ready", () => res(), { once: true });
+  });
+  function submitCrowd(score) {
+    const keys = ["n", "s" + score];
+    puzzle.justices.forEach((j, i) => {
+      if (state.guesses[j.key] === puzzle.votes[j.key]) keys.push("v" + i);
+    });
+    if (tallyHit()) keys.push("v" + nJust);
+    // today's streak (archive already includes today) joins the histogram
+    keys.push("t" + Math.min(STREAK_CAP, Math.max(1, computeStats(loadArchive()).cur)));
+    cloudReady.then(() => cloud("bumpDaily", DAILY_ID, keys)).catch(() => {});
+  }
+
   document.getElementById("dateline-left").textContent = today
     .toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric",
                                    year: "numeric", timeZone: "America/New_York" })
@@ -119,6 +143,7 @@
                          score: totalScore(), max: maxScore, no: puzzleNo };
     saveArchive(archive);
     cloud("saveResult", dateStr, archive[dateStr]);
+    submitCrowd(archive[dateStr].score);
   }
 
   async function syncWithCloud() {
@@ -277,6 +302,7 @@
           justices_correct: justiceScore(), tally_called: tallyHit() ? 1 : 0,
           perfect: totalScore() === maxScore ? 1 : 0,
           rank: rank(totalScore())[0],
+          streak: isPractice ? 0 : computeStats(loadArchive()).cur,
         });
         showCase();
         window.scrollTo({ top: 0, behavior: "smooth" });

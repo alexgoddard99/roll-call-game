@@ -55,6 +55,29 @@
   const nBills = puzzle.bills.length;
   const nSens = puzzle.senators.length;
 
+  // ---------- crowd counters (silent tracking; UI ships separately) ----------
+  // One shared per-day doc in Firestore (collection "daily", see firestore.rules):
+  // n completions, s0..s15 score histogram, v0..v14 per-vote correct counts,
+  // t1..t30 current-streak histogram. Dev previews share the Firebase project,
+  // so they write to a separate "-dev-" doc.
+  const IS_DEV_HOST = /^(dev\.|localhost$|127\.)/.test(location.hostname)
+                      || location.protocol === "file:";
+  const DAILY_ID = "senate" + (IS_DEV_HOST ? "-dev" : "") + "-" + dateStr;
+  const STREAK_CAP = 30;   // t30 = 30 days or more
+  const cloudReady = new Promise((res) => {
+    if (window.YonCloud) res();
+    else window.addEventListener("yon-cloud-ready", () => res(), { once: true });
+  });
+  function submitCrowd(score) {
+    const keys = ["n", "s" + score];
+    puzzle.bills.forEach((b, bi) => puzzle.senators.forEach((s, si) => {
+      if (state.guesses[bi][s.key] === b.votes[s.key]) keys.push("v" + (bi * nSens + si));
+    }));
+    // today's streak (archive already includes today) joins the histogram
+    keys.push("t" + Math.min(STREAK_CAP, Math.max(1, computeStats(loadArchive()).cur)));
+    cloudReady.then(() => cloud("bumpDaily", DAILY_ID, keys)).catch(() => {});
+  }
+
   // ---------- dateline ----------
   document.getElementById("dateline-left").textContent = today
     .toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric",
@@ -377,6 +400,7 @@
     archive[dateStr] = result;
     saveArchive(archive);
     cloud("saveResult", dateStr, result);
+    submitCrowd(result.score);
   }
 
   // ---------- cloud / auth ----------

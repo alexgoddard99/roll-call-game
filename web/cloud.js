@@ -15,7 +15,7 @@ if (!cfg) {
   try {
     const [{ initializeApp },
            { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged },
-           { getFirestore, doc, setDoc, getDocs, collection },
+           { getFirestore, doc, setDoc, getDocs, collection, increment },
            { getAnalytics, isSupported, logEvent }] = await Promise.all([
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"),
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"),
@@ -56,6 +56,13 @@ if (!cfg) {
         const out = {};
         snap.forEach((d) => { out[d.id] = d.data(); });
         return out;
+      },
+      // Crowd counters (collection "daily"): open to everyone, rules only
+      // permit +1 increments — see firestore.rules.
+      async bumpDaily(id, keys) {
+        const data = {};
+        keys.forEach((k) => { data[k] = increment(1); });
+        await setDoc(doc(db, "daily", id), data, { merge: true });
       },
       logEvent(name, params) {
         try { if (analytics) logEvent(analytics, name, params); } catch (e) {}
