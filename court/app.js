@@ -127,6 +127,20 @@
     }, extra || {}));
   }
   let startTracked = false;
+  // Synthetic page_view per screen, so GA4 Views reflect screens seen rather
+  // than one hit per session. Views fired before the cloud layer loads are
+  // queued and flushed on yon-cloud-ready.
+  let lastPageview = null;
+  const pageviewQueue = [];
+  function pageview(path, title) {
+    if (path === lastPageview) return; // same-screen re-render (e.g. reveal)
+    lastPageview = path;
+    const params = { game: "court", page_title: title, page_path: path,
+                     page_location: location.origin + path };
+    if (window.YonCloud) cloud("logEvent", "page_view", params);
+    else pageviewQueue.push(params);
+  }
+
 
   const ARCHIVE_KEY = "court-results";
   function loadArchive() {
@@ -175,10 +189,12 @@
       else c.signIn().then(() => cloud("logEvent", "login", { method: "google" })).catch(() => {});
     };
     track("page_open", {});
+    pageviewQueue.splice(0).forEach((p) => cloud("logEvent", "page_view", p));
   });
 
   // ---------- screens ----------
   function showCover() {
+    pageview("/cover", "Cover — " + puzzle.caseTitle);
     app.innerHTML = `<section class="screen">
       <div class="era-banner">${esc(puzzle.era)}</div>
       <h2 class="puzzle-title">${esc(puzzle.caseTitle)}</h2>
@@ -198,6 +214,7 @@
   }
 
   function showCase() {
+    pageview("/case", "Case — " + puzzle.caseTitle);
     const revealed = state.revealed;
     const rows = puzzle.justices.map((j) => {
       const guess = state.guesses[j.key];
@@ -326,6 +343,7 @@
   }
 
   function showSummary() {
+    pageview("/score", "Score — " + puzzle.caseTitle);
     const score = totalScore();
     const [title, note] = rank(score);
     const cells = puzzle.justices.map((j) => {
