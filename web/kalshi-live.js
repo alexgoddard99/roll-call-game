@@ -14,6 +14,8 @@
   if (!app) return;
 
   var MIDTERMS_URL = "https://kalshi.com/category/elections/midterms";
+  // Attribution tag for Kalshi's analytics, appended to every outbound link.
+  function kUrl(u) { return u + (u.indexOf("?") > -1 ? "&" : "?") + "utm_source=yeaornay"; }
   var FINE_PRINT = "Sponsored by Kalshi. Prices reflect live trading on Kalshi, a " +
     "CFTC-regulated exchange, and are not predictions or investment advice.";
   var MAX_ROWS = 4;
@@ -93,7 +95,7 @@
     MARKET = {
       event: d.event.ticker,
       question: question,
-      url: entry.url || d.event.url || "https://kalshi.com/markets/" + (d.event.series || "").toLowerCase(),
+      url: kUrl(entry.url || d.event.url || "https://kalshi.com/markets/" + (d.event.series || "").toLowerCase()),
       volume: fmtMoney(volume) + " traded",
       settles: "settles " + fmtDate(ms[0].close_time),
       outcomes: ms.slice(0, MAX_ROWS).map(function (m) {
@@ -106,7 +108,7 @@
 
   /* ---------- units ---------- */
   function attribution() {
-    return '<div class="k-feat-head"><img class="k-logo" src="kalshi-logo.png" alt="Kalshi">' +
+    return '<div class="k-feat-head"><img class="k-logo" src="kalshi-logo.svg" alt="Kalshi">' +
       '<span class="k-sponsored">| Sponsored</span>' +
       '<span class="k-feat-info" title="Prices reflect live trading on Kalshi, a ' +
         'CFTC-regulated prediction market. Not investment advice.">i</span></div>';
@@ -142,7 +144,7 @@
     return '<div class="kalshi-unit k-midterms">' +
       '<div class="k-sponsored-tag">Sponsored &middot; Kalshi</div>' +
       '<p class="k-mid-q">Who will be a part of the 120th Congress?</p>' +
-      '<div class="k-cta"><a data-k="midterms_cta" href="' + MIDTERMS_URL + '" target="_blank" rel="noopener sponsored">' +
+      '<div class="k-cta"><a data-k="midterms_cta" href="' + kUrl(MIDTERMS_URL) + '" target="_blank" rel="noopener sponsored">' +
         'Check out the odds on Kalshi &rarr;</a></div>' +
     '</div>';
   }
@@ -155,7 +157,7 @@
     t.className = "kalshi-ticker";
     t.innerHTML = '<span class="grp"><span class="k-sponsored">Sponsored</span>' +
         '<span class="bar">|</span>Presented by ' +
-        '<img class="k-logo" src="kalshi-logo.png" alt="Kalshi">' +
+        '<img class="k-logo" src="kalshi-logo.svg" alt="Kalshi">' +
         '<span class="bar">|</span>Today&rsquo;s Market:</span>' +
       '<a class="q" data-k="ticker" href="' + esc(MARKET.url) + '" target="_blank" rel="noopener sponsored">' +
         esc(MARKET.question) + '</a>';
