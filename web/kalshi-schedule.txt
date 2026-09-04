@@ -13,3 +13,12 @@
 2026-09-01   SENATEME-26      https://kalshi.com/markets/senateme/maine-senate-race/senateme-26      # 5. Maine Senate winner
 2026-09-02   GOVPARTYOH-26    https://kalshi.com/markets/govpartyoh/ohio-governor/govpartyoh-26      # 6. Ohio Governor winner
 2026-09-03   SENATEIA-26      https://kalshi.com/markets/senateia/iowa-senate-race/senateia-26       # 7. Iowa Senate winner
+2026-09-04   SENATEAK-26      https://kalshi.com/markets/senateak/alaska-senate-race/senateak-26     # 8. Alaska Senate winner
+2026-09-05   SENATEME-26      https://kalshi.com/markets/senateme/maine-senate-race/senateme-26      # 9. Maine Senate winner (repeat of 09-01)
+2026-09-06   SENATENC-26      https://kalshi.com/markets/senatenc/north-carolina-senate-race/senatenc-26   # 10. North Carolina Senate winner
+2026-09-07   KXBALANCEPOWERCOMBO-27FEB   https://kalshi.com/markets/kxbalancepowercombo/congress-balance-of-power-combo/kxbalancepowercombo-27feb   # 11. Midterms balance of power
+2026-09-08   KXBLUEWAVECOMBO-27FEB       https://kalshi.com/markets/kxbluewavecombo/will-there-be-a-blue-wave/kxbluewavecombo-27feb   # 12. Blue wave in 2026?
+2026-09-09   GOVPARTYGA-26    https://kalshi.com/markets/govpartyga/georgia-governor/govpartyga-26   # 13. Georgia Governor winner
+2026-09-10   GOVPARTYNV-26    https://kalshi.com/markets/govpartynv/nevada-governor/govpartynv-26    # 14. Nevada Governor winner
+2026-09-11   KXCLOSESTGOVERNOR-27JAN20   https://kalshi.com/markets/kxclosestgovernor/closest-governors-race/kxclosestgovernor-27jan20   # 15. Closest Governor race (14 outcomes)
+2026-09-12   GOVPARTYFL-26    https://kalshi.com/markets/govpartyfl/florida-governor/govpartyfl-26   # 16. Florida Governor winner
