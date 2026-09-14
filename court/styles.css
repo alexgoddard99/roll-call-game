@@ -469,6 +469,73 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
   .stat-row { grid-template-columns: repeat(3, 1fr); row-gap: 14px; }
 }
 
+/* ---------------- Streak + crowd comparison ---------------- */
+
+.crowd-line {
+  text-align: center; font-family: var(--display); font-style: italic;
+  font-size: clamp(16px, 2.4vw, 20px); margin: -12px auto 22px; max-width: 560px;
+}
+.crowd-line strong { font-style: normal; font-weight: 800; }
+.crowd-line .crowd-n {
+  display: block; font-family: var(--sans); font-style: normal; font-size: 10.5px;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 2px;
+}
+.crowd-line .crowd-wait {
+  font-family: var(--sans); font-style: normal; font-size: 10.5px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint);
+}
+
+.streak-banner {
+  text-align: center; max-width: 460px; margin: 0 auto 26px; padding: 12px 16px;
+  border-top: 1px solid var(--hairline); border-bottom: 3px double var(--hairline);
+  animation: rise .4s .15s both;
+}
+.streak-main {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+}
+.streak-sub {
+  font-family: var(--display); font-style: italic; font-size: 15px;
+  color: var(--ink-soft); margin-top: 3px;
+}
+.streak-save {
+  font-family: var(--sans); font-size: 10px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-faint); margin-top: 8px;
+}
+
+.result-table td[data-cell] { line-height: 1.25; padding-top: 7px; padding-bottom: 7px; }
+.cell-pct {
+  display: block; font-size: 9px; font-weight: 500; letter-spacing: .06em;
+  color: var(--ink-faint); min-height: 11px;
+}
+.cell-pct.rare { color: var(--gold, #8d6b2d); font-weight: 700; }
+
+.streak-chip { border-color: var(--gold, #8d6b2d); color: var(--gold, #8d6b2d); }
+.streak-chip[hidden] { display: none; }
+.streak-card { max-width: 420px; text-align: center; }
+.streak-big {
+  font-family: var(--display); font-weight: 900; line-height: 1;
+  font-size: clamp(54px, 9vw, 76px); margin-top: 18px;
+}
+.streak-big-label {
+  font-family: var(--sans); font-size: 11px; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft);
+  margin: 6px 0 14px;
+}
+.streak-rank {
+  font-family: var(--display); font-style: italic; font-size: 17px; line-height: 1.4;
+  max-width: 320px; margin: 0 auto 6px; min-height: 24px;
+}
+.streak-rank strong { font-style: normal; font-weight: 800; }
+.streak-rank .crowd-wait {
+  font-family: var(--sans); font-style: normal; font-size: 10.5px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint);
+}
+.streak-stat-row { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+
+.streak-chip:hover { background: var(--gold, #8d6b2d); color: var(--paper); }
+@media (max-width: 620px) { .streak-chip .long { display: none; } }
+
 /* ---------------- Colophon ---------------- */
 
 .colophon {

@@ -15,7 +15,7 @@ if (!cfg) {
   try {
     const [{ initializeApp },
            { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged },
-           { getFirestore, doc, setDoc, getDocs, collection, increment },
+           { getFirestore, doc, setDoc, getDoc, getDocs, collection, increment },
            { getAnalytics, isSupported, logEvent }] = await Promise.all([
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"),
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"),
@@ -63,6 +63,10 @@ if (!cfg) {
         const data = {};
         keys.forEach((k) => { data[k] = increment(1); });
         await setDoc(doc(db, "daily", id), data, { merge: true });
+      },
+      async fetchDaily(id) {
+        const snap = await getDoc(doc(db, "daily", id));
+        return snap.exists() ? snap.data() : null;
       },
       logEvent(name, params) {
         try { if (analytics) logEvent(analytics, name, params); } catch (e) {}

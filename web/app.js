@@ -55,28 +55,21 @@
   const nBills = puzzle.bills.length;
   const nSens = puzzle.senators.length;
 
-  // ---------- crowd counters (silent tracking; UI ships separately) ----------
-  // One shared per-day doc in Firestore (collection "daily", see firestore.rules):
-  // n completions, s0..s15 score histogram, v0..v14 per-vote correct counts,
-  // t1..t30 current-streak histogram. Dev previews share the Firebase project,
-  // so they write to a separate "-dev-" doc.
+  // ---------- crowd counters (shared per-day doc in Firestore, see firestore.rules) ----------
+  // Dev previews share the Firebase project, so they write to a separate "-dev-" doc.
   const IS_DEV_HOST = /^(dev\.|localhost$|127\.)/.test(location.hostname)
                       || location.protocol === "file:";
   const DAILY_ID = "senate" + (IS_DEV_HOST ? "-dev" : "") + "-" + dateStr;
-  const STREAK_CAP = 30;   // t30 = 30 days or more
+  const MIN_CROWD = 10;      // other players needed before comparisons show
+  const RARE_PCT = 35;       // a correct call fewer than this % got is highlighted
+  const STREAK_CAP = 30;   // streak buckets t1..t30; 30 means 30+
+  let crowdSubmit = null;    // this session's counter write (promise)
+  let crowdCache = null;     // today's counters once fetched
+  let crowdBeat = null;      // "beat X%" once computed (for analytics)
   const cloudReady = new Promise((res) => {
     if (window.YonCloud) res();
     else window.addEventListener("yon-cloud-ready", () => res(), { once: true });
   });
-  function submitCrowd(score) {
-    const keys = ["n", "s" + score];
-    puzzle.bills.forEach((b, bi) => puzzle.senators.forEach((s, si) => {
-      if (state.guesses[bi][s.key] === b.votes[s.key]) keys.push("v" + (bi * nSens + si));
-    }));
-    // today's streak (archive already includes today) joins the histogram
-    keys.push("t" + Math.min(STREAK_CAP, Math.max(1, computeStats(loadArchive()).cur)));
-    cloudReady.then(() => cloud("bumpDaily", DAILY_ID, keys)).catch(() => {});
-  }
 
   // ---------- dateline ----------
   document.getElementById("dateline-left").textContent = today
@@ -302,9 +295,9 @@
       `<th>${esc(s.name.split(" ").pop())}</th>`).join("")}</tr>`;
     const body = puzzle.bills.map((b, i) => `<tr>
         <td class="bill-name">${esc(b.name)}</td>
-        ${puzzle.senators.map((s) => {
+        ${puzzle.senators.map((s, si) => {
           const hit = state.guesses[i][s.key] === b.votes[s.key];
-          return `<td class="${hit ? "hit" : "miss"}">${hit ? "✓" : "✗"}</td>`;
+          return `<td class="${hit ? "hit" : "miss"}" data-cell="${i * nSens + si}">${hit ? "✓" : "✗"}${isPractice ? "" : `<span class="cell-pct"></span>`}</td>`;
         }).join("")}
       </tr>`).join("");
 
@@ -314,7 +307,8 @@
       <div class="summary-rank">&ldquo;${title}&rdquo;</div>
       <p class="summary-rank-note">${note}</p>
       ${isPractice ? `<p class="practice-note">Archive edition &mdash; played for practice,
-        not counted in your record. Come back tomorrow for the next scored daily.</p>` : ""}
+        not counted in your record. Come back tomorrow for the next scored daily.</p>`
+        : `<div class="crowd-line" id="crowd-line"></div>${streakBannerHTML()}`}
       <table class="result-table">${header}${body}</table>
       <div class="share-row">
         <button class="btn-primary" id="share">Share Result</button>
@@ -323,13 +317,18 @@
       </div>
       <div class="share-feedback" id="share-fb"></div>
     </section>`;
+    if (!isPractice) { bindStreakBanner(); renderCrowd(score, max); }
 
     document.getElementById("share").onclick = () => {
       const grid = puzzle.bills.map((b, i) => puzzle.senators.map((s) =>
         state.guesses[i][s.key] === b.votes[s.key] ? "\u{1F7E9}" : "\u{1F7E5}").join("")).join("\n");
+      const cur = isPractice ? 0 : computeStats(loadArchive()).cur;
+      const streakBit = cur >= 2 ? ` · 🔥 ${cur}-day streak` : "";
       const text = `Yea or Nay №${isPractice ? " (archive)" : puzzleNo} — ${puzzle.title}\n` +
-                   `${score}/${max} · ${title}\n${grid}\nplayyeaornay.com`;
-      track("share_result", { score, max });
+                   `${score}/${max} · ${title}${streakBit}\n${grid}\nplayyeaornay.com`;
+      const shareParams = { score, max, streak: cur };
+      if (crowdBeat !== null) shareParams.beat_pct = crowdBeat;
+      track("share_result", shareParams);
       navigator.clipboard.writeText(text).then(() => {
         document.getElementById("share-fb").textContent = "COPIED TO CLIPBOARD";
       }).catch(() => {
@@ -345,6 +344,100 @@
       const pos = archDays.indexOf(puzzleIdx);
       location.search = "?p=" + archDays[(pos + 1) % archDays.length];
     };
+  }
+
+  // ---------- streak banner (results screen) ----------
+  const MILESTONES = {
+    7: "A full week. The whip count knows your name.",
+    14: "Two weeks straight. Seniority is accruing.",
+    30: "A full month. Frankly senatorial.",
+    50: "Fifty days. They&rsquo;re saving you a desk.",
+    100: "One hundred days. Master of the Senate indeed.",
+    365: "A full year. Lyndon Johnson is taking notes.",
+  };
+  function streakBannerHTML() {
+    const s = computeStats(loadArchive());
+    const c = window.YonCloud;
+    const signedIn = c && c.enabled && c.user();
+    let main, sub;
+    if (s.cur <= 1) {
+      main = "Day 1";
+      sub = s.best > 1 ? `A new streak starts here &mdash; your best is ${s.best}.`
+                       : "Come back tomorrow to start a streak.";
+    } else {
+      main = `🔥 ${s.cur}-day streak`;
+      sub = MILESTONES[s.cur]
+         || (s.cur >= s.best ? "A personal best. Keep it going tomorrow."
+                             : `Best: ${s.best}. Play tomorrow to keep it alive.`);
+    }
+    return `<div class="streak-banner">
+      <div class="streak-main">${main}</div>
+      <div class="streak-sub">${sub}</div>
+      ${signedIn ? "" : `<div class="streak-save">Stored on this device &mdash;
+        <a href="#" id="streak-signin">sign in with Google</a> to save your streak.</div>`}
+    </div>`;
+  }
+  function bindStreakBanner() {
+    const a = document.getElementById("streak-signin");
+    if (!a) return;
+    a.onclick = (e) => {
+      e.preventDefault();
+      track("streak_signin_prompt", {});
+      const c = window.YonCloud;
+      if (c && c.enabled)
+        c.signIn().then(() => cloud("logEvent", "login", { method: "google" }))
+                  .catch(() => {});
+    };
+  }
+  // Re-render streak surfaces after anything that can change the archive or auth
+  function refreshStreakUI() {
+    updateStreakChip();
+    const b = app.querySelector(".streak-banner");
+    if (b) { b.outerHTML = streakBannerHTML(); bindStreakBanner(); }
+  }
+
+  // ---------- crowd comparison ----------
+  function submitCrowd(score) {
+    const keys = ["n", "s" + score];
+    puzzle.bills.forEach((b, bi) => puzzle.senators.forEach((s, si) => {
+      if (state.guesses[bi][s.key] === b.votes[s.key]) keys.push("v" + (bi * nSens + si));
+    }));
+    // today's streak (archive already includes today) joins the histogram
+    keys.push("t" + Math.min(STREAK_CAP, Math.max(1, computeStats(loadArchive()).cur)));
+    crowdSubmit = cloudReady.then(() => cloud("bumpDaily", DAILY_ID, keys)).catch(() => {});
+  }
+  async function fetchCrowd() {
+    if (crowdCache) return crowdCache;
+    await cloudReady;
+    if (crowdSubmit) await crowdSubmit;
+    try { crowdCache = (await cloud("fetchDaily", DAILY_ID)) || null; } catch (e) { crowdCache = null; }
+    return crowdCache;
+  }
+  async function renderCrowd(score, max) {
+    const d = await fetchCrowd();
+    const line = document.getElementById("crowd-line");
+    if (!d || !line) return; // no data, or the player already moved on
+    const n = d.n || 0, others = Math.max(0, n - 1);
+    if (others < MIN_CROWD) {
+      line.innerHTML = `<span class="crowd-wait">${others
+        ? `${others} other player${others === 1 ? "" : "s"} so far today`
+        : "You&rsquo;re the first to finish today"} &mdash; crowd comparison unlocks at ${MIN_CROWD}</span>`;
+      return;
+    }
+    let below = 0;
+    for (let k = 0; k < score; k++) below += d["s" + k] || 0;
+    const beat = Math.round(100 * below / others);
+    crowdBeat = beat;
+    const lead = score === max ? "Perfect &mdash; you beat" : beat === 0 ? "Everyone else today matched or beat you &mdash; you beat" : "You beat";
+    line.innerHTML = `${lead} <strong>${beat}%</strong> of today&rsquo;s players
+      <span class="crowd-n">${n.toLocaleString()} played</span>`;
+    app.querySelectorAll("td[data-cell]").forEach((td) => {
+      const pct = Math.round(100 * (d["v" + td.dataset.cell] || 0) / n);
+      const span = td.querySelector(".cell-pct");
+      if (!span) return;
+      span.textContent = pct + "%";
+      if (td.classList.contains("hit") && pct < RARE_PCT) span.classList.add("rare");
+    });
   }
 
   function showBillReview(i) {
@@ -401,6 +494,7 @@
     saveArchive(archive);
     cloud("saveResult", dateStr, result);
     submitCrowd(result.score);
+    updateStreakChip();
   }
 
   // ---------- cloud / auth ----------
@@ -446,6 +540,7 @@
         if (!remote[date]) c.saveResult(date, r);
       }
       if (changed) saveArchive(local);
+      refreshStreakUI();
     } catch (e) { /* offline is fine */ }
   }
 
@@ -457,6 +552,7 @@
     c.onUser((u) => {
       authLink.textContent = u ? "Sign Out (" + (u.displayName || "you").split(" ")[0] + ")" : "Sign In";
       if (u) syncWithCloud();
+      refreshStreakUI();
     });
     authLink.onclick = () => {
       if (c.user()) {
@@ -545,8 +641,70 @@
   }
   document.getElementById("stats-link").onclick = showStats;
 
+  // ---------- header streak chip ----------
+
+  // ---------- streak modal (chip click) ----------
+  async function showStreakModal() {
+    const s = computeStats(loadArchive());
+    const cur = Math.max(1, s.cur);
+    const overlay = document.createElement("div");
+    overlay.className = "modal-overlay";
+    overlay.innerHTML = `<div class="modal-card streak-card">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="section-rule">Your Streak</div>
+      <div class="streak-big">🔥 ${cur}</div>
+      <div class="streak-big-label">${cur === 1 ? "day — today is day one" : "days running"}</div>
+      <div class="streak-rank" id="streak-rank">Sizing up today&rsquo;s streaks&hellip;</div>
+      <div class="stat-row streak-stat-row">
+        <div class="stat"><div class="stat-num">${s.cur}</div><div class="stat-label">Current</div></div>
+        <div class="stat"><div class="stat-num">${s.best}</div><div class="stat-label">Best</div></div>
+        <div class="stat"><div class="stat-num">${s.played}</div><div class="stat-label">Played</div></div>
+      </div>
+      <p class="sync-note"><a href="#" id="streak-record">See my full record →</a></p>
+    </div>`;
+    document.body.appendChild(overlay);
+    const close = () => overlay.remove();
+    overlay.querySelector(".modal-close").onclick = close;
+    overlay.onclick = (e) => { if (e.target === overlay) close(); };
+    overlay.querySelector("#streak-record").onclick = (e) => { e.preventDefault(); close(); showStats(); };
+    track("streak_open", { streak: s.cur });
+
+    // percentile vs everyone with a live streak today (today's completions)
+    const el = overlay.querySelector("#streak-rank");
+    const d = await fetchCrowd().catch(() => null);
+    if (!overlay.isConnected) return;
+    let total = 0, below = 0;
+    if (d) for (let k = 1; k <= STREAK_CAP; k++) {
+      const c = d["t" + k] || 0;
+      total += c;
+      if (k < Math.min(cur, STREAK_CAP)) below += c;
+    }
+    const played = !isPractice && !!loadArchive()[dateStr];
+    const others = played ? total - 1 : total; // don't compare yourself to yourself
+    if (!d || others < MIN_CROWD) {
+      el.innerHTML = `<span class="crowd-wait">${others > 0
+        ? `${others} live streak${others === 1 ? "" : "s"} today`
+        : "No other streaks logged yet today"} &mdash; percentiles unlock at ${MIN_CROWD}</span>`;
+      return;
+    }
+    const pct = Math.round(100 * below / others);
+    el.innerHTML = pct >= 50
+      ? `Longer than <strong>${pct}%</strong> of the ${others.toLocaleString()} streaks alive right now`
+      : `<strong>${others.toLocaleString()}</strong> streaks are alive right now &mdash; yours is longer than <strong>${pct}%</strong>`;
+  }
+  const streakChip = document.getElementById("streak-chip");
+  function updateStreakChip() {
+    if (!streakChip) return;
+    // Always shown; a player with no streak yet sees "1-day streak" (today is day 1).
+    const cur = Math.max(1, computeStats(loadArchive()).cur);
+    streakChip.hidden = false;
+    streakChip.innerHTML = `🔥 ${cur}<span class="long">-day streak</span>`;
+  }
+  if (streakChip) streakChip.onclick = showStreakModal;
+
   // ---------- boot ----------
   reconstructArchive();
+  updateStreakChip();
   if (allRevealed() && Object.keys(state.guesses[0]).length) { recordResult(); showSummary(); }
   else showCover();
 
