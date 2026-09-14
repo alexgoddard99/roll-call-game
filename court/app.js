@@ -178,9 +178,7 @@
     if (!d || !line) return; // no data, or the player already moved on
     const n = d.n || 0, others = Math.max(0, n - 1);
     if (others < MIN_CROWD) {
-      line.innerHTML = `<span class="crowd-wait">${others
-        ? `${others} other player${others === 1 ? "" : "s"} so far today`
-        : "You&rsquo;re the first to finish today"} &mdash; crowd comparison unlocks at ${MIN_CROWD}</span>`;
+      line.innerHTML = `<span class="crowd-wait">Crowd comparison unlocks later today &mdash; check back</span>`;
       return;
     }
     let below = 0;
@@ -188,8 +186,7 @@
     const beat = Math.round(100 * below / others);
     crowdBeat = beat;
     const lead = score === max ? "Perfect &mdash; you beat" : beat === 0 ? "Everyone else today matched or beat you &mdash; you beat" : "You beat";
-    line.innerHTML = `${lead} <strong>${beat}%</strong> of today&rsquo;s players
-      <span class="crowd-n">${n.toLocaleString()} played</span>`;
+    line.innerHTML = `${lead} <strong>${beat}%</strong> of today&rsquo;s players`;
     app.querySelectorAll("td[data-cell]").forEach((td) => {
       const pct = Math.round(100 * (d["v" + td.dataset.cell] || 0) / n);
       const span = td.querySelector(".cell-pct");
@@ -288,15 +285,11 @@
     const played = !isPractice && !!loadArchive()[dateStr];
     const others = played ? total - 1 : total; // don't compare yourself to yourself
     if (!d || others < MIN_CROWD) {
-      el.innerHTML = `<span class="crowd-wait">${others > 0
-        ? `${others} live streak${others === 1 ? "" : "s"} today`
-        : "No other streaks logged yet today"} &mdash; percentiles unlock at ${MIN_CROWD}</span>`;
+      el.innerHTML = `<span class="crowd-wait">Not enough streaks logged yet today &mdash; check back later</span>`;
       return;
     }
     const pct = Math.round(100 * below / others);
-    el.innerHTML = pct >= 50
-      ? `Longer than <strong>${pct}%</strong> of the ${others.toLocaleString()} streaks alive right now`
-      : `<strong>${others.toLocaleString()}</strong> streaks are alive right now &mdash; yours is longer than <strong>${pct}%</strong>`;
+    el.innerHTML = `Longer than <strong>${pct}%</strong> of streaks alive right now`;
   }
   const streakChip = document.getElementById("streak-chip");
   function updateStreakChip() {
