@@ -71,7 +71,8 @@ headers, so production updates appear within seconds.
   (per-vote correct counts; court `v9` = split call), `t1..t30` (current-streak
   histogram, `t30` = 30+). Anyone may read; rules allow only +1 increments, so
   numbers are never hand-edited from a client. Tracking writes went live on prod
-  2026-08-31 (silent — no UI); the streak/crowd UI ships separately.
+  2026-08-31; the streak/crowd UI (header chip, results banner, crowd line,
+  cell percentages, streak-percentile modal) shipped 2026-09-14.
 - `web/firebase-config.js` / `court/firebase-config.js` are publishable client
   configs (safe in repo).
 - Contact form (playyeaornay.com/contact → agoddard256@gmail.com) and advertise form
