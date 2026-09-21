@@ -73,6 +73,12 @@ APPOINTED = {
 }
 
 
+CHIEF_SCDB = {  # SCDB "chief" column -> that chief's SCDB justiceName
+    "Vinson": "FMVinson", "Warren": "EWarren", "Burger": "WEBurger",
+    "Rehnquist": "WHRehnquist", "Roberts": "JGRoberts",
+}
+
+
 def load_scdb():
     if not SCDB_CSV.exists():
         raise SystemExit(f"SCDB csv missing — download {SCDB_URL} and unzip into {CACHE}")
@@ -201,9 +207,12 @@ def main() -> int:
                 problems.append(f"{pz['id']}: no APPOINTED entry for {scdb_name}")
                 continue
             pres, party = APPOINTED[scdb_name]
-            p_out["justices"].append({"key": key, "name": display,
-                                      "meta": f"{pres} appointee ({party})",
-                                      "blurb": blurb, "photo": f"photos/{key}.jpg"})
+            j_out = {"key": key, "name": display,
+                     "meta": f"{pres} appointee ({party})",
+                     "blurb": blurb, "photo": f"photos/{key}.jpg"}
+            if scdb_name == CHIEF_SCDB.get(r0["chief"]):
+                j_out["chief"] = True
+            p_out["justices"].append(j_out)
             p_out["votes"][key] = scdb_votes[scdb_name]
             print(f"  {display:22s} {scdb_votes[scdb_name]}")
         extra = set(scdb_votes) - listed

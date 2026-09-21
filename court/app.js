@@ -102,7 +102,7 @@
         <img src="${j.photo}" alt="Portrait of ${esc(j.name)}">
       </div>
       <div class="senator-name">${esc(j.name)}</div>
-      <div class="senator-meta">Associate Justice</div>
+      <div class="senator-meta">${j.chief ? "Chief Justice" : "Associate Justice"}</div>
       <div class="senator-blurb">${esc(j.blurb)}</div>
     </div>`;
   }
