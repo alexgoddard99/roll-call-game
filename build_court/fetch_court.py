@@ -146,12 +146,23 @@ def main() -> int:
     scdb = load_scdb()
     justices, puzzles = load_batches(single)
     if not dry:
-        # deterministic era-interleave, with a marquee case pinned to day 1
-        import hashlib
-        pin = [p for p in puzzles if p["id"] == "texas-v-johnson"]
-        rest = sorted((p for p in puzzles if p["id"] != "texas-v-johnson"),
+        # The order is the daily rotation, so it must never shift: cases already
+        # in court/puzzles.js keep their places, and only NEW cases are appended
+        # (era-interleaved by id hash, with a marquee case pinned to day 1 the
+        # first time the file is built).
+        import hashlib, re
+        shipped = []
+        if (OUT / "puzzles.js").exists():
+            m = re.search(r"window\.COURT_DATA = (.*);\s*$", (OUT / "puzzles.js").read_text(), re.S)
+            shipped = [p["id"] for p in json.loads(m.group(1))["puzzles"]] if m else []
+        by_id = {p["id"]: p for p in puzzles}
+        missing = [i for i in shipped if i not in by_id]
+        if missing:
+            raise SystemExit(f"shipped cases missing from the batches (never remove or rename one): {missing}")
+        pin = [p for p in puzzles if p["id"] == "texas-v-johnson" and "texas-v-johnson" not in shipped]
+        rest = sorted((p for p in puzzles if p["id"] not in shipped and p["id"] != "texas-v-johnson"),
                       key=lambda p: hashlib.md5(p["id"].encode()).hexdigest())
-        puzzles = pin + rest
+        puzzles = [by_id[i] for i in shipped] + pin + rest
     problems = []
     seen_ids = set()
     out = {"gameName": "Yea or Nay: Split Decision", "epoch": "2026-08-12", "puzzles": []}
