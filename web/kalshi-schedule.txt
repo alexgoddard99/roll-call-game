@@ -39,3 +39,40 @@
 2026-09-29   GOVPARTYNV-26               https://kalshi.com/markets/govpartynv/nevada-governor/govpartynv-26   # Nevada Governor winner
 2026-09-30   KXCLOSESTGOVERNOR-27JAN20   https://kalshi.com/markets/kxclosestgovernor/closest-governors-race/kxclosestgovernor-27jan20   # Closest Governor race (14 outcomes)
 2026-10-01   GOVPARTYFL-26               https://kalshi.com/markets/govpartyfl/florida-governor/govpartyfl-26   # Florida Governor winner
+
+# New markets (added 2026-09-17): TX/GA Senate, NY-17, PA-10, WI-3, IA-1, WI/MI/AZ Gov, next Speaker
+2026-10-02   SENATETX-26      https://kalshi.com/markets/senatetx/texas-senate-winner/senatetx-26            # Texas Senate (Paxton vs Talarico)
+2026-10-03   HOUSENY17-26     https://kalshi.com/markets/houseny17/ny-17-house-winner/houseny17-26           # NY-17 House (Lawler seat)
+2026-10-04   SENATEGA-26      https://kalshi.com/markets/senatega/georgia-senate-winner/senatega-26          # Georgia Senate (Ossoff)
+2026-10-05   HOUSEPA10-26     https://kalshi.com/markets/housepa10/pa-10-house-winner/housepa10-26           # PA-10 House (Perry vs Stelson)
+2026-10-06   GOVPARTYWI-26    https://kalshi.com/markets/govpartywi/wisconsin-governor-winner/govpartywi-26  # Wisconsin Governor (open seat)
+2026-10-07   HOUSEWI3-26      https://kalshi.com/markets/housewi3/wi-03-house-winner/housewi3-26             # WI-03 House (Van Orden vs Cooke)
+2026-10-08   GOVPARTYMI-26    https://kalshi.com/markets/govpartymi/michigan-governor-winner/govpartymi-26   # Michigan Governor (open seat)
+2026-10-09   HOUSEIA1-26      https://kalshi.com/markets/houseia1/ia-01-house-winner/houseia1-26             # IA-01 House (Miller-Meeks vs Bohannan)
+2026-10-10   GOVPARTYAZ-26    https://kalshi.com/markets/govpartyaz/arizona-governor-winner/govpartyaz-26    # Arizona Governor (Hobbs vs Biggs)
+2026-10-11   KXSPEAKER120-27  https://kalshi.com/markets/kxspeaker120/120th-congress-who-will-be-elected-speaker-of-the-house/kxspeaker120-27   | Who will be the next Speaker of the House?   # Speaker of the 120th Congress
+
+# Run-up to the midterms: full roster rotation, crescendo into Election Day (Nov 3)
+2026-10-12   CONTROLS-2026    https://kalshi.com/markets/controls/senate-winner/controls-2026        # Senate control
+2026-10-13   HOUSENY17-26     https://kalshi.com/markets/houseny17/ny-17-house-winner/houseny17-26   # NY-17 again
+2026-10-14   SENATEMI-26      https://kalshi.com/markets/senatemi/michigan-senate-race/senatemi-26   # Michigan Senate
+2026-10-15   GOVPARTYAZ-26    https://kalshi.com/markets/govpartyaz/arizona-governor-winner/govpartyaz-26    # Arizona Governor
+2026-10-16   SENATEOHS-26     https://kalshi.com/markets/senateohs/special-senate-election-in-ohio/senateohs-26   # Ohio Senate special
+2026-10-17   HOUSEWI3-26      https://kalshi.com/markets/housewi3/wi-03-house-winner/housewi3-26     # WI-03 again
+2026-10-18   SENATEME-26      https://kalshi.com/markets/senateme/maine-senate-race/senateme-26      # Maine Senate
+2026-10-19   KXSPEAKER120-27  https://kalshi.com/markets/kxspeaker120/120th-congress-who-will-be-elected-speaker-of-the-house/kxspeaker120-27   | Who will be the next Speaker of the House?   # Speaker again
+2026-10-20   SENATETX-26      https://kalshi.com/markets/senatetx/texas-senate-winner/senatetx-26    # Texas Senate
+2026-10-21   GOVPARTYWI-26    https://kalshi.com/markets/govpartywi/wisconsin-governor-winner/govpartywi-26  # Wisconsin Governor
+2026-10-22   SENATENC-26      https://kalshi.com/markets/senatenc/north-carolina-senate-race/senatenc-26     # North Carolina Senate
+2026-10-23   HOUSEPA10-26     https://kalshi.com/markets/housepa10/pa-10-house-winner/housepa10-26   # PA-10 again
+2026-10-24   SENATEGA-26      https://kalshi.com/markets/senatega/georgia-senate-winner/senatega-26  # Georgia Senate
+2026-10-25   GOVPARTYMI-26    https://kalshi.com/markets/govpartymi/michigan-governor-winner/govpartymi-26   # Michigan Governor
+2026-10-26   SENATEIA-26      https://kalshi.com/markets/senateia/iowa-senate-race/senateia-26       # Iowa Senate
+2026-10-27   HOUSEIA1-26      https://kalshi.com/markets/houseia1/ia-01-house-winner/houseia1-26     # IA-01 again
+2026-10-28   SENATEAK-26      https://kalshi.com/markets/senateak/alaska-senate-race/senateak-26     # Alaska Senate
+2026-10-29   KXCLOSESTGOVERNOR-27JAN20   https://kalshi.com/markets/kxclosestgovernor/closest-governors-race/kxclosestgovernor-27jan20   # Closest Governor race
+2026-10-30   GOVPARTYGA-26    https://kalshi.com/markets/govpartyga/georgia-governor/govpartyga-26   # Georgia Governor
+2026-10-31   GOVPARTYNV-26    https://kalshi.com/markets/govpartynv/nevada-governor/govpartynv-26    # Nevada Governor
+2026-11-01   KXBLUEWAVECOMBO-27FEB       https://kalshi.com/markets/kxbluewavecombo/will-there-be-a-blue-wave/kxbluewavecombo-27feb   # Blue wave?
+2026-11-02   KXBALANCEPOWERCOMBO-27FEB   https://kalshi.com/markets/kxbalancepowercombo/congress-balance-of-power-combo/kxbalancepowercombo-27feb   # Balance of power
+2026-11-03   CONTROLH-2026    https://kalshi.com/markets/controlh/house-winner/controlh-2026         # ELECTION DAY — which party wins the House
