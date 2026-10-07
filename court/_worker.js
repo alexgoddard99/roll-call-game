@@ -16,6 +16,11 @@
    key's rate budget can't be spent on arbitrary lookups.
    Everything except /api/kalshi is served as a normal static asset. */
 
+import { moved } from "./moved.js";
+// court.playyeaornay.com is retired: the game lives at politicaltrivia.com/splitdecision/ (handoff page until MOVED.handoffUntil, then 301s)
+const MOVED = { hosts: ["court.playyeaornay.com", "court-yea-or-nay.pages.dev"], to: "https://politicaltrivia.com/splitdecision",
+  handoffUntil: "2026-10-21", keys: "^(court-results|court-\\d{4}-\\d{2}-\\d{2})$", name: "Split Decision" };
+
 const KALSHI = "https://api.elections.kalshi.com/trade-api/v2";
 const DEFAULT_SCHEDULE_URL = "https://playyeaornay.com/kalshi-schedule.txt";
 const CACHE_SECONDS = 120;
@@ -24,6 +29,8 @@ const EVENT_RE = /^[A-Z0-9]{2,24}-[A-Z0-9]{2,24}$/;
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    const gone = moved(request, MOVED);
+    if (gone) return gone;
     if (url.pathname === "/api/kalshi") return kalshi(url, env, ctx, request);
     if (url.pathname === "/kalshi-schedule.txt") return scheduleResponse(env);
     return env.ASSETS.fetch(request);

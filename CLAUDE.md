@@ -18,6 +18,15 @@ Never deploy directly to production. Required flow for ALL changes:
    Production deploys ship ONLY the site dir — the dev-only pages in
    `web-dev/` / `court-dev/` must never be copied into `web/` or `court/`.
 
+## The addresses are retired (2026-10-07): the games live at politicaltrivia.com
+
+`web/moved.js` + `court/moved.js` (copies of `politicaltrivia/tools/moved/moved.js`, the
+source of truth — edit there, copy here) run first in each `_worker.js`: on playyeaornay.com
+/ court.playyeaornay.com / the prod pages.dev hosts the game page is a handoff page until
+`handoffUntil` (carries the player's local record to politicaltrivia.com in the URL fragment),
+then a 301; every other path 301s page for page from day one. Dev previews are untouched.
+Keep both Pages projects and the domain alive for at least a year so the 301s keep answering.
+
 ## Kalshi integration (both sites)
 
 - `kalshi-live.js` + `kalshi.css` (in `web/` and mirrored in `court/`): "Presented by
