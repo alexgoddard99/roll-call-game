@@ -16,7 +16,7 @@ if (!cfg) {
     const [{ initializeApp },
            { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged },
            { getFirestore, doc, setDoc, getDoc, getDocs, collection, increment },
-           { getAnalytics, isSupported, logEvent }] = await Promise.all([
+           { getAnalytics, isSupported, logEvent, setUserId, setUserProperties }] = await Promise.all([
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"),
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"),
       import("https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"),
@@ -27,14 +27,28 @@ if (!cfg) {
     const auth = getAuth(app);
     const db = getFirestore(app);
     let analytics = null;
+    // GA4 user identity: the Firebase UID (opaque, not PII) so a signed-in player
+    // counts as one user across devices and the BigQuery export's user_id joins to
+    // the users/{uid} docs. Applied once auth has settled AND analytics is up,
+    // whichever comes last; null on sign-out clears it.
+    let identityUid = null, identitySettled = false;
+    function applyIdentity() {
+      if (!analytics || !identitySettled) return;
+      try {
+        setUserId(analytics, identityUid);
+        setUserProperties(analytics, { signed_in: identityUid ? "yes" : "no" });
+      } catch (e) {}
+    }
     if (cfg.measurementId) {
-      isSupported().then((ok) => { if (ok) analytics = getAnalytics(app); }).catch(() => {});
+      isSupported().then((ok) => { if (ok) { analytics = getAnalytics(app); applyIdentity(); } }).catch(() => {});
     }
 
     let user = null;
     const userListeners = [];
     onAuthStateChanged(auth, (u) => {
       user = u;
+      identityUid = u ? u.uid : null; identitySettled = true;
+      applyIdentity();
       userListeners.forEach((fn) => fn(user));
     });
 
