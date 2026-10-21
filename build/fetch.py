@@ -196,18 +196,26 @@ def main() -> int:
         # base puzzles keep their rotation slots; batch packs are appended in a
         # deterministic id-hash order so eras interleave day to day
         import hashlib
+        # LEGACY_PACKS are frozen: their puzzles interleave by id-hash exactly as
+        # they did at launch, preserving the live rotation. Packs added later
+        # (any other batch_*.py) are appended AFTER all legacy slots, in file
+        # order then in-file order, so adding a pack never shifts a slot that
+        # players have already seen. Author new packs in the order you want
+        # them to run.
+        LEGACY_PACKS = {"batch_A", "batch_B", "batch_C", "batch_D"}
         senators_all = dict(SENATORS)
         puzzles_all = list(PUZZLES)
         extra = []
+        tail = []
         for path in sorted((ROOT / "build" / "batches").glob("batch_*.py")):
             b_sens, b_puzzles = load_batch(str(path))
             for k, v in b_sens.items():
                 if k in senators_all and senators_all[k] != v:
                     raise SystemExit(f"senator key conflict '{k}': {senators_all[k]} vs {v} ({path.name})")
                 senators_all[k] = v
-            extra.extend(b_puzzles)
+            (extra if path.stem in LEGACY_PACKS else tail).extend(b_puzzles)
         seen = {p["id"] for p in puzzles_all}
-        for p in extra:
+        for p in extra + tail:
             if p["id"] in seen:
                 raise SystemExit(f"duplicate puzzle id: {p['id']}")
             seen.add(p["id"])
@@ -225,7 +233,25 @@ def main() -> int:
             raise SystemExit(f"rotation override references unknown ids: {missing}")
         extra = [by_id[i] for i in PINNED_HEAD] + [
             p for p in extra if p["id"] not in PARKED and p["id"] not in PINNED_HEAD]
-        puzzles_all += extra
+        puzzles_all += extra + tail
+
+        # Guard: a rebuild must never change a slot players have already seen.
+        # Compares against the shipped puzzles.json through today's ET index.
+        import datetime, zoneinfo
+        shipped = WEB / "puzzles.json"
+        if shipped.exists():
+            old_ids = [p["id"] for p in json.loads(shipped.read_text())["puzzles"]]
+            new_ids = [p["id"] for p in puzzles_all]
+            et_today = datetime.datetime.now(zoneinfo.ZoneInfo("America/New_York")).date()
+            day = (et_today - datetime.date.fromisoformat(out["epoch"])).days
+            upto = min(day + 1, len(old_ids))
+            if new_ids[:upto] != old_ids[:upto]:
+                for i in range(upto):
+                    if i >= len(new_ids) or new_ids[i] != old_ids[i]:
+                        raise SystemExit(
+                            f"ROTATION GUARD: slot {i} (already run) would change "
+                            f"from '{old_ids[i]}' to '{new_ids[i] if i < len(new_ids) else '<missing>'}'. "
+                            "Slots at or before today's index are frozen.")
     vv_cache = {}
 
     for pz in puzzles_all:

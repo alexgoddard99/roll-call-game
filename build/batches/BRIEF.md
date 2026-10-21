@@ -14,13 +14,13 @@ You are writing new daily puzzles for "Yea or Nay", a game where players guess h
    — it prints every senator's actual vote and must exit 0 (no PROBLEMS).
    If a senator was absent ("Not Voting", cast_code 7/9), swap the bill for
    another suitable one, or swap the senator, and re-run. Iterate until clean.
-3. **Vote numbers**: senate.gov menus are pre-downloaded at
-   `/private/tmp/claude-501/-Users-alexgoddard-Desktop-congress-game/42d4d1fe-f47a-43b7-bdd9-f63eb72d225c/scratchpad/menu_<congress>_<session>.xml`
-   (grep them for bill numbers/titles). For voteview (pre-1989), download
+3. **Vote numbers**: download senate.gov vote menus as needed:
+   `https://www.senate.gov/legislative/LIS/roll_call_lists/vote_menu_<congress>_<session>.xml`
+   (curl with a browser User-Agent; grep for bill numbers/titles). For voteview (pre-1989), download
    `https://voteview.com/static/data/out/rollcalls/S0<congress>_rollcalls.csv`
    and grep vote_desc/date (the pipeline caches its own copies in build/cache/).
-4. **Senator IDs**: look up bioguide IDs in the legislators datasets at the same
-   scratchpad dir (`leg_hist.json`, `leg_curr.json`) or voteview members CSVs —
+4. **Senator IDs**: look up bioguide IDs in voteview members CSVs
+   (`https://voteview.com/static/data/out/members/S<congress>_members.csv`) —
    never guess. Before using ANY new senator, verify their photo exists:
    `curl -sL -o /dev/null -w "%{http_code}" "https://bioguide.congress.gov/photo/<X>/<BIOGUIDE>.jpg"`
    must print 200 (X = first letter of the ID). If 404, pick a different senator.

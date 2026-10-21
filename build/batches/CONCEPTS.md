@@ -238,3 +238,93 @@ D15. `overtime` — spare slot: build ONE more puzzle from any era with genuinel
     menu_119_2.xml if something big actually happened, or "The Gang of Fourteen" 109th:
     Bolton cloture failure May 2005 56-42, Priscilla Owen cloture 81-18, Energy Policy Act
     2005 85-12 with McCain/Byrd/Frist/Voinovich/Obama). Your pick — justify it.
+
+## BATCH E (added 2026-09-08 — TAIL pack: runs Oct 22 → Nov 2, IN FILE ORDER)
+
+E1. `abm-summer` "The ABM Summer" — 91st, 1969. Fulbright, Javits, Goldwater, Mansfield,
+    M.C. Smith. Bills: Safeguard ABM — the Cooper-Hart amendment (Aug 6 1969, 50-50 tie,
+    Agnew breaks it); the draft-lottery bill (Nov 1969); Philadelphia Plan / military
+    procurement (flex — any 91st vote with spread).
+E2. `nineteen-eighty-four` "Nineteen Eighty-Four" — 98th, 1984. Bills: school-prayer
+    constitutional amendment (Mar 20 1984, 56-44, failed short of 2/3); national drinking
+    age 21 (Jun 1984, ~81-16); a contra-aid or deficit-reduction 1984 vote (flex).
+E3. `rehnquist-court` "The Rehnquist Elevation" — 99th, 1986. Bills: Rehnquist for Chief
+    Justice (Sep 17 1986, 65-33); Scalia confirmation (98-0 — the gimme); the
+    Immigration Reform and Control Act (Simpson-Mazzoli, Oct 1986, ~63-24).
+E4. `the-apology` "The Apology" — 100th, 1988. Bills: Civil Liberties Act — Japanese-
+    American redress (Apr 20 1988, 69-27); Medicare Catastrophic Coverage (Jun 1988,
+    86-11); plant-closing 60-day notice / WARN Act (Jul 1988, ~72-23).
+E5. `clean-air-congress` "The Clean Air Congress" — 101st, 1990. Bills: Clean Air Act
+    Amendments (passage Apr 3 1990, 89-11, or conference Oct 1990); Souter confirmation
+    (Oct 2 1990, 90-9); minimum-wage increase 1989 (flex).
+E6. `test-ban-autumn` "The Test Ban Autumn" — 106th, 1999. Bills: Comprehensive Test Ban
+    Treaty REJECTED (Oct 13 1999, 48-51 — first treaty rejected since Versailles);
+    plus two 106th votes with spread (flex — e.g. Ed-Flex, Y2K liability, dairy?).
+    Avoid: gun-show checks, Glass-Steagall, estate tax, Kosovo (already used).
+E7. `stay-the-course` "Stay the Course" — 97th, 1982. Bills: TEFRA — Reagan signs a tax
+    INCREASE (Jul 1982, ~50-47); Voting Rights Act extension (Jun 18 1982, 85-8);
+    balanced-budget constitutional amendment (Aug 4 1982, 69-31, passed Senate).
+E8. `brady-winter` "The Brady Winter" — 103rd, 1993-94. Bills: the Brady handgun bill
+    (passage Nov 20 1993, 63-36); Ginsburg confirmation (Aug 1993, 96-3); striker-
+    replacement cloture (Jul 1994, failed) or another 103rd vote with spread (flex).
+E9. `labors-last-stand` "Labor's Last Stand" — 95th, 1977-78. Bills: labor-law-reform
+    cloture (Jun 1978 — six cloture votes all failed; use one, frame honestly);
+    Humphrey-Hawkins Full Employment (Oct 1978, ~70-19); minimum wage 1977 (flex).
+E10. `tiktok-ultimatum` "The TikTok Ultimatum" — 118th, 2024. Bills: the April 2024
+    foreign-aid + TikTok-divestiture package (Apr 23 2024, 79-18); the Wyden-Smith
+    child-tax-credit/business tax bill cloture (Aug 1 2024, failed 48-44); one more
+    2024 vote with spread (flex — FAA reauth, rail safety, border cloture II).
+E11. `quiet-congress` "The Quiet Congress" — 114th, 2015-16. The do-something Congress
+    nobody noticed. Bills: Every Student Succeeds Act (Dec 2015, 85-12); CARA opioid
+    treatment act (2016, ~92-2); TSCA chemical-safety modernization (2016) (flex).
+E12. `year-two` "Year Two" — 119th, 2025. Bills: the GENIUS Act — stablecoin regulation
+    (Jun 2025, 68-30); the CR ending the 43-day shutdown (Nov 2025, ~60-40); one 2025
+    confirmation or NDAA vote with spread (flex; avoid Hegseth/RFK/Patel — used).
+
+## BATCH F (added 2026-09-08 — TAIL pack: runs Nov 3 → Nov 14, IN FILE ORDER)
+
+F1. `landslides-lame-duck` "The Landslide's Lame Duck" — 96th, Nov-Dec 1980. RUNS ON
+    ELECTION DAY. The old Senate returns after Reagan's landslide to finish its business;
+    include defeated senators voting out the clock (Church lost, Javits lost). Bills:
+    Superfund (Nov 24 1980, 78-9); fair-housing enforcement cloture (Dec 1980, failed);
+    Alaska National Interest Lands (Aug 19 1980, 78-14) (flex).
+F2. `nixon-court` "The Nixon Court" — 92nd, 1971-72. Bills: Rehnquist confirmation
+    (Dec 10 1971, 68-26); Powell confirmation (Dec 6 1971, 89-1); the ABM/SALT I
+    treaty or Interim Agreement (Aug-Sep 1972) (flex).
+F3. `hundred-days-17` "The First Hundred Days of 2017" — 115th, 2017. Bills: Sessions
+    for Attorney General (Feb 2017, 52-47); the broadband-privacy CRA repeal (Mar 2017,
+    50-48); Montenegro joins NATO (Mar 2017, 97-2 — Paul objecting) (flex).
+F4. `december-rebellion` "The December Rebellion" — 115th, Dec 2018. Bills: Yemen war-
+    powers resolution — first ever passed (Dec 13 2018, 56-41); the First Step Act
+    (Dec 18 2018, 87-12); the 2018 Farm Bill (Dec 11 2018, 87-13).
+F5. `mr-justice-marshall` "Mr. Justice Marshall" — 90th, 1967. Bills: Thurgood Marshall
+    confirmation (Aug 30 1967, 69-11); Public Broadcasting Act (1967); Age
+    Discrimination in Employment or Air Quality Act 1967 (flex).
+    NOTE: do NOT use Fair Housing '68, Fortas cloture, or Gun Control Act '68 — they
+    belong to the parked puzzle `sixty-eight`.
+F6. `right-to-work-war` "The Right-to-Work War" — 89th, 1965-66. Bills: repeal of
+    Taft-Hartley 14(b) — cloture fails (Oct 1965, 45-47); the Vietnam military
+    supplemental (Mar 1966); minimum wage/FLSA 1966 (flex).
+    Avoid: VRA, Medicare, Immigration Act (used in great-society).
+F7. `watergate-winter` "The Watergate Winter" — 93rd, 1974. Bills: Nelson Rockefeller
+    for Vice President (Dec 10 1974, 90-7); the Trade Act with Jackson-Vanik (Dec 13
+    1974, 77-4); Federal Election Campaign Act amendments 1974 (flex).
+    Avoid: War Powers, pipeline, Ford VP (used in war-powers).
+F8. `home-front-08` "The Home Front" — 110th, 2008. Bills: the Webb GI Bill (May 2008,
+    75-22); the FISA Amendments Act (Jul 9 2008, 69-28); Ledbetter fair-pay cloture
+    (Apr 2008, failed 56-42). CAUTION: Obama, McCain, Clinton missed many 2008 votes
+    campaigning — pick five senators present for all three.
+F9. `judges-trials` "The Other Impeachments" — 99th & 101st, 1986-89. The three federal
+    judges the Senate removed in the 1980s. Bills (labels GUILTY/NOT GUILTY): Harry
+    Claiborne Article I (Oct 1986, voteview); Alcee Hastings Article I (Oct 20 1989);
+    Walter Nixon Article I (Nov 3 1989). Five senators serving in both congresses.
+F10. `last-gift-congress` "The Last Gift" — 118th, Dec 2024. The 2024 lame duck. Bills:
+    Social Security Fairness Act (Dec 21 2024, 76-20); the December CR / American
+    Relief Act; the FY2025 NDAA (Dec 2024, ~85-14) (flex — find spread).
+F11. `summer-of-2022` "The Summer of 2022" — 117th, 2022. Bills: Bipartisan Safer
+    Communities — the gun deal (Jun 2022, 65-33); the Women's Health Protection Act
+    cloture (May 2022, failed 49-51); Finland & Sweden join NATO (Aug 2022, 95-1).
+F12. `new-frontier` "The New Frontier" — 87th, 1962 (extends the bank before 1964!).
+    Bills: Trade Expansion Act (Sep 1962, 78-8); the Comsat filibuster — first
+    successful cloture since 1927 (Aug 1962, 63-27); UN bond purchase (Apr 1962) (flex).
+    Senators: Mansfield, Dirksen, Humphrey, Goldwater, Russell (all keyed already).
