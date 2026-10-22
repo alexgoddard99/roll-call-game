@@ -39,23 +39,41 @@ if (!cfg) {
         setUserProperties(analytics, { signed_in: identityUid ? "yes" : "no" });
       } catch (e) {}
     }
+    // Analytics initialises asynchronously; events logged before then (the
+    // page_open fired at yon-cloud-ready, anything the game queued during
+    // boot) are held here and flushed once it is up.
+    let analyticsPending = !!cfg.measurementId;
+    const pendingEvents = [];
     if (cfg.measurementId) {
-      isSupported().then((ok) => { if (ok) { analytics = getAnalytics(app); applyIdentity(); } }).catch(() => {});
+      isSupported().then((ok) => {
+        analyticsPending = false;
+        if (ok) {
+          analytics = getAnalytics(app);
+          applyIdentity();
+          pendingEvents.splice(0).forEach(([n, p]) => logEvent(analytics, n, p));
+        } else pendingEvents.length = 0;
+      }).catch(() => { analyticsPending = false; pendingEvents.length = 0; });
     }
 
     let user = null;
     const userListeners = [];
+    const settledListeners = []; // fn(user) once auth has resolved, never before
     onAuthStateChanged(auth, (u) => {
       user = u;
       identityUid = u ? u.uid : null; identitySettled = true;
       applyIdentity();
       userListeners.forEach((fn) => fn(user));
+      settledListeners.splice(0).forEach((fn) => fn(user));
     });
 
     expose({
       enabled: true,
       user: () => user,
       onUser(fn) { userListeners.push(fn); fn(user); },
+      // true once Firebase has resolved the signed-in/out state (onUser fires
+      // with null before that, so UI that must not flash waits on these)
+      settled: () => identitySettled,
+      onAuthSettled(fn) { if (identitySettled) fn(user); else settledListeners.push(fn); },
       async signIn() {
         await signInWithPopup(auth, new GoogleAuthProvider());
       },
@@ -83,7 +101,10 @@ if (!cfg) {
         return snap.exists() ? snap.data() : null;
       },
       logEvent(name, params) {
-        try { if (analytics) logEvent(analytics, name, params); } catch (e) {}
+        try {
+          if (analytics) logEvent(analytics, name, params);
+          else if (analyticsPending && pendingEvents.length < 50) pendingEvents.push([name, params]);
+        } catch (e) {}
       },
     });
   } catch (e) {

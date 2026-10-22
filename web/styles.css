@@ -576,3 +576,40 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
     border-bottom: 1px solid var(--hairline-minor); }
   .senator-card:last-child { border-bottom: none; }
 }
+
+/* ---------- bill screen: edition context for direct arrivals ---------- */
+.edition-line {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 0 8px;
+  margin-bottom: 10px;
+  font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--link-navy);
+}
+.edition-line em { font-style: normal; color: var(--ink); }
+.edition-line .sep { color: var(--ink-faint); }
+.edition-intro {
+  text-align: center; font-style: italic; color: var(--ink-soft);
+  max-width: 640px; margin: 0 auto 18px; font-size: 16px; line-height: 1.55;
+}
+.edition-intro a { white-space: nowrap; }
+.whip-note.how-to { margin: 14px 0 0; font-size: 14px; }
+
+/* ---------- score screen: sign-in card inside the streak banner ---------- */
+.signin-card { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hairline-minor); }
+.signin-head {
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink);
+}
+.signin-sub { font-size: 14px; color: var(--ink-soft); margin: 4px 0 10px; line-height: 1.45; }
+.signin-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.signin-actions .btn-primary { padding: 12px 22px; }
+.signin-actions .btn-ghost { padding: 11px 16px; }
+
+/* ---------- phones: keep "Next Bill" reachable after a reveal ---------- */
+@media (max-width: 720px) {
+  .screen.is-revealed .action-row {
+    position: sticky; bottom: 0; z-index: 30; margin-top: 22px;
+    padding: 10px 0 12px; background: var(--paper);
+    border-top: 1px solid var(--hairline-minor);
+  }
+  .screen.is-revealed .action-row .btn-primary { width: 100%; }
+}

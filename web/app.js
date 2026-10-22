@@ -24,6 +24,18 @@
   const practiceIdx = params.has("p") ? parseInt(params.get("p"), 10) : null;
   const isPractice = practiceIdx !== null && !Number.isNaN(practiceIdx);
 
+  // ---------- first-visit flow ----------
+  // First-time visitors land straight on bill 1: the cover lost about half of
+  // them before they ever voted (funnel analysis, 2026-10-20). The choice is
+  // stored so a player keeps the flow they started with; legacy players who
+  // already have an archive keep the cover. "#play" forces the direct flow for
+  // anyone (the deep link partners get). DIRECT_FIRST_VISIT is the kill switch.
+  // Every GA4 event carries `flow` so the funnel can be split by it.
+  const DIRECT_FIRST_VISIT = true;
+  const FLOW_KEY = "yon-flow";
+  let flow = null; // "direct" | "deeplink" | "cover" | null (legacy player)
+  let docketTracked = false; // open_docket fires once per page load
+
   // the archive holds only the last 10 published editions (by day, so it
   // follows the rotation correctly even after the bank wraps)
   const archDays = [];
@@ -145,16 +157,36 @@
       </div>
     </section>`;
     document.getElementById("go").onclick = () => {
-      track("open_docket", {});
+      if (!docketTracked) track("open_docket", {});
+      docketTracked = true;
       const next = state.revealed.findIndex((r) => !r);
       next === -1 ? showSummary() : showBill(next);
     };
+  }
+
+  // One line of edition context on every bill screen (era · № · title), so a
+  // player who never saw the cover still knows which story they're in.
+  function editionLine() {
+    return `<div class="edition-line"><span>${esc(puzzle.era)}</span><span class="sep">&middot;</span>` +
+      `<span>${isPractice ? "Archive edition" : "№ " + puzzleNo}</span><span class="sep">&middot;</span>` +
+      `<em>${esc(puzzle.title)}</em></div>`;
   }
 
   function showBill(i) {
     const bill = puzzle.bills[i];
     const revealed = state.revealed[i];
     pageview("/bill/" + (i + 1), "Bill " + (i + 1) + " — " + bill.name);
+    // Direct arrivals get the cover's standfirst on the first bill, and a
+    // one-line how-to the very first time they play.
+    const directIntro = !revealed && !state.revealed.some(Boolean)
+                        && (flow === "direct" || flow === "deeplink");
+    const firstPlay = directIntro && !Object.keys(loadArchive()).length;
+    const introHTML = directIntro
+      ? `<p class="edition-intro">${esc(puzzle.intro)}
+           <a href="#" id="see-docket">Meet the senators &rarr;</a></p>` : "";
+    const howToHTML = firstPlay
+      ? `<p class="whip-note how-to">Stamp each senator&rsquo;s ballot <strong>Yea</strong> or
+           <strong>Nay</strong>, then record the vote to see the real roll call.</p>` : "";
     const pips = puzzle.bills.map((_, j) =>
       `<span class="pip ${state.revealed[j] ? "done" : j === i ? "now" : ""}"></span>`).join("");
 
@@ -209,13 +241,16 @@
       ? (lastBill && allRevealed() ? "See Your Score →" : "Next Bill →")
       : "Record the Vote";
 
-    app.innerHTML = `<section class="screen">
+    app.innerHTML = `<section class="screen${revealed ? " is-revealed" : ""}">
+      ${editionLine()}
+      ${introHTML}
       <div class="bill-progress"><span>Bill ${i + 1} of ${nBills}</span>${pips}</div>
       <div class="docket">
         <div class="docket-eyebrow">On the floor &mdash; ${esc(puzzle.era)}</div>
         <h2 class="docket-title">${esc(bill.name)}</h2>
         <div class="docket-date">${esc(bill.date)} &middot; roll call vote</div>
         <p class="docket-desc">${esc(bill.desc)}</p>
+        ${howToHTML}
         <div class="ballot">${rows}</div>
         ${tally}
       </div>
@@ -223,6 +258,9 @@
         <button class="btn-primary" id="advance" ${revealed ? "" : "disabled"}>${btnLabel}</button>
       </div>
     </section>`;
+
+    const seeDocket = document.getElementById("see-docket");
+    if (seeDocket) seeDocket.onclick = (e) => { e.preventDefault(); showCover(); window.scrollTo({ top: 0 }); };
 
     if (!revealed) {
       app.querySelectorAll(".stamp").forEach((b) => {
@@ -355,10 +393,23 @@
     100: "One hundred days. Master of the Senate indeed.",
     365: "A full year. Lyndon Johnson is taking notes.",
   };
+  // Sign-in card on the score screen: shown after every daily completion while
+  // signed out (once auth has settled, so it never flashes for signed-in
+  // players); "Not now" snoozes it for a week, but streak milestones always
+  // bring it back. Funnel: signin_prompt_shown -> signin_prompt_click -> login.
+  const SNOOZE_KEY = "yon-signin-snooze", SNOOZE_MS = 7 * 86400000;
+  const PROMPT_MILESTONES = [3, 7, 14, 30];
+  let promptLogged = false;
+  function signinSnoozed() {
+    try { return +localStorage.getItem(SNOOZE_KEY) > Date.now(); } catch (e) { return false; }
+  }
   function streakBannerHTML() {
     const s = computeStats(loadArchive());
     const c = window.YonCloud;
     const signedIn = c && c.enabled && c.user();
+    const settled = c && c.enabled && c.settled && c.settled();
+    const showCard = settled && !signedIn
+                     && (!signinSnoozed() || PROMPT_MILESTONES.includes(s.cur));
     let main, sub;
     if (s.cur <= 1) {
       main = "Day 1";
@@ -370,23 +421,38 @@
          || (s.cur >= s.best ? "A personal best. Keep it going tomorrow."
                              : `Best: ${s.best}. Play tomorrow to keep it alive.`);
     }
+    const card = showCard ? `<div class="signin-card" data-streak="${s.cur}">
+        <div class="signin-head">Keep your streak</div>
+        <div class="signin-sub">${s.cur <= 1 ? "Today&rsquo;s score is stored on this device only."
+          : `Your ${s.cur}-day streak is stored on this device only.`}
+          Sign in to save it and play on any device.</div>
+        <div class="signin-actions">
+          <button class="btn-primary" id="signin-go">Sign in with Google</button>
+          <button class="btn-ghost" id="signin-later">Not now</button>
+        </div>
+      </div>` : "";
     return `<div class="streak-banner">
       <div class="streak-main">${main}</div>
       <div class="streak-sub">${sub}</div>
-      ${signedIn ? "" : `<div class="streak-save">Stored on this device &mdash;
-        <a href="#" id="streak-signin">sign in with Google</a> to save your streak.</div>`}
+      ${card}
     </div>`;
   }
   function bindStreakBanner() {
-    const a = document.getElementById("streak-signin");
-    if (!a) return;
-    a.onclick = (e) => {
-      e.preventDefault();
-      track("streak_signin_prompt", {});
+    const card = app.querySelector(".signin-card");
+    if (!card) return;
+    const streak = +card.dataset.streak || 0;
+    if (!promptLogged) { promptLogged = true; track("signin_prompt_shown", { streak }); }
+    document.getElementById("signin-go").onclick = () => {
+      track("signin_prompt_click", { streak });
       const c = window.YonCloud;
       if (c && c.enabled)
-        c.signIn().then(() => cloud("logEvent", "login", { method: "google" }))
+        c.signIn().then(() => cloud("logEvent", "login", { method: "google", placement: "score_prompt" }))
                   .catch(() => {});
+    };
+    document.getElementById("signin-later").onclick = () => {
+      try { localStorage.setItem(SNOOZE_KEY, String(Date.now() + SNOOZE_MS)); } catch (e) {}
+      track("signin_prompt_dismiss", { streak });
+      card.remove();
     };
   }
   // Re-render streak surfaces after anything that can change the archive or auth
@@ -500,27 +566,35 @@
     if (c && c.enabled && c[method]) return c[method](...args);
   }
 
+  // GA4 events. The cloud layer is a module loaded after this script, so
+  // anything fired during boot (the first page_view, the direct flow's
+  // open_docket) is queued and flushed on yon-cloud-ready instead of dropped.
+  const eventQueue = [];
+  function send(name, params) {
+    if (window.YonCloud) cloud("logEvent", name, params);
+    else if (eventQueue.length < 50) eventQueue.push([name, params]);
+  }
   // GA4 event with common game context on every hit
   function track(name, extra) {
-    cloud("logEvent", name, Object.assign({
-      puzzle_id: puzzle.id, puzzle_no: puzzleNo, era: puzzle.era,
-      practice: isPractice ? 1 : 0,
-    }, extra || {}));
+    const common = { puzzle_id: puzzle.id, puzzle_no: puzzleNo, era: puzzle.era,
+                     practice: isPractice ? 1 : 0 };
+    if (flow) common.flow = flow;
+    send(name, Object.assign(common, extra || {}));
   }
   let startTracked = false;
 
   // Synthetic page_view per screen, so GA4 Views reflect screens seen rather
-  // than one hit per session. Views fired before the cloud layer loads are
-  // queued and flushed on yon-cloud-ready.
+  // than one hit per session.
   let lastPageview = null;
-  const pageviewQueue = [];
   function pageview(path, title) {
     if (path === lastPageview) return; // same-screen re-render (e.g. reveal)
     lastPageview = path;
-    const params = { page_title: title, page_path: path,
-                     page_location: location.origin + path };
-    if (window.YonCloud) cloud("logEvent", "page_view", params);
-    else pageviewQueue.push(params);
+    // The landing screen's view is already counted by gtag's automatic
+    // page_view on load, so only screens shown after the cloud layer is up
+    // send a synthetic one.
+    if (!window.YonCloud) return;
+    send("page_view", { page_title: title, page_path: path,
+                        page_location: location.origin + path });
   }
 
   async function syncWithCloud() {
@@ -561,7 +635,7 @@
       }
     };
     track("page_open", {});
-    pageviewQueue.splice(0).forEach((p) => cloud("logEvent", "page_view", p));
+    eventQueue.splice(0).forEach(([n, p]) => cloud("logEvent", n, p));
   });
 
   // ---------- stats modal ----------
@@ -696,9 +770,28 @@
   if (streakChip) streakChip.onclick = showStreakModal;
 
   // ---------- boot ----------
-  reconstructArchive();
+  const archiveAtBoot = reconstructArchive();
   updateStreakChip();
+  // A first visit: nothing in the archive and nothing started today. The
+  // handoff from the old address has already merged any imported record by
+  // now, so a player arriving from playyeaornay.com is not a first visit.
+  const isFirstVisit = !isPractice && !Object.keys(archiveAtBoot).length
+                       && !localStorage.getItem(storeKey);
+  try { flow = localStorage.getItem(FLOW_KEY); } catch (e) {}
+  if (flow !== "direct" && flow !== "cover") flow = null;
+  if (location.hash === "#play") flow = "deeplink";
+  else if (DIRECT_FIRST_VISIT && !flow && isFirstVisit) {
+    flow = "direct";
+    try { localStorage.setItem(FLOW_KEY, flow); } catch (e) {}
+  }
+  const direct = (flow === "direct" || flow === "deeplink") && !isPractice;
   if (allRevealed() && Object.keys(state.guesses[0]).length) { recordResult(); showSummary(); }
+  else if (direct) {
+    docketTracked = true;
+    track("open_docket", { auto: 1 });
+    const next = state.revealed.findIndex((r) => !r);
+    next === -1 ? showSummary() : showBill(next);
+  }
   else showCover();
 
   // record at the moment the last bill is revealed

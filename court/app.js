@@ -205,10 +205,22 @@
     100: "One hundred days. Chief Justice material.",
     365: "A full year. A term for the history books.",
   };
+  // Sign-in card on the score screen (same behaviour as the Senate game):
+  // shown after every daily completion while signed out, once auth has
+  // settled; "Not now" snoozes a week; streak milestones always show it.
+  const SNOOZE_KEY = "court-signin-snooze", SNOOZE_MS = 7 * 86400000;
+  const PROMPT_MILESTONES = [3, 7, 14, 30];
+  let promptLogged = false;
+  function signinSnoozed() {
+    try { return +localStorage.getItem(SNOOZE_KEY) > Date.now(); } catch (e) { return false; }
+  }
   function streakBannerHTML() {
     const s = computeStats(loadArchive());
     const c = window.YonCloud;
     const signedIn = c && c.enabled && c.user();
+    const settled = c && c.enabled && c.settled && c.settled();
+    const showCard = settled && !signedIn
+                     && (!signinSnoozed() || PROMPT_MILESTONES.includes(s.cur));
     let main, sub;
     if (s.cur <= 1) {
       main = "Day 1";
@@ -220,23 +232,38 @@
          || (s.cur >= s.best ? "A personal best. Keep it going tomorrow."
                              : `Best: ${s.best}. Play tomorrow to keep it alive.`);
     }
+    const card = showCard ? `<div class="signin-card" data-streak="${s.cur}">
+        <div class="signin-head">Keep your streak</div>
+        <div class="signin-sub">${s.cur <= 1 ? "Today&rsquo;s score is stored on this device only."
+          : `Your ${s.cur}-day streak is stored on this device only.`}
+          Sign in to save it and play on any device.</div>
+        <div class="signin-actions">
+          <button class="btn-primary" id="signin-go">Sign in with Google</button>
+          <button class="btn-ghost" id="signin-later">Not now</button>
+        </div>
+      </div>` : "";
     return `<div class="streak-banner">
       <div class="streak-main">${main}</div>
       <div class="streak-sub">${sub}</div>
-      ${signedIn ? "" : `<div class="streak-save">Stored on this device &mdash;
-        <a href="#" id="streak-signin">sign in with Google</a> to save your streak.</div>`}
+      ${card}
     </div>`;
   }
   function bindStreakBanner() {
-    const a = document.getElementById("streak-signin");
-    if (!a) return;
-    a.onclick = (e) => {
-      e.preventDefault();
-      track("streak_signin_prompt", {});
+    const card = app.querySelector(".signin-card");
+    if (!card) return;
+    const streak = +card.dataset.streak || 0;
+    if (!promptLogged) { promptLogged = true; track("signin_prompt_shown", { streak }); }
+    document.getElementById("signin-go").onclick = () => {
+      track("signin_prompt_click", { streak });
       const c = window.YonCloud;
       if (c && c.enabled)
-        c.signIn().then(() => cloud("logEvent", "login", { method: "google" }))
+        c.signIn().then(() => cloud("logEvent", "login", { method: "google", placement: "score_prompt" }))
                   .catch(() => {});
+    };
+    document.getElementById("signin-later").onclick = () => {
+      try { localStorage.setItem(SNOOZE_KEY, String(Date.now() + SNOOZE_MS)); } catch (e) {}
+      track("signin_prompt_dismiss", { streak });
+      card.remove();
     };
   }
   // Re-render streak surfaces after anything that can change the archive or auth
@@ -408,7 +435,7 @@
             : "split missed, no bonus"}</div>
       </div>` })() : "";
 
-    app.innerHTML = `<section class="screen${revealed ? "" : " has-count"}">
+    app.innerHTML = `<section class="screen${revealed ? " is-revealed" : " has-count"}">
       <div class="docket">
         <div class="docket-eyebrow">In the Supreme Court &mdash; ${esc(puzzle.era)}</div>
         <h2 class="docket-title">${esc(puzzle.caseTitle)}</h2>
@@ -521,7 +548,7 @@
       const cur = isPractice ? 0 : computeStats(loadArchive()).cur;
       const streakBit = cur >= 2 ? ` · 🔥 ${cur}-day streak` : "";
       const text = `Split Decision №${isPractice ? " (archive)" : puzzleNo} — a Yea or Nay game\n` +
-        `${score}/${maxScore} · ${title}${streakBit}\n${grid} ⚖️ split ${tallyHit() ? "✓" : "✗"}`;
+        `${score}/${maxScore} · ${title}${streakBit}\n${grid} ⚖️ split ${tallyHit() ? "✓" : "✗"}\ncourt.playyeaornay.com`;
       const shareParams = { score, max: maxScore, streak: cur };
       if (crowdBeat !== null) shareParams.beat_pct = crowdBeat;
       track("share_result", shareParams);
@@ -534,7 +561,7 @@
     document.getElementById("review").onclick = () => { track("review_votes", {}); showCase(); };
     document.getElementById("practice").onclick = () => {
       track("archive_click", {});
-      location.search = "?p=" + ((puzzleIdx + 1) % PUZZLES.length);
+      location.search = "?p=" + ((puzzleIdx - 1 + PUZZLES.length) % PUZZLES.length);
     };
   }
 

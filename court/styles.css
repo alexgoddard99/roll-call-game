@@ -636,3 +636,24 @@ main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 60px; }
 /* keep the decision button clear of the fixed counter */
 .screen.has-count { padding-bottom: 92px; }
 .screen.has-count .action-row { margin-bottom: 12px; }
+
+/* ---------- score screen: sign-in card inside the streak banner ---------- */
+.signin-card { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hairline-minor); }
+.signin-head {
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink);
+}
+.signin-sub { font-size: 14px; color: var(--ink-soft); margin: 4px 0 10px; line-height: 1.45; }
+.signin-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.signin-actions .btn-primary { padding: 12px 22px; }
+.signin-actions .btn-ghost { padding: 11px 16px; }
+
+/* ---------- phones: keep "Hand Down the Decision" reachable after the reveal ---------- */
+@media (max-width: 720px) {
+  .screen.is-revealed .action-row {
+    position: sticky; bottom: 0; z-index: 30; margin-top: 22px;
+    padding: 10px 0 12px; background: var(--paper);
+    border-top: 1px solid var(--hairline-minor);
+  }
+  .screen.is-revealed .action-row .btn-primary { width: 100%; }
+}
